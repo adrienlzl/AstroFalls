@@ -21,7 +21,7 @@ export const columns: ColumnDef<meteorite>[] = [
         header: "La classe",
     },
     {
-        accessorKey: "mass_g",
+        accessorKey: "weight",
         header: "Masse",
     },
     {

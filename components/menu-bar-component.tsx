@@ -7,6 +7,8 @@ import {meteorite} from "@/lib/interfaces/meteorite-interface";
 import {Menubar, MenubarMenu, MenubarTrigger} from "@/components/ui/menubar";
 import {DataTable} from "@/components/data-table-all-component/data-table-meteorie-component";
 import {columns} from "@/components/data-table-all-component/colums-meteorite";
+import Globe from "@/components/globe";
+import ThreeShereMeteoriteComponent from "@/components/three-shere-meteorite-component";
 
 
 
@@ -20,11 +22,11 @@ export default function MenuBarComponent({data} : {data : meteorite[]}) {
             case "tableau":
                 return <DataTable<meteorite> columns={columns} data={data} />;
             case "carte":
-                return <Map3dComponent meteorites={data}/>;
+                return <Globe meteorites={data}/>;
             case "timelapse":
-                return <TimelapsComponent />;
+                return <TimelapsComponent meteorites={data}/>;
             case "masse":
-                return <Mass />;
+                return <ThreeShereMeteoriteComponent meteorites={data}/>;
             default:
                 return <div>Sélectionne un menu pour voir le contenu.</div>;
         }

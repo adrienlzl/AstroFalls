@@ -4,7 +4,7 @@ export interface meteorite {
     id: number;
     nametype: string;
     recclass: string;
-    mass_g?: number | null; // Permet de gérer des valeurs manquantes ou nulles
+    weight?: number | null;
     fall: string;
     year?: number | null;
     latitude?: number | null;

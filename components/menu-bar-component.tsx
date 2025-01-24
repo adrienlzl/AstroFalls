@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Map3dComponent from "@/components/map-3d-component";
 import TimelapsComponent from "@/components/timelaps-component";
-import {meteorite} from "@/lib/interfaces/meteorite-interface";
+import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 import {Menubar, MenubarMenu, MenubarTrigger} from "@/components/ui/menubar";
 import {DataTable} from "@/components/data-table-all-component/data-table-meteorie-component";
 import {columns} from "@/components/data-table-all-component/colums-meteorite";
@@ -12,7 +12,7 @@ import ThreeShereMeteoriteComponent from "@/components/three-shere-meteorite-com
 
 
 
-export default function MenuBarComponent({data} : {data : meteorite[]}) {
+export default function MenuBarComponent({data} : {data : Meteorite[]}) {
     const [selectedMenu, setSelectedMenu] = useState("tableau");
 
 
@@ -20,12 +20,12 @@ export default function MenuBarComponent({data} : {data : meteorite[]}) {
     const renderContent = () => {
         switch (selectedMenu) {
             case "tableau":
-                return <DataTable<meteorite> columns={columns} data={data} />;
+                return <DataTable<Meteorite> columns={columns} data={data} />;
             case "carte":
                 return <Globe meteorites={data}/>;
-            case "timelapse":
+            case "graphique":
                 return <TimelapsComponent meteorites={data}/>;
-            case "masse":
+            case "data":
                 return <ThreeShereMeteoriteComponent meteorites={data}/>;
             default:
                 return <div>Sélectionne un menu pour voir le contenu.</div>;
@@ -34,7 +34,7 @@ export default function MenuBarComponent({data} : {data : meteorite[]}) {
 
     return (
         <div>
-            <Menubar>
+            <Menubar className="py-8 flex justify-center items-center">
                 <MenubarMenu>
                     <MenubarTrigger onClick={() => setSelectedMenu("tableau")}>
                         Tableau de données
@@ -42,22 +42,22 @@ export default function MenuBarComponent({data} : {data : meteorite[]}) {
                 </MenubarMenu>
                 <MenubarMenu>
                     <MenubarTrigger onClick={() => setSelectedMenu("carte")}>
-                        Carte 3D
+                        Carte
                     </MenubarTrigger>
                 </MenubarMenu>
                 <MenubarMenu>
-                    <MenubarTrigger onClick={() => setSelectedMenu("timelapse")}>
-                        Timelapse
+                    <MenubarTrigger onClick={() => setSelectedMenu("graphique")}>
+                        Graphique
                     </MenubarTrigger>
                 </MenubarMenu>
                 <MenubarMenu>
-                    <MenubarTrigger onClick={() => setSelectedMenu("masse")}>
-                        Masse
+                    <MenubarTrigger onClick={() => setSelectedMenu("data")}>
+                        Données en vrac
                     </MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
 
-            <div className="mt-4">{renderContent()}</div>
+            <div className="mt-12 mx-16">{renderContent()}</div>
         </div>
     );
 }

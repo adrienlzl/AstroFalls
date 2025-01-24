@@ -1,14 +1,14 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { meteorite } from "@/lib/interfaces/meteorite-interface"; // Exemple ShadUI, à ajuster selon vos composants
+import {Meteorite} from "@/lib/interfaces/meteorite-interface"; // Exemple ShadUI, à ajuster selon vos composants
 
-export default function GraphYearByMass({ meteorites }: { meteorites: meteorite[] }) {
+export default function GraphYearByMass({ meteorites }: { meteorites: Meteorite[] }) {
     // Regrouper la masse des météorites par année en kilogrammes
     const data = meteorites.reduce((acc: Record<string, number>, meteorite) => {
-        if (meteorite.year && meteorite.weight) {
-            const year = meteorite.year.toString();
-            acc[year] = (acc[year] || 0) + meteorite.weight / 1000; // Conversion en kilogrammes
+        if (meteorite.Year && meteorite.RecoveredWeight) {
+            const year = meteorite.Year.toString();
+            acc[year] = (acc[year] || 0) + meteorite.RecoveredWeight / 1000; // Conversion en kilogrammes
         }
         return acc;
     }, {});
@@ -23,12 +23,13 @@ export default function GraphYearByMass({ meteorites }: { meteorites: meteorite[
             <CardHeader>
                 <h3>Masse cumulée des météorites par année (en kilogrammes)</h3>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-6">
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" label={{ value: "Années", position: "insideBottom", offset: -5 }} />
                         <YAxis
+                            className="mx-6"
                             label={{ value: "Masse cumulée (kg)", angle: -90, position: "insideLeft" }}
                             tickFormatter={(value) => `${value.toLocaleString()} kg`} // Format des ticks
                         />

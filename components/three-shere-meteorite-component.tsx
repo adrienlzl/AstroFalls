@@ -2,15 +2,14 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
-import { meteorite } from "@/lib/interfaces/meteorite-interface";
+import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 const DynamicCanvas = dynamic(() => import("@react-three/fiber").then((mod) => mod.Canvas), { ssr: false });
 
-export default function ThreeShereMeteoriteComponent({ meteorites }: { meteorites: meteorite[] }) {
+export default function ThreeShereMeteoriteComponent({ meteorites }: { meteorites: Meteorite[] }) {
     // Calcul des valeurs max, min et moyenne des masses
-    const masses = meteorites.map((m) => m.weight).filter((mass) => mass !== null && mass !== undefined) as number[];
+    const masses = meteorites.map((m) => m.wg).filter((mass) => mass !== null && mass !== undefined) as number[];
     const maxMass = Math.max(...masses);
     const minMass = Math.min(...masses);
     const avgMass = masses.reduce((sum, mass) => sum + mass, 0) / masses.length;
@@ -41,13 +40,13 @@ export default function ThreeShereMeteoriteComponent({ meteorites }: { meteorite
                 </mesh>
 
                 {/* Sphère représentant la masse minimale */}
-                <mesh position={[0, 0, 0]}>
+                <mesh position={[6, 0, 0]}>
                     <sphereGeometry args={[minSphereSize, 32, 32]} />
                     <meshStandardMaterial color="green" />
                 </mesh>
 
                 {/* Sphère représentant la masse moyenne */}
-                <mesh position={[6, 0, 0]}>
+                <mesh position={[0, 0, 0]}>
                     <sphereGeometry args={[avgSphereSize, 32, 32]} />
                     <meshStandardMaterial color="blue" />
                 </mesh>

@@ -4,12 +4,12 @@ import React from "react";
 import dynamic from "next/dynamic";
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
-import { meteorite } from "@/lib/interfaces/meteorite-interface";
+import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 
 const DynamicCanvas = dynamic(() => import("@react-three/fiber").then((mod) => mod.Canvas), { ssr: false });
 const radius = 2;
 
-export default function Map3dComponent({ meteorites }: { meteorites: meteorite[] }) {
+export default function Map3dComponent({ meteorites }: { meteorites: Meteorite[] }) {
 
     const latLngToXYZ = (lat: number, lng: number) => {
         const phi = ((90 - lat) * Math.PI) / 180;
@@ -50,7 +50,7 @@ export default function Map3dComponent({ meteorites }: { meteorites: meteorite[]
                 </mesh>
 
                 {/* Points des météorites */}
-                {meteorites.map((meteorite: meteorite, index: number) => {
+                {meteorites.map((meteorite: Meteorite, index: number) => {
                     if (!meteorite.latitude || !meteorite.longitude) return null;
 
                     const { x, y, z } = latLngToXYZ(meteorite.latitude, meteorite.longitude);

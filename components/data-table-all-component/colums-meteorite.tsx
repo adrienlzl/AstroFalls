@@ -1,43 +1,43 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import {meteorite} from "@/lib/interfaces/meteorite-interface";
+import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 
-export const columns: ColumnDef<meteorite>[] = [
+export const columns: ColumnDef<Meteorite>[] = [
     {
-        accessorKey: "name",
+        accessorKey: "achondrite",
         header: "Nom",
     },
     {
-        accessorKey: "id",
-        header: "ID",
+        accessorKey: "Class",
+        header: "classe",
     },
     {
-        accessorKey: "nametype",
-        header: "Type nom",
+        accessorKey: "Country",
+        header: "pays",
     },
     {
-        accessorKey: "recclass",
-        header: "La classe",
+        accessorKey: "Locality",
+        header: "localité",
     },
     {
-        accessorKey: "weight",
-        header: "Masse",
+        accessorKey: "ff",
+        header: "chute",
     },
     {
-        accessorKey: "fall",
-        header: "Chutte",
+        accessorKey: "Group",
+        header: "groupe",
     },
     {
-        accessorKey: "year",
+        accessorKey: "Year",
         header: "Année",
     },
     {
-        accessorKey: "latitude",
-        header: "latitude",
+        accessorKey: "Name",
+        header: "nom",
     },
     {
-        accessorKey: "longitude",
-        header: "longitude",
+        accessorKey: "wg",
+        header: "masse",
     },
 ]

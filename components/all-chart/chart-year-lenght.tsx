@@ -1,13 +1,13 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {meteorite} from "@/lib/interfaces/meteorite-interface"; // Exemple ShadUI, à ajuster selon vos composants
+import {Meteorite} from "@/lib/interfaces/meteorite-interface"; // Exemple ShadUI, à ajuster selon vos composants
 
-export default function GraphYearByLength({ meteorites }: { meteorites: meteorite[] }) {
+export default function GraphYearByLength({ meteorites }: { meteorites: Meteorite[] }) {
     // Regrouper les météorites par année
     const data = meteorites.reduce((acc: Record<string, number>, meteorite) => {
-        if (meteorite.year) {
-            const year = meteorite.year.toString();
+        if (meteorite.Year) {
+            const year = meteorite.Year.toString();
             acc[year] = (acc[year] || 0) + 1;
         }
         return acc;

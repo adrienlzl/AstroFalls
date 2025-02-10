@@ -9,7 +9,8 @@ import {
     getFilteredRowModel,
     getPaginationRowModel,
     useReactTable,
-    RowData, // Import de RowData
+    RowData,
+    Table as TableType, // pour le cast explicite si besoin
 } from "@tanstack/react-table";
 
 import {
@@ -53,12 +54,16 @@ export function DataTable<TData extends RowData, TValue>({
         },
     });
 
+    // Si TypeScript déduit malgré tout Table<RowData> en lieu et place de Table<TData>,
+    // on peut forcer le typage avec une assertion.
+    const typedTable = table as unknown as TableType<TData>;
+
     return (
         <div className="mt-2">
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
-                        {table.getHeaderGroups().map((headerGroup) => (
+                        {typedTable.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
                                     <TableHead key={header.id}>
@@ -74,8 +79,8 @@ export function DataTable<TData extends RowData, TValue>({
                         ))}
                     </TableHeader>
                     <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
+                        {typedTable.getRowModel().rows?.length ? (
+                            typedTable.getRowModel().rows.map((row) => (
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
@@ -101,8 +106,8 @@ export function DataTable<TData extends RowData, TValue>({
                 </Table>
             </div>
             <div className="mt-5">
-
-                <DataTablePagination<TData> table={table} />
+                {/* On transmet le tableau typé à DataTablePagination */}
+                <DataTablePagination<TData> table={typedTable} />
             </div>
         </div>
     );

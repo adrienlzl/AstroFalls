@@ -1,17 +1,17 @@
-import {Meteorite} from "@/lib/interfaces/meteorite-interface";
-import {Card, CardContent, CardHeader} from "@/components/ui/card";
+import { Meteorite } from "@/lib/interfaces/meteorite-interface";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
     XAxis,
     YAxis,
     Tooltip,
     CartesianGrid,
     ResponsiveContainer,
-    LineChart,
-    Line,
+    BarChart,
+    Bar,
     Legend
 } from "recharts";
 
-export  default function ChartYearFallNotFall({ meteorites }: { meteorites: Meteorite[] }) {
+export default function ChartYearFallNotFall({ meteorites }: { meteorites: Meteorite[] }) {
     // Regrouper les occurrences "Fall" et "Find" par année
     const data = meteorites.reduce((acc: Record<string, { Fall: number; Find: number }>, meteorite) => {
         if (meteorite.Year && meteorite.ff) {
@@ -42,21 +42,28 @@ export  default function ChartYearFallNotFall({ meteorites }: { meteorites: Mete
             </CardHeader>
             <CardContent className="px-6">
                 <ResponsiveContainer width="100%" height={400}>
-                    <LineChart data={chartData}>
+                    <BarChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="year" label={{ value: "Années", position: "insideBottom", offset: -5 }} />
+                        <XAxis
+                            dataKey="year"
+                            label={{ value: "Années", position: "insideBottom", offset: -5 }}
+                        />
                         <YAxis
                             scale="log"
                             domain={[1, 'auto']}
                             className="mx-6"
-                            label={{ value: "Nombre d'occurrences", angle: -90, position: "insideLeft" }}
-                            tickFormatter={(value) => `${value}`} // Format des ticks sans modification
+                            label={{
+                                value: "Nombre d'occurrences",
+                                angle: -90,
+                                position: "insideLeft"
+                            }}
+                            tickFormatter={(value) => `${value}`}
                         />
-                        <Tooltip />
+                        <Tooltip cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} />
                         <Legend />
-                        <Line type="monotone" dataKey="Fall" stroke="#8884d8" name="Fall" />
-                        <Line type="monotone" dataKey="Find" stroke="#82ca9d" name="Find" />
-                    </LineChart>
+                        <Bar dataKey="Fall" fill="#8884d8" name="Fall" />
+                        <Bar dataKey="Find" fill="#82ca9d" name="Find" />
+                    </BarChart>
                 </ResponsiveContainer>
             </CardContent>
         </Card>

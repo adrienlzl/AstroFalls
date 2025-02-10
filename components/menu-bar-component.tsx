@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Map3dComponent from "@/components/map-3d-component";
 import TimelapsComponent from "@/components/timelaps-component";
 import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 import {Menubar, MenubarMenu, MenubarTrigger} from "@/components/ui/menubar";
 import {DataTable} from "@/components/data-table-all-component/data-table-meteorie-component";
 import {columns} from "@/components/data-table-all-component/colums-meteorite";
-import Globe from "@/components/globe";
 import ThreeShereMeteoriteComponent from "@/components/three-shere-meteorite-component";
 
 

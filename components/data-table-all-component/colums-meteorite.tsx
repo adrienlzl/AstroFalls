@@ -5,39 +5,35 @@ import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 
 export const columns: ColumnDef<Meteorite>[] = [
     {
-        accessorKey: "achondrite",
+        accessorKey: "Name",
         header: "Nom",
     },
     {
         accessorKey: "Class",
-        header: "classe",
+        header: "Classe",
     },
     {
         accessorKey: "Country",
-        header: "pays",
+        header: "Pays",
     },
     {
         accessorKey: "Locality",
-        header: "localité",
+        header: "Localité",
     },
     {
-        accessorKey: "ff",
-        header: "chute",
-    },
-    {
-        accessorKey: "Group",
-        header: "groupe",
+        accessorKey: "wg",
+        header: "Masse",
     },
     {
         accessorKey: "Year",
         header: "Année",
     },
     {
-        accessorKey: "Name",
-        header: "nom",
+        accessorKey: "ff",
+        header: "Chute",
     },
     {
-        accessorKey: "wg",
-        header: "masse",
-    },
+        accessorKey: "Group",
+        header: "Groupe",
+    }
 ]

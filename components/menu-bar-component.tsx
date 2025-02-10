@@ -3,7 +3,7 @@
 import { useState } from "react";
 import TimelapsComponent from "@/components/timelaps-component";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
-import { DataTable } from "@/components/data-table-all-component/data-table-meteorie-component";
+import { DataTable } from "@/components/data-table-all-component/data-table-meteorite-component";
 import { columns } from "@/components/data-table-all-component/colums-meteorite";
 import Map2D from "@/components/map2D.component";
 

@@ -6,6 +6,7 @@ import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { DataTable } from "@/components/data-table-all-component/data-table-meteorie-component";
 import { columns } from "@/components/data-table-all-component/colums-meteorite";
 import Map2D from "@/components/map2D.component";
+import OverviewDashboard from "@/components/overview-dashbord.composent";
 
 export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
     const [selectedMenu, setSelectedMenu] = useState("tableau");
@@ -26,7 +27,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
             case "graphique":
                 return <TimelapsComponent meteorites={data} />;
             case "data":
-                return <div>Données en vrac</div>;
+                return <OverviewDashboard meteorites={data}/>
             default:
                 return <div>Sélectionnez un menu pour voir le contenu.</div>;
         }

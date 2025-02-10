@@ -1,21 +1,21 @@
 export interface Meteorite {
-    achondrite: string;
-    id: number;
-    Class: string;
-    Country: string;
-    latitude: number;
-    longitude: number;
-    ff: string;
-    Group: string;
-    Locality: string;
-    mck: string;
-    Month: string;
-    Name: string;
-    PetrologicType: string;
-    RecoveredWeight: string;
-    ShockStage: string | null;
-    Synonyms: string;
-    Type: string;
-    wg: number | null;
-    Year: string;
+    id: number; // Identifiant unique
+    "(A)chondrite": string | null; // Achondrite ou Chondrite
+    Class: string | null; // Classe de la météorite
+    Country: string; // Pays où elle a été trouvée
+    latitude: number; // Latitude de la localisation
+    longitude: number; // Longitude de la localisation
+    ff: string; // Type (Find ou Fall)
+    Group: string | null; // Groupe de la météorite
+    Locality: string; // Localité
+    mck: string; // Code météorite
+    Month: string | null; // Mois de la découverte
+    Name: string; // Nom de la météorite
+    "Petrologic type": string | null; // Type pétrologique
+    "Recovered weight": string | null; // Poids récupéré avec unités (g, kg)
+    "Shock stage": string | null; // Stade de choc
+    Synonyms: string | null; // Synonymes ou autres noms
+    Type: string; // Type de la météorite (Stone, Iron, etc.)
+    wg: string | null; // Autres informations
+    Year: string; // Année de découverte
 }

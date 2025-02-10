@@ -43,10 +43,11 @@ export function DataTable<TData extends RowData, TValue>({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onPaginationChange: setPagination,
         onColumnFiltersChange: setColumnFilters,
-        getFilteredRowModel: getFilteredRowModel(),
+        onSortingChange: setSorting,
         state: {
             pagination,
             columnFilters,

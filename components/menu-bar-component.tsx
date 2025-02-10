@@ -20,7 +20,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
     const renderContent = () => {
         switch (selectedMenu) {
             case "tableau":
-                return <DataTable<Meteorite> columns={columns} data={data} />;
+                return <DataTable<Meteorite, unknown> columns={columns} data={data} />;
             case "carte":
                 return <Map2D meteorites={data} />;
             case "graphique":

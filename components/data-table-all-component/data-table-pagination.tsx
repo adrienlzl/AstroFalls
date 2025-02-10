@@ -13,8 +13,8 @@ interface DataTablePaginationProps<TData extends RowData> {
 }
 
 export function DataTablePagination<TData extends RowData>({
-                                                               table,
-                                                           }: DataTablePaginationProps<TData>) {
+                                                            table,
+                                                            }: DataTablePaginationProps<TData>) {
     return (
         <div className="flex items-center justify-between px-2">
             <div className="flex-1 text-sm text-muted-foreground">

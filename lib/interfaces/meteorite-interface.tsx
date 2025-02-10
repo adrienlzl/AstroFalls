@@ -5,7 +5,7 @@ export interface Meteorite {
     Country: string; // Pays où elle a été trouvée
     latitude: number; // Latitude de la localisation
     longitude: number; // Longitude de la localisation
-    ff: string; // Type (Find ou Fall)
+    ff: "Find" | "Fall"; // Type (Find ou Fall)
     Group: string | null; // Groupe de la météorite
     Locality: string; // Localité
     mck: string; // Code météorite

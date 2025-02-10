@@ -38,7 +38,8 @@ export default function ChartYearFallNotFall({ meteorites }: { meteorites: Meteo
     return (
         <Card>
             <CardHeader>
-                <h3>Occurrences "Fall" et "Find" par année</h3>
+            <h3>Occurrences &quot;Fall&quot; et &quot;Find&quot; par année</h3>
+
             </CardHeader>
             <CardContent className="px-6">
                 <ResponsiveContainer width="100%" height={400}>

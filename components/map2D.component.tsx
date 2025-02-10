@@ -1,5 +1,6 @@
 "use client";
 
+import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import React, { useEffect, useState } from "react";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -24,9 +25,9 @@ type MeteoriteClass = {
     count: number;
 };
 
-export default function Map2D({ meteorites }) {
+export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
     const [selectedClass, setSelectedClass] = useState("all"); // État pour la classe sélectionnée
-    const [filteredMeteorites, setFilteredMeteorites] = useState(meteorites); // Météorites filtrées
+    const [filteredMeteorites, setFilteredMeteorites] = useState<Meteorite[]>(meteorites); // Météorites filtrées
 
     useEffect(() => {
         // Filtrer les météorites en fonction de la classe sélectionnée
@@ -34,7 +35,7 @@ export default function Map2D({ meteorites }) {
             setFilteredMeteorites(meteorites);
         } else {
             setFilteredMeteorites(
-                meteorites.filter((meteorite) => meteorite.recclass === selectedClass)
+                meteorites.filter((meteorite) => meteorite.Class === selectedClass)
             );
         }
     }, [selectedClass, meteorites]);
@@ -99,12 +100,12 @@ export default function Map2D({ meteorites }) {
 
     // Regrouper les classes de météorites et compter leur longueur
     const classesWithCounts = meteorites.reduce((acc, meteorite) => {
-        const { recclass } = meteorite;
-        if (recclass) {
-            acc[recclass] = (acc[recclass] || 0) + 1;
+        const { Class } = meteorite;
+        if (Class) {
+            acc[Class] = (acc[Class] || 0) + 1;
         }
         return acc;
-    }, {});
+    }, {} as Record<string, number>);
 
     // Trier les classes par ordre alphabétique
     const sortedClasses: MeteoriteClass[] = Object.entries(classesWithCounts)

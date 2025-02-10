@@ -13,8 +13,8 @@ import {
 } from "recharts";
 
 export default function GraphCountryByNumber({
-                                                 meteorites,
-                                             }: {
+                                                meteorites,
+                                            }: {
     meteorites: Meteorite[];
 }) {
     // Compter le nombre de météorites par pays (en ignorant les pays vides)

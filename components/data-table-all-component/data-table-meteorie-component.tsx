@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
     ColumnDef,
     SortingState,
@@ -9,7 +9,8 @@ import {
     getFilteredRowModel,
     getPaginationRowModel,
     useReactTable,
-} from "@tanstack/react-table"
+    RowData, // Import de RowData
+} from "@tanstack/react-table";
 
 import {
     Table,
@@ -18,34 +19,30 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
-import {DataTablePagination} from "@/components/data-table-all-component/data-table-pagination";
+} from "@/components/ui/table";
+import { DataTablePagination } from "@/components/data-table-all-component/data-table-pagination";
 
-
-interface DataTableProps<TData, TValue> {
-    columns: ColumnDef<TData, TValue>[]
-    data: TData[]
+interface DataTableProps<TData extends RowData, TValue> {
+    columns: ColumnDef<TData, TValue>[];
+    data: TData[];
 }
 
-export function DataTable<TData, TValue>({
-                                             columns,
-                                             data,
-                                         }: DataTableProps<TData, TValue>) {
-    const [sorting, setSorting] = React.useState<SortingState>([])
+export function DataTable<TData extends RowData, TValue>({
+                                                             columns,
+                                                             data,
+                                                         }: DataTableProps<TData, TValue>) {
+    const [sorting, setSorting] = React.useState<SortingState>([]);
     const [pagination, setPagination] = React.useState({
         pageIndex: 0,
         pageSize: 10,
-    })
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
-    )
+    });
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
-    const table = useReactTable({
+    const table = useReactTable<TData>({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-
         onPaginationChange: setPagination,
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
@@ -54,10 +51,10 @@ export function DataTable<TData, TValue>({
             columnFilters,
             sorting,
         },
-    })
+    });
 
     return (
-        <div className={"mt-2"}>
+        <div className="mt-2">
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
@@ -85,7 +82,10 @@ export function DataTable<TData, TValue>({
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
-                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
                                         </TableCell>
                                     ))}
                                 </TableRow>
@@ -100,9 +100,10 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className={"mt-5"}>
-                <DataTablePagination table={table}/>
+            <div className="mt-5">
+
+                <DataTablePagination<TData> table={table} />
             </div>
         </div>
-    )
+    );
 }

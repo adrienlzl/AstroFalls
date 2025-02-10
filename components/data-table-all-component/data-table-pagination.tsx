@@ -1,15 +1,20 @@
-import {Table} from "@tanstack/react-table"
-import {Button} from "@/components/ui/button"
-import {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "@/components/ui/select";
+import { Table, RowData } from "@tanstack/react-table";
+import { Button } from "@/components/ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectTrigger,
+    SelectValue,
+    SelectItem,
+} from "@/components/ui/select";
 
-
-interface DataTablePaginationProps<TData> {
-    table: Table<TData>
+interface DataTablePaginationProps<TData extends RowData> {
+    table: Table<TData>;
 }
 
-export function DataTablePagination<TData>({
-                                               table,
-                                           }: DataTablePaginationProps<TData>) {
+export function DataTablePagination<TData extends RowData>({
+                                                               table,
+                                                           }: DataTablePaginationProps<TData>) {
     return (
         <div className="flex items-center justify-between px-2">
             <div className="flex-1 text-sm text-muted-foreground">
@@ -22,18 +27,21 @@ export function DataTablePagination<TData>({
                     <Select
                         value={`${table.getState().pagination.pageSize}`}
                         onValueChange={(value) => {
-                            table.setPageSize(Number(value))
+                            table.setPageSize(Number(value));
                         }}
                     >
                         <SelectTrigger className="h-8 w-[70px]">
-                            <SelectValue placeholder={table.getState().pagination.pageSize}/>
+                            <SelectValue placeholder={table.getState().pagination.pageSize} />
                         </SelectTrigger>
                         <SelectContent side="top">
-                            {[10, 20, 30, 40, 50].map((pageSize) => (
-                                <SelectItem key={pageSize} value={`${pageSize}`}>
-                                    {pageSize}
-                                </SelectItem>
-                            ))}
+                            {/* Envelopper les éléments dans un fragment pour respecter le type unique ReactNode */}
+                            <>
+                                {[10, 20, 30, 40, 50].map((pageSize) => (
+                                    <SelectItem key={pageSize} value={`${pageSize}`}>
+                                        {pageSize}
+                                    </SelectItem>
+                                ))}
+                            </>
                         </SelectContent>
                     </Select>
                 </div>
@@ -77,5 +85,5 @@ export function DataTablePagination<TData>({
                 </div>
             </div>
         </div>
-    )
+    );
 }

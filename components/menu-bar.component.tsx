@@ -10,7 +10,7 @@ import AllChartMainComponent from "@/components/all-chart-main.component";
 import HomeComponent from "@/components/home.component";
 
 export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
-    const [selectedMenu, setSelectedMenu] = useState("tableau");
+    const [selectedMenu, setSelectedMenu] = useState("home");
 
     const menuItems = [
         { key: "home", label: "Accueil" },

@@ -1,6 +1,6 @@
 export interface Meteorite {
-    id: number; // Identifiant unique
     "(A)chondrite": string | null; // Achondrite ou Chondrite
+    id: number; // Identifiant unique
     Class: string | null; // Classe de la météorite
     Country: string; // Pays où elle a été trouvée
     latitude: number; // Latitude de la localisation
@@ -15,7 +15,9 @@ export interface Meteorite {
     "Recovered weight": string | null; // Poids récupéré avec unités (g, kg)
     "Shock stage": string | null; // Stade de choc
     Synonyms: string | null; // Synonymes ou autres noms
-    Type: string; // Type de la météorite (Stone, Iron, etc.)
+    Type: MeteoriteType | null;
     wg: string | null; // Autres informations
     Year: string; // Année de découverte
 }
+
+export type MeteoriteType = "Stone" | "Iron" | "Stony-Iron";

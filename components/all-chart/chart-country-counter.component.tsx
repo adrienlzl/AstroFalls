@@ -9,12 +9,11 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    Legend,
 } from "recharts";
 
 export default function GraphCountryByNumber({
-                                                meteorites,
-                                            }: {
+                                                 meteorites,
+                                             }: {
     meteorites: Meteorite[];
 }) {
     // Compter le nombre de météorites par pays (en ignorant les pays vides)
@@ -26,16 +25,16 @@ export default function GraphCountryByNumber({
         }
     });
 
-    // Transformer l'objet en tableau, filtrer pour ne garder que les pays avec plus de 100 météorites
-    // et trier par ordre décroissant (le pays avec le plus de météorites en premier)
+    // Transformer l'objet en tableau, garder seulement les pays avec plus de 100 météorites
+    // et trier par ordre décroissant
     const data = Object.entries(counts)
         .map(([country, count]) => ({ country, count }))
         .filter((entry) => entry.count > 100)
         .sort((a, b) => b.count - a.count);
 
-    // Générateur de couleur en HSL pour obtenir une palette moderne et professionnelle
+    // Générateur de couleur HSL (changement de teinte progressif)
     const getColor = (index: number, total: number): string => {
-        const hue = (index * 360) / total;
+        const hue = (index * 360) / total; // répartition sur le cercle HSL
         return `hsl(${hue}, 70%, 50%)`;
     };
 
@@ -63,7 +62,7 @@ export default function GraphCountryByNumber({
                         <YAxis
                             dataKey="country"
                             type="category"
-                            reversed={true}
+                            // reversed={true}  // On enlève reversed pour que la plus grande valeur soit en haut
                             label={{
                                 value: "Pays",
                                 angle: -90,
@@ -71,13 +70,14 @@ export default function GraphCountryByNumber({
                             }}
                         />
                         <Tooltip />
-                        <Legend />
+
                         <Bar dataKey="count" name="Météorites">
-                            <>
                             {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={getColor(index, data.length)} />
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={getColor(index, data.length)}
+                                />
                             ))}
-                            </>
                         </Bar>
                     </BarChart>
                 </ResponsiveContainer>

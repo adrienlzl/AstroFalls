@@ -9,32 +9,43 @@ import {
     Legend,
 } from "recharts";
 
-export default function GraphMeteoriteByType({
+export default function ChartMeteoriteByType({
                                                  meteorites,
                                              }: {
     meteorites: Meteorite[];
 }) {
-    // Comptabiliser le nombre de météorites par type (on ignore les types vides)
-    const typeCounts: Record<string, number> = {};
+    // Initialiser les compteurs pour chaque type connu + le null
+    const typeCounts = {
+        Stone: 0,
+        Iron: 0,
+        "Stony-Iron": 0,
+        null: 0,
+    };
 
+    // Remplir les compteurs
     meteorites.forEach((meteorite) => {
-        const type = meteorite.Type?.trim();
-        if (type) {
-            typeCounts[type] = (typeCounts[type] || 0) + 1;
+        if (meteorite.Type === null) {
+            typeCounts.null++;
+        } else {
+            // meteorite.Type est forcément "Stone" | "Iron" | "Stony-Iron" | null
+            typeCounts[meteorite.Type]++;
         }
     });
 
-    // Transformer l'objet en tableau au format attendu par Recharts :
-    // Chaque objet aura une clé 'name' (le type) et 'value' (le nombre)
-    const data = Object.entries(typeCounts).map(([type, count]) => ({
-        name: type,
-        value: count,
-    }));
+    // Construire le tableau de données pour Recharts
+    const data = [
+        { name: "Stone", value: typeCounts.Stone },
+        { name: "Iron", value: typeCounts.Iron },
+        { name: "Stony-Iron", value: typeCounts["Stony-Iron"] },
+        { name: "Sans type", value: typeCounts.null }, // On renomme 'null' en "Sans type" pour l'affichage
+    ];
 
-    // Générateur de couleur en HSL pour répartir uniformément une palette moderne
-    const getColor = (index: number, total: number): string => {
-        const hue = (index * 360) / total;
-        return `hsl(${hue}, 70%, 50%)`;
+    // Associer chaque catégorie à sa couleur
+    const colorMap: Record<string, string> = {
+        Stone: "#1f77b4",       // bleu
+        Iron: "#ff7f0e",        // orange
+        "Stony-Iron": "#2ca02c", // vert
+        "Sans type": "#000000",  // noir
     };
 
     return (
@@ -54,10 +65,10 @@ export default function GraphMeteoriteByType({
                             outerRadius={150}
                             label
                         >
-                            {data.map((entry, index) => (
+                            {data.map((entry) => (
                                 <Cell
-                                    key={`cell-${index}`}
-                                    fill={getColor(index, data.length)}
+                                    key={entry.name}
+                                    fill={colorMap[entry.name]}
                                 />
                             ))}
                         </Pie>

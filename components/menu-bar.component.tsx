@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import TimelapsComponent from "@/components/timelaps-component";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { DataTable } from "@/components/data-table-all-component/data-table-meteorie-component";
 import { columns } from "@/components/data-table-all-component/colums-meteorite";
 import Map2D from "@/components/map2D.component";
 import OverviewDashboard from "@/components/overview-dashbord.composent";
+import AllChartMainComponent from "@/components/all-chart-main.component";
 
 export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
     const [selectedMenu, setSelectedMenu] = useState("tableau");
@@ -15,7 +15,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
         { key: "tableau", label: "Tableau de données" },
         { key: "carte", label: "Carte" },
         { key: "graphique", label: "Graphique" },
-        { key: "data", label: "Données en vrac" },
+        { key: "data", label: "Données clés" },
     ];
 
     const renderContent = () => {
@@ -25,7 +25,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
             case "carte":
                 return <Map2D meteorites={data} />;
             case "graphique":
-                return <TimelapsComponent meteorites={data} />;
+                return <AllChartMainComponent meteorites={data} />;
             case "data":
                 return <OverviewDashboard meteorites={data}/>
             default:

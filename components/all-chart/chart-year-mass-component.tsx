@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {Meteorite} from "@/lib/interfaces/meteorite-interface";
 
 
-export default function GraphYearByMass({ meteorites }: { meteorites: Meteorite[] }) {
+export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[] }) {
     // Fonction pour convertir les poids en kilogrammes
     const parseWeight = (weight: string | null): number => {
         if (!weight) return 0;
@@ -24,7 +24,6 @@ export default function GraphYearByMass({ meteorites }: { meteorites: Meteorite[
         return acc;
     }, {});
 
-    console.log("Data regrouped by year:", data);
 
     // Transformer les données pour les utiliser avec Recharts
     const chartData = Object.entries(data)

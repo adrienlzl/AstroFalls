@@ -1,15 +1,17 @@
-import {Db, MongoClient, MongoClientOptions} from "mongodb";
+import { Db, MongoClient, MongoClientOptions } from "mongodb";
 
+// Vérification des variables d'environnement
 if (!process.env.MONGODB_URI || !process.env.MONGODB_DB) {
-    throw new Error('Invalid/Missing environment variable: "process.env.MONGODB_URI" or "process.env.MONGODB_DB"');
+    throw new Error(
+        'Invalid/Missing environment variable: "process.env.MONGODB_URI" or "process.env.MONGODB_DB"'
+    );
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || '';
-const MONGODB_DB = process.env.MONGODB_DB || '';
+const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_DB = process.env.MONGODB_DB;
 
 const options: MongoClientOptions = {};
 
-let cachedClient: MongoClient | null = null;
 let cachedDb: Db | null = null;
 
 export async function connectToDatabase(): Promise<Db> {
@@ -19,18 +21,23 @@ export async function connectToDatabase(): Promise<Db> {
 
     try {
         let client: MongoClient;
+
         if (process.env.NODE_ENV === "development") {
-            if (!(global as any)._mongoClient) {
-                (global as any)._mongoClient = new MongoClient(MONGODB_URI, options);
+            // Définition d'une variable globale typée pour éviter "any"
+            const globalWithMongo = globalThis as typeof globalThis & { _mongoClient?: MongoClient };
+
+            if (!globalWithMongo._mongoClient) {
+                globalWithMongo._mongoClient = new MongoClient(MONGODB_URI, options);
             }
-            client = await (global as any)._mongoClient.connect();
+
+            client = await globalWithMongo._mongoClient.connect();
         } else {
             client = await new MongoClient(MONGODB_URI, options).connect();
         }
 
         const db = client.db(MONGODB_DB);
 
-        cachedClient = client;
+        // Mise en cache de la base de données pour les appels suivants
         cachedDb = db;
 
         return db;
@@ -39,4 +46,3 @@ export async function connectToDatabase(): Promise<Db> {
         throw error;
     }
 }
-

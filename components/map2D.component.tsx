@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import Map from "ol/Map";
 import View from "ol/View";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
@@ -20,12 +20,12 @@ type MeteoriteTypeKey = MeteoriteType | "null";
 
 export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
     // Définition des couleurs pour chaque type
-    const meteoriteTypeColors: Record<MeteoriteTypeKey, string> = {
+    const meteoriteTypeColors: Record<MeteoriteTypeKey, string> = useMemo(() => ({
         Stone: "#1f77b4",       // bleu
         Iron: "#ff7f0e",        // orange
         "Stony-Iron": "#2ca02c", // vert
         "null": "#000000",      // noir pour les météorites sans type
-    };
+    }), []);
 
     // Tableau des types à afficher dans les cases (checkbox)
     const meteoriteTypes: MeteoriteTypeKey[] = ["Stone", "Iron", "Stony-Iron", "null"];

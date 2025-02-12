@@ -11,7 +11,7 @@ export default function AllChartMainComponent({meteorites}: { meteorites: Meteor
 
     return (
         <div className="">
-            <ChartYearByLength meteorites={meteorites}/>
+             <ChartYearByLength meteorites={meteorites}/>
             <div className="my-12">
                 <ChartYearByLength1974 meteorites={meteorites}/>
             </div>
@@ -25,7 +25,7 @@ export default function AllChartMainComponent({meteorites}: { meteorites: Meteor
                 <ChartMeteoriteByType meteorites={meteorites}/>
             </div>
             <div className={"mb-12"}>
-                <ChartMassByType meteorites={meteorites}/>
+               <ChartMassByType meteorites={meteorites}/>
             </div>
 
         </div>

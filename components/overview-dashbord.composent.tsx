@@ -7,27 +7,24 @@ export default function OverviewDashboard({
                                           }: {
     meteorites: Meteorite[];
 }) {
-    // Fonction utilitaire pour parser le poids et le normaliser en grammes
+    // On suppose ici que les poids sont déjà en kg.
     const parseWeight = (weight: string | null): number => {
         if (!weight) return 0;
-        const trimmed = weight.trim().toLowerCase();
-        const match = trimmed.match(/([\d\.]+)\s*(kg|g)/);
-        if (!match) return 0;
-        const value = parseFloat(match[1]);
-        const unit = match[2];
-        return unit === "kg" ? value * 1000 : value;
+        // parseFloat arrête la lecture dès qu'il rencontre un caractère non numérique,
+        // ce qui permet de gérer des chaînes du type "5 kg".
+        return parseFloat(weight);
     };
 
-    // Fonction pour formater une masse (en grammes) en kilogrammes arrondis
-    const formatMass = (massInGrams: number): string => {
-        return (massInGrams / 1000).toFixed(2) + " kg";
+    // Formatage direct de la masse (déjà en kg)
+    const formatMass = (massInKg: number): string => {
+        return massInKg.toFixed(2) + " kg";
     };
 
     /* ========= 1. Année avec le plus de météorites (en nombre) ========= */
     const yearCounts: Record<string, number> = {};
     meteorites.forEach((m) => {
-        if (m.Year) {
-            const year = m.Year.trim();
+        if (m.Year != null) {
+            const year = String(m.Year).trim();
             yearCounts[year] = (yearCounts[year] || 0) + 1;
         }
     });
@@ -43,8 +40,8 @@ export default function OverviewDashboard({
     /* ========= 2. Année avec la plus grande masse totale ========= */
     const yearMass: Record<string, number> = {};
     meteorites.forEach((m) => {
-        if (m.Year) {
-            const year = m.Year.trim();
+        if (m.Year != null) {
+            const year = String(m.Year).trim();
             const weight = parseWeight(m["Recovered weight"]);
             yearMass[year] = (yearMass[year] || 0) + weight;
         }
@@ -180,7 +177,7 @@ export default function OverviewDashboard({
                                 <p>Nom : {biggestMeteorite["Name"]}</p>
                                 <p>Poids : {biggestMeteorite["Recovered weight"]}</p>
                                 <p>Pays : {biggestMeteorite["Country"]}</p>
-                                <p>Année : {biggestMeteorite["Year"]}</p>
+                                <p>Année : {String(biggestMeteorite["Year"]).trim()}</p>
                             </>
                         ) : (
                             <p>Aucune donnée disponible</p>

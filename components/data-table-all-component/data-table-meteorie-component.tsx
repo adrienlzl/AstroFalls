@@ -107,7 +107,6 @@ export function DataTable<TData extends RowData, TValue>({
                 </Table>
             </div>
             <div className="mt-5">
-                {/* On transmet le tableau typé à DataTablePagination */}
                 <DataTablePagination<TData> table={typedTable} />
             </div>
         </div>

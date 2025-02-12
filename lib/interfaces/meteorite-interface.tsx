@@ -1,4 +1,5 @@
 export interface Meteorite {
+    _id?: string;
     "(A)chondrite": string | null; // Achondrite ou Chondrite
     id: number; // Identifiant unique
     Class: string | null; // Classe de la météorite

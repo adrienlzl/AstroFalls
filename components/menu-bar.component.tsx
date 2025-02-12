@@ -7,11 +7,13 @@ import { columns } from "@/components/data-table-all-component/colums-meteorite"
 import Map2D from "@/components/map2D.component";
 import OverviewDashboard from "@/components/overview-dashbord.composent";
 import AllChartMainComponent from "@/components/all-chart-main.component";
+import HomeComponent from "@/components/home.component";
 
 export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
     const [selectedMenu, setSelectedMenu] = useState("tableau");
 
     const menuItems = [
+        { key: "home", label: "Accueil" },
         { key: "tableau", label: "Tableau de données" },
         { key: "carte", label: "Carte" },
         { key: "graphique", label: "Graphique" },
@@ -20,6 +22,8 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 
     const renderContent = () => {
         switch (selectedMenu) {
+            case "home" :
+                return <HomeComponent  />;
             case "tableau":
                 return <DataTable<Meteorite, unknown> columns={columns} data={data} />;
             case "carte":

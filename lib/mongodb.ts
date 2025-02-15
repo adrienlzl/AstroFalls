@@ -1,10 +1,10 @@
 import { Db, MongoClient, MongoClientOptions } from "mongodb";
 
-// Vérification des variables d'environnement
+
 if (!process.env.MONGODB_URI || !process.env.MONGODB_DB) {
-    throw new Error(
-        'Invalid/Missing environment variable: "process.env.MONGODB_URI" or "process.env.MONGODB_DB"'
-    );
+  throw new Error(
+    'Invalid/Missing environment variable: "process.env.MONGODB_URI" or "process.env.MONGODB_DB"'
+  );
 }
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -15,34 +15,35 @@ const options: MongoClientOptions = {};
 let cachedDb: Db | null = null;
 
 export async function connectToDatabase(): Promise<Db> {
-    if (cachedDb) {
-        return cachedDb;
+  if (cachedDb) {
+    return cachedDb;
+  }
+
+  try {
+    let client: MongoClient;
+
+    if (process.env.NODE_ENV === "development") {
+      const globalWithMongo = globalThis as typeof globalThis & { _mongoClient?: MongoClient };
+
+      if (!globalWithMongo._mongoClient) {
+        globalWithMongo._mongoClient = new MongoClient(MONGODB_URI, options);
+      }
+
+      client = await globalWithMongo._mongoClient.connect();
+    }
+    else {
+      client = await new MongoClient(MONGODB_URI, options).connect();
     }
 
-    try {
-        let client: MongoClient;
+    const db = client.db(MONGODB_DB);
 
-        if (process.env.NODE_ENV === "development") {
-            // Définition d'une variable globale typée pour éviter "any"
-            const globalWithMongo = globalThis as typeof globalThis & { _mongoClient?: MongoClient };
+    cachedDb = db;
 
-            if (!globalWithMongo._mongoClient) {
-                globalWithMongo._mongoClient = new MongoClient(MONGODB_URI, options);
-            }
+    return db;
+  }
 
-            client = await globalWithMongo._mongoClient.connect();
-        } else {
-            client = await new MongoClient(MONGODB_URI, options).connect();
-        }
-
-        const db = client.db(MONGODB_DB);
-
-        // Mise en cache de la base de données pour les appels suivants
-        cachedDb = db;
-
-        return db;
-    } catch (error) {
-        console.error("Failed to connect to database", error);
-        throw error;
-    }
+  catch (error) {
+    console.error("Failed to connect to database", error);
+    throw error;
+  }
 }

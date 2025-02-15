@@ -1,4 +1,3 @@
 export enum CollectionName {
-    METEORITE_FRONT = 'meteorite-front',
-
+  METEORITE_FRONT = 'meteorite-front',
 }

@@ -70,3 +70,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+table#table {
+  background-color: red;
+  border-radius : 8px;
+}

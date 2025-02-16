@@ -27,6 +27,7 @@
     "react-dom": "^19.0.0",
     "react-map-gl": "^7.1.8",
     "recharts": "^2.15.0",
+    "sass": "^1.85.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vercel": "^41.1.0"

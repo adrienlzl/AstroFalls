@@ -104,7 +104,7 @@ export function DataTable<TData extends RowData, TValue>({
 					</TableBody>
 				</Table>
 			</div>
-			<div className="mt-5">
+			<div className="mt-5 flex justify-end">
 				<DataTablePagination<TData> table={typedTable} />
 			</div>
 		</div>

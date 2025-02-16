@@ -53,7 +53,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 					</button>
 				))}
 			</nav>
-			<div className="mt-12 mx-16">{renderContent()}</div>
+			<main className="mt-12 mx-16">{renderContent()}</main>
 		</div>
 	);
 }

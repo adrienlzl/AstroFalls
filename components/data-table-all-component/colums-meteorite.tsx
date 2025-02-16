@@ -26,7 +26,7 @@ export const columns: ColumnDef<Meteorite>[] = [
 	},
 	{
 		accessorKey: "ff",
-		header: "Trouvé/Non trouvé",
+		header: "Découverte",
 	},
 	{
 		accessorKey: "Class",

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -70,6 +66,55 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/*===============VARIABLES===============*/
+/*------Colors------*/
+$white: white;
+$black: black;
+$primary-color: #008080;
+$secondary-color: #209b87;
+$accent-color: #f39c12;
+
+/*------Fonts size------*/
+$font-size-body: 24px;
+$font-size-button: 16px;
+$font-size-h1: 40px;
+$font-size-p: 14px;
+
+/*------Background------*/
+$background-color: #f5f5f5;
+
+/*------Border------*/
+$border-width1: 1px;
+$border-width2: 2px;
+$border-solid: solid;
+
+/*------Hover------*/
+$hover-border-color: var(--primary-color);
+
+/*------Shadows------*/
+$button-shadow-color: rgba(0, 0, 0, 0.7);
+$h1-shadow-color: rgba(0, 0, 0, 0.1);
+$icon-shadow-color: rgba(0, 0, 0, 0.2);
+
+$button-shadow: 0px 7px 6px -4px var($button-shadow-color);
+$h1-shadow: 3px 3px 0px var($h1-shadow-color);
+$icon-shadow: drop-shadow(2px 1px 0px var($icon-shadow-color));
+
+/*------Fonts------*/
+$text: 'Arial', sans-serif;
+$text-weight-regular: 400;
+$text-weight-bold: bold;
+
+
+/*===============APP===============*/
+body {
+  font-family: $text;
+  font-weight: $text-weight-regular;
+  line-height: 1.6;
+}
+
 
 table#table {
   background-color: red;

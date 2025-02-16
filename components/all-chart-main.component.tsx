@@ -9,7 +9,7 @@ import ChartYearByMass from "@/components/all-chart/chart-year-mass-component";
 
 export default function AllChartMainComponent({meteorites}: { meteorites: Meteorite[] }) {
 	return (
-		<div className="">
+		<div className="w-full">
 			<ChartYearByLength meteorites={meteorites}/>
 			<div className="my-12">
 				<ChartYearByLength1974 meteorites={meteorites}/>

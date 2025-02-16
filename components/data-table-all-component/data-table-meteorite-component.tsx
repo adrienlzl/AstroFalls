@@ -61,7 +61,7 @@ export function DataTable<TData extends RowData, TValue>({
 	const typedTable = table as unknown as TableType<TData>;
 
 	return (
-		<div className="mt-2">
+		<div className="w-full">
 			<Table id="table">
 				<TableHeader>
 					{typedTable.getHeaderGroups().map((headerGroup) => (

@@ -72,9 +72,9 @@
 /*------Colors------*/
 $white: white;
 $black: black;
-$primary-color: #008080;
-$secondary-color: #209b87;
-$accent-color: #f39c12;
+$primary-color: #b621fe;
+$secondary-color: #02afac;
+$accent-color: #6806fa;
 
 /*------Fonts size------*/
 $font-size-body: 24px;
@@ -88,6 +88,7 @@ $background-color: #f5f5f5;
 /*------Border------*/
 $border-width1: 1px;
 $border-width2: 2px;
+$border-width3: 3px;
 $border-solid: solid;
 
 /*------Hover------*/
@@ -107,16 +108,71 @@ $text: 'Arial', sans-serif;
 $text-weight-regular: 400;
 $text-weight-bold: bold;
 
+/*------Table------*/
+$table-header: #6e02c7;
+$primary-color-even: #a02cff9c;
+
 
 /*===============APP===============*/
 body {
   font-family: $text;
   font-weight: $text-weight-regular;
   line-height: 1.6;
-}
-
-
-table#table {
-  background-color: red;
-  border-radius : 8px;
+  main {
+    table#table {
+      background-color: $background-color;
+      border: $border-width3 $border-solid $primary-color;
+      border-radius: 12px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      thead {
+        tr {
+          background-color: $table-header;
+          th {
+            color: $white;
+            text-align: center;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            text-align: center;
+          }
+          &:nth-child(even) {
+            background-color: $primary-color-even;
+          }
+        }
+      }
+    }
+    #pagination {
+      #rows {
+        button {
+          svg {
+            color: $primary-color;
+          }
+          &:hover {
+            color: $white;
+            svg {
+              color: $white;
+            }
+          }
+        }
+      }
+      button {
+        border: $border-width2 $border-solid $primary-color;
+        &:hover {
+          border: none;
+          background-color: $primary-color;
+        }
+      }
+      button.next, button.previous {
+        color: $primary-color;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
 }

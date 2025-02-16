@@ -38,8 +38,8 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 	};
 
 	return (
-		<div>
-			<nav className="py-8 flex justify-center items-center space-x-4">
+		<>
+			<nav className="py-16 h-5 flex justify-center items-center space-x-4">
 				{menuItems.map((item) => (
 					<button
 						key={item.key}
@@ -53,7 +53,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 					</button>
 				))}
 			</nav>
-			<main className="mt-12 mx-16">{renderContent()}</main>
-		</div>
+			<main className="my-12 mx-16 pb-10 flex justify-center items-center">{renderContent()}</main>
+		</>
 	);
 }

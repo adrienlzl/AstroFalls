@@ -100,7 +100,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 	}, [meteorites, selectedTypes, meteoriteTypeColors]);
 
 	return (
-		<div>
+		<div className="w-full">
 			<div className="flex justify-center items-center gap-4 p-4">
 				{meteoriteTypes.map((type) => (
 					<div key={type} className="flex items-center gap-2">
@@ -118,7 +118,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 					</div>
 				))}
 			</div>
-			<div id="map" className="w-full h-screen"></div>
+			<div id="map" className="h-screen"></div>
 		</div>
 	);
 }

@@ -7,9 +7,10 @@ export default function HomeComponent() {
 		<div className={"flex justify-center items-center"}>
 			<Image
 				src="/images/astroFallLogo.webp"
-				alt="logo AstroFall"
+				alt="AstroFalls Logo"
 				width={500}
-				height={300} />
+				height={300}
+				priority />
 		</div>
 	);
 }

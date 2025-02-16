@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "Astro Falls",
+  title: "Astro Fall",
   authors: [{ name: "Adrien Lazaille, Camille Hoareau, Corentin Beyries et Emmanuel Lefevre" }],
   keywords: ["NextJS", " Tailwind", " MongoDB"],
   description: "Explorez les chutes de météorites à travers le monde grâce à une visualisation interactive. Analysez les données géographiques, temporelles et caractéristiques des météorites avec des graphiques, tableau et des données clés"

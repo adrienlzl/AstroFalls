@@ -14,10 +14,10 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 	const [selectedMenu, setSelectedMenu] = useState("home");
 	const menuItems = [
 		{ key: "home", label: "Accueil" },
-		{ key: "tableau", label: "Tableau de données" },
+		{ key: "tableau", label: "Tableau" },
 		{ key: "carte", label: "Carte" },
 		{ key: "graphique", label: "Graphique" },
-		{ key: "data", label: "Données clés" },
+		{ key: "data", label: "KPI" },
 	];
 
 	const renderContent = () => {
@@ -39,15 +39,13 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 
 	return (
 		<>
-			<nav className="py-16 h-5 flex justify-center items-center space-x-4">
+			<nav className="py-16 h-5 flex justify-center items-center space-x-6">
 				{menuItems.map((item) => (
 					<button
 						key={item.key}
 						onClick={() => setSelectedMenu(item.key)}
-						className={`px-4 py-2 rounded-md transition-colors ${
-							selectedMenu === item.key
-								? "bg-blue-500 text-white"
-								: "bg-gray-200 text-gray-700 hover:bg-gray-300"
+						className={`px-4 py-2 rounded-md nav-button ${
+							selectedMenu === item.key ? "active" : ""
 						}`}>
 						{item.label}
 					</button>

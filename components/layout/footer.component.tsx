@@ -19,11 +19,18 @@ export default function FooterComponent() {
 					width={22}
 					height={22}/>
 				<Link
-					href="https://www.linkedin.com/in/emmanuel-l-06350b167/"
+					href="https://www.linkedin.com/in/adrien-lazaille-11767266/"
 					target="_blank"
 					className="linkedin-link mr-1"
 					rel="noopener noreferrer">
-						Emmanuel Lefevre
+						Adrien Lazaille
+				</Link>
+				<span>|</span>
+				<Link
+					href="https://www.linkedin.com/in/emmanuel-l-06350b167/"
+					target="_blank"
+					className="linkedin-link mx-1"
+					rel="noopener noreferrer">Emmanuel Lefevre
 				</Link>
 				<span>|</span>
 				<Link
@@ -36,15 +43,8 @@ export default function FooterComponent() {
 				<Link
 					href="https://www.linkedin.com/in/camille-hoareau-487782253/"
 					target="_blank"
-					className="linkedin-link mx-1"
-					rel="noopener noreferrer">Camille Hoareau
-				</Link>
-				<span>|</span>
-				<Link
-					href="https://www.linkedin.com/in/adrien-lazaille-11767266/"
-					target="_blank"
 					className="linkedin-link ml-1"
-					rel="noopener noreferrer">Adrien Lazaille
+					rel="noopener noreferrer">Camille Hoareau
 				</Link>
 			</div>
 		</footer>

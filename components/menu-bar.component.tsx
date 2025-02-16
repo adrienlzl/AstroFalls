@@ -3,7 +3,7 @@ import { useState } from "react";
 import AllChartMainComponent from "@/components/all-chart-main.component";
 import HomeComponent from "@/components/home.component";
 import Map2D from "@/components/map2D.component";
-import OverviewDashboard from "@/components/overview-dashbord.composent";
+import OverviewDashboard from "@/components/overview-dashboard.composent";
 
 import { columns } from "@/components/data-table-all-component/colums-meteorite";
 import { DataTable } from "@/components/data-table-all-component/data-table-meteorie-component";

@@ -39,19 +39,19 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 
 	return (
 		<>
-			<nav className="py-16 h-5 flex justify-center items-center space-x-6">
+			<nav>
 				{menuItems.map((item) => (
 					<button
 						key={item.key}
 						onClick={() => setSelectedMenu(item.key)}
-						className={`px-4 py-2 rounded-md nav-button ${
+						className={`nav-button ${
 							selectedMenu === item.key ? "active" : ""
 						}`}>
 						{item.label}
 					</button>
 				))}
 			</nav>
-			<main className="my-12 mx-16 pb-10 flex justify-center items-center">{renderContent()}</main>
+			<main>{renderContent()}</main>
 		</>
 	);
 }

@@ -47,10 +47,21 @@ body {
   font-family: $text;
   font-weight: $text-weight-regular;
   line-height: 1.6;
+  height: 100vh;
   nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    padding-top: 1rem;
+    > *:not(:last-child) {
+      margin-right: 1.5rem;
+    }
     .nav-button {
       color: $primary-color;
       background-color: $white;
+      padding: 6px 12px;
+      border-radius: 8px;
       box-shadow: inset 0 0 0 $border-width2 $primary-color;
       -webkit-box-shadow: inset 0 0 0 $border-width2 $primary-color;
       &:hover {
@@ -65,6 +76,10 @@ body {
     }
   }
   main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 6rem;
     #home {
       img#logo {
         width: 450px;
@@ -73,65 +88,110 @@ body {
         object-fit: cover;
         box-shadow: $logo-shadow;
         -webkit-box-shadow: $logo-shadow;
+        border: $logo-border-width $border-solid $primary-color;
       }
     }
-    img {
-      border: $logo-border-width $border-solid $primary-color;
-    }
-    table#table {
-      background-color: $background-color;
-      border: $border-width3 $border-solid $primary-color;
-      border-radius: 12px;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
-      thead {
-        tr {
-          background-color: $primary-color;
-          th {
-            color: $white;
-            text-align: center;
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            text-align: center;
-          }
-          &:nth-child(even) {
-            background-color: $secondary-color-even;
-          }
-        }
-      }
-    }
-    #pagination {
-      #rows {
-        button {
-          svg {
-            color: $primary-color;
-          }
-          &:hover {
-            color: $white;
-            border: $border-width2 $border-solid $primary-color;
-            svg {
+    #table {
+      table {
+        background-color: $background-color;
+        border: $border-width3 $border-solid $primary-color;
+        border-radius: 12px;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        thead {
+          tr {
+            background-color: $primary-color;
+            th {
               color: $white;
+              text-align: center;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              text-align: center;
+            }
+            &:nth-child(even) {
+              background-color: $secondary-color-even;
             }
           }
         }
       }
-      button {
-        border: $border-width2 $border-solid $primary-color;
-        &:hover {
-          border: none;
-          background-color: $secondary-color;
+      #pagination {
+        #rows {
+          button {
+            svg {
+              color: $primary-color;
+            }
+            &:hover {
+              color: $white;
+              border: $border-width2 $border-solid $primary-color;
+              svg {
+                color: $white;
+              }
+            }
+          }
+        }
+        button {
+          border: $border-width2 $border-solid $primary-color;
+          &:hover {
+            border: none;
+            background-color: $secondary-color;
+          }
+        }
+        button.next, button.previous {
+          color: $primary-color;
+          &:hover {
+            color: $white;
+            border: $border-width2 $border-solid $primary-color;
+          }
         }
       }
-      button.next, button.previous {
-        color: $primary-color;
-        &:hover {
-          color: $white;
+    }
+    #map-wrapper {
+      width: 100%;
+      #map {
+        // height: 52vh;
+        height: calc(100vh - 120px);
+        border: $border-width3 $border-solid $primary-color;
+      }
+      #checkbox-wrapper {
+        display: flex;
+        justify-content: center;
+        #checkbox-container {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          margin: 1rem;
+          padding: 0.5rem 1rem;
+          gap: 1rem;
           border: $border-width2 $border-solid $primary-color;
+          border-radius: 8px;
+          #checkbox-div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            button[role="checkbox"] {
+              width: 1rem;
+              height: 1rem;
+              // &[aria-checked="true"] {
+              // }
+            }
+            button#checkbox-Stone {
+              background-color: #1f77b4;
+            }
+            button#checkbox-Iron {
+              background-color: #ff7f0e;
+            }
+            button#checkbox-Stony-Iron {
+              background-color: #2ca02c;
+            }
+            button#checkbox-null {
+              background-color: #000000;
+            }
+          }
         }
       }
     }

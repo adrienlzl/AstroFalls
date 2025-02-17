@@ -156,6 +156,17 @@ body {
         // height: 52vh;
         height: calc(100vh - 120px);
         border: $border-width3 $border-solid $primary-color;
+        .ol-zoom {
+          margin: 1rem;
+          border: $border-width2 $border-solid $primary-color;
+          .ol-zoom-in {
+            color: $primary-color;
+            border-bottom: $border-width2 $border-solid $primary-color;
+          }
+          .ol-zoom-out {
+            color: $primary-color;
+          }
+        }
       }
       #checkbox-wrapper {
         display: flex;

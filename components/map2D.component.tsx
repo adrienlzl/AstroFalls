@@ -1,4 +1,5 @@
 "use client";
+import 'ol/ol.css';
 import React, {useEffect, useMemo, useState} from "react";
 import Feature from "ol/Feature";
 import Map from "ol/Map";
@@ -47,6 +48,9 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 	};
 
 	useEffect(() => {
+		const mapElement = document.getElementById("map");
+    if (!mapElement) return;
+
 		const filteredMeteorites = meteorites.filter((meteorite) => {
 			const typeKey: MeteoriteTypeKey = meteorite.Type ? meteorite.Type : "null";
 			return selectedTypes.has(typeKey);
@@ -59,6 +63,11 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 				const typeKey: MeteoriteTypeKey = meteorite.Type ? meteorite.Type : "null";
 				const feature = new Feature({
 					geometry: new Point(fromLonLat([meteorite.longitude, meteorite.latitude])),
+					properties: {
+            name: meteorite.Name,
+            type: meteorite.Type,
+            mass: meteorite.wg
+          }
 				});
 
 				feature.setStyle(
@@ -89,26 +98,32 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 			view: new View({
 				projection: "EPSG:3857",
 				center: fromLonLat([0, 0]),
-				zoom: 2
+				zoom: 2,
+				maxZoom: 18,
+        minZoom: 2,
+				extent: undefined,
+				constrainRotation: false,
+				showFullExtent: true
 			}),
 			controls: defaultControls()
 		});
 
 		return () => {
-			map.setTarget(undefined);
+			if (map) {
+				map.setTarget(undefined);
+			}
 		};
 	}, [meteorites, selectedTypes, meteoriteTypeColors]);
 
 	return (
-		<div className="w-full">
-			<div className="flex justify-center items-center gap-4 p-4">
+		<div id="map-wrapper">
+			<div id="checkbox-container">
 				{meteoriteTypes.map((type) => (
-					<div key={type} className="flex items-center gap-2">
+					<div key={type} id="checkbox">
 						<Checkbox
 							id={`checkbox-${type}`}
 							checked={selectedTypes.has(type)}
 							onCheckedChange={() => toggleType(type)}
-							className="w-4 h-4"
 							style={{ accentColor: meteoriteTypeColors[type] }}/>
 						<label
 							htmlFor={`checkbox-${type}`}
@@ -118,7 +133,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 					</div>
 				))}
 			</div>
-			<div id="map" className="h-screen"></div>
+			<div id="map"></div>
 		</div>
 	);
 }

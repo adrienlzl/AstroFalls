@@ -117,23 +117,25 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 
 	return (
 		<div id="map-wrapper">
-			<div id="checkbox-container">
-				{meteoriteTypes.map((type) => (
-					<div key={type} id="checkbox">
-						<Checkbox
-							id={`checkbox-${type}`}
-							checked={selectedTypes.has(type)}
-							onCheckedChange={() => toggleType(type)}
-							style={{ accentColor: meteoriteTypeColors[type] }}/>
-						<label
-							htmlFor={`checkbox-${type}`}
-							style={{ color: meteoriteTypeColors[type] }}>
-							{type === "null" ? "Sans type" : type}
-						</label>
-					</div>
-				))}
-			</div>
 			<div id="map"></div>
+			<div id="checkbox-wrapper">
+				<div id="checkbox-container">
+					{meteoriteTypes.map((type) => (
+						<div key={type} id="checkbox-div">
+							<Checkbox
+								id={`checkbox-${type}`}
+								checked={selectedTypes.has(type)}
+								onCheckedChange={() => toggleType(type)}
+								style={{ accentColor: meteoriteTypeColors[type] }}/>
+							<label
+								htmlFor={`checkbox-${type}`}
+								style={{ color: meteoriteTypeColors[type] }}>
+								{type === "null" ? "Sans type" : type}
+							</label>
+						</div>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 }

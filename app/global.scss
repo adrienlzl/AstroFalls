@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 
 /*===============VARIABLES===============*/
 /*------Colors------*/
@@ -16,7 +24,7 @@ $font-size-body: 24px;
 $font-size-button: 16px;
 $font-size-h1: 40px;
 $font-size-p: 14px;
-$font-size-footer: 15px;
+$font-size-footer: 13px;
 
 /*------Background------*/
 $background-color: #f5f5f5;
@@ -43,188 +51,205 @@ $secondary-color-even: #b421feb4;
 
 
 /*===============APP===============*/
-body {
+html, body {
+  display: flex;
+  flex-direction: column;
   font-family: $text;
   font-weight: $text-weight-regular;
   line-height: 1.6;
-  height: 100vh;
-  nav {
+  height: 100%;
+  #body-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5rem;
-    padding-top: 1rem;
-    > *:not(:last-child) {
-      margin-right: 1.5rem;
-    }
-    .nav-button {
-      color: $primary-color;
-      background-color: $white;
-      padding: 6px 12px;
-      border-radius: 8px;
-      box-shadow: inset 0 0 0 $border-width2 $primary-color;
-      -webkit-box-shadow: inset 0 0 0 $border-width2 $primary-color;
-      &:hover {
-        color: $white;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh;
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 80px;
+      padding-top: 1rem;
+      > *:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+      .nav-button {
+        color: $primary-color;
+        background-color: $white;
+        padding: 6px 12px;
+        border-radius: 8px;
+        box-shadow: inset 0 0 0 $border-width2 $primary-color;
+        -webkit-box-shadow: inset 0 0 0 $border-width2 $primary-color;
+        &:hover {
+          color: $white;
+          background-color: $secondary-color;
+        }
+      }
+      .nav-button.active {
         background-color: $secondary-color;
+        color: white;
+        pointer-events: none;
       }
     }
-    .nav-button.active {
-      background-color: $secondary-color;
-      color: white;
-      pointer-events: none;
-    }
-  }
-  main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 4rem 6rem;
-    #home {
-      img#logo {
-        width: 450px;
-        height: 450px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: $logo-shadow;
-        -webkit-box-shadow: $logo-shadow;
-        border: $logo-border-width $border-solid $primary-color;
-      }
-    }
-    #table {
-      table {
-        background-color: $background-color;
-        border: $border-width3 $border-solid $primary-color;
-        border-radius: 12px;
-        border-collapse: separate;
-        border-spacing: 0;
-        overflow: hidden;
-        thead {
-          tr {
-            background-color: $primary-color;
-            th {
-              color: $white;
-              text-align: center;
-            }
-          }
-        }
-        tbody {
-          tr {
-            td {
-              text-align: center;
-            }
-            &:nth-child(even) {
-              background-color: $secondary-color-even;
-            }
-          }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      height: calc(100vh - 80px - 60px);
+      width: 100%;
+      height: 100%;
+      padding: 4rem 6rem;
+      #home {
+        img#logo {
+          width: 100%;
+          height: 100%;
+          max-width: 450px;
+          max-height: 450px;
+          border-radius: 50%;
+          object-fit: contain;
+          box-shadow: $logo-shadow;
+          -webkit-box-shadow: $logo-shadow;
+          border: $logo-border-width $border-solid $primary-color;
         }
       }
-      #pagination {
-        #rows {
-          button {
-            svg {
-              color: $primary-color;
-            }
-            &:hover {
-              color: $white;
-              border: $border-width2 $border-solid $primary-color;
-              svg {
+      #table {
+        width: 100%;
+        table {
+          background-color: $background-color;
+          border: $border-width3 $border-solid $primary-color;
+          border-radius: 12px;
+          border-collapse: separate;
+          border-spacing: 0;
+          overflow: hidden;
+          thead {
+            tr {
+              background-color: $primary-color;
+              th {
                 color: $white;
+                text-align: center;
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                text-align: center;
+              }
+              &:nth-child(even) {
+                background-color: $secondary-color-even;
               }
             }
           }
         }
-        button {
-          border: $border-width2 $border-solid $primary-color;
-          &:hover {
-            border: none;
-            background-color: $secondary-color;
+        #pagination {
+          #rows {
+            button {
+              svg {
+                color: $primary-color;
+              }
+              &:hover {
+                color: $white;
+                border: $border-width2 $border-solid $primary-color;
+                svg {
+                  color: $white;
+                }
+              }
+            }
           }
-        }
-        button.next, button.previous {
-          color: $primary-color;
-          &:hover {
-            color: $white;
+          button {
             border: $border-width2 $border-solid $primary-color;
+            &:hover {
+              border: none;
+              background-color: $secondary-color;
+            }
+          }
+          button.next, button.previous {
+            color: $primary-color;
+            &:hover {
+              color: $white;
+              border: $border-width2 $border-solid $primary-color;
+            }
           }
         }
       }
-    }
-    #map-wrapper {
-      width: 100%;
-      #map {
-        // height: 52vh;
-        height: calc(100vh - 120px);
-        border: $border-width3 $border-solid $primary-color;
-        .ol-zoom {
-          margin: 1rem;
-          border: $border-width2 $border-solid $primary-color;
-          .ol-zoom-in {
-            color: $primary-color;
-            border-bottom: $border-width2 $border-solid $primary-color;
-          }
-          .ol-zoom-out {
-            color: $primary-color;
+      #map-wrapper {
+        width: 100%;
+        #map {
+          // height: 52vh;
+          height: calc(100vh - 120px);
+          border: $border-width3 $border-solid $primary-color;
+          .ol-zoom {
+            margin: 1rem;
+            border: $border-width2 $border-solid $primary-color;
+            .ol-zoom-in {
+              color: $primary-color;
+            }
+            .ol-zoom-out {
+              color: $primary-color;
+            }
           }
         }
-      }
-      #checkbox-wrapper {
-        display: flex;
-        justify-content: center;
-        #checkbox-container {
-          display: inline-flex;
+        #checkbox-wrapper {
+          display: flex;
           justify-content: center;
-          align-items: center;
-          margin: 1rem;
-          padding: 0.5rem 1rem;
-          gap: 1rem;
-          border: $border-width2 $border-solid $primary-color;
-          border-radius: 8px;
-          #checkbox-div {
-            display: flex;
+          #checkbox-container {
+            display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            button[role="checkbox"] {
-              width: 1rem;
-              height: 1rem;
-              // &[aria-checked="true"] {
-              // }
-            }
-            button#checkbox-Stone {
-              background-color: #1f77b4;
-            }
-            button#checkbox-Iron {
-              background-color: #ff7f0e;
-            }
-            button#checkbox-Stony-Iron {
-              background-color: #2ca02c;
-            }
-            button#checkbox-null {
-              background-color: #000000;
+            margin: 1rem;
+            padding: 0.5rem 1rem;
+            gap: 1rem;
+            border: $border-width2 $border-solid $primary-color;
+            border-radius: 8px;
+            #checkbox-div {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              button[role="checkbox"] {
+                width: 1rem;
+                height: 1rem;
+                // &[aria-checked="true"] {
+                // }
+              }
+              button#checkbox-Stone {
+                background-color: #1f77b4;
+              }
+              button#checkbox-Iron {
+                background-color: #ff7f0e;
+              }
+              button#checkbox-Stony-Iron {
+                background-color: #2ca02c;
+              }
+              button#checkbox-null {
+                background-color: #000000;
+              }
             }
           }
         }
       }
     }
-  }
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: $font-size-footer;
-    #copyright {
-      color: $primary-color;
-      font-weight: $text-weight-bold;
-    }
-    .text-bold {
-      font-weight: $text-weight-bold;
-    }
-    #authors {
+    footer {
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      .linkedin-link {
-        color: $secondary-color;
+      font-size: $font-size-footer;
+      width: 100%;
+      padding: 1rem 1rem;
+      flex: 0 0 60px;
+      #copyright {
+        color: $primary-color;
+        font-weight: $text-weight-bold;
+      }
+      .text-bold {
+        font-weight: $text-weight-bold;
+      }
+      #authors {
+        display: flex;
+        align-items: center;
+        .linkedin-link {
+          color: $secondary-color;
+        }
       }
     }
   }

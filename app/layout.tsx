@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        {children}
+        <div id="body-container">
+          {children}
+        </div>
       </body>
     </html>
   );

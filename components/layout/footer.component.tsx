@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function FooterComponent() {
 	return (
-		<footer className="w-full px-4 py-6">
+		<footer>
 			<div className="py-1">
 				<span className="mr-3" id="copyright">Copyright © 2025</span>
 				<span className="mr-1 text-bold">Made with</span>

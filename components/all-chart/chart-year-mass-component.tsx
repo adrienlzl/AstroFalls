@@ -62,9 +62,8 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 							tick={{ fill: "#6e02c7",
 											fontWeight: "bold",
 											fontSize: 13 }}
-							scale="log"
-							domain={ [1, "auto"] }
-							tickFormatter={ (value) => `${value.toLocaleString() } t`} />
+							domain={ [1, 60] }
+							tickFormatter={ (value) => `${Math.floor(value).toLocaleString()} t`} />
 						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`} />
 						<Bar dataKey="totalMass" fill="#b621fe" />
 					</BarChart>

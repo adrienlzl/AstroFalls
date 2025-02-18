@@ -45,7 +45,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 								angle: -90,
 								position: "insideLeft"}} />
 						<Tooltip />
-						<Bar dataKey="count" fill="#8884d8" />
+						<Bar dataKey="count" fill="#6e02c7" />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

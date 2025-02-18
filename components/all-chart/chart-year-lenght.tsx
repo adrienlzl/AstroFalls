@@ -39,7 +39,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 						<XAxis dataKey="year" label={{ value: "Années", position: "insideBottom", offset: -5 }} />
 						<YAxis label={{ value: "Nombre de météorites", angle: -90, position: "insideLeft" }} />
 						<Tooltip />
-						<Bar dataKey="count" fill="#8884d8" />
+						<Bar dataKey="count" fill="#6e02c7" />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

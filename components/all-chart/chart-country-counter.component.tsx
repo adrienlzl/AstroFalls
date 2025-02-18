@@ -38,6 +38,12 @@ export default function GraphCountryByNumber({
 		return `hsl(${hue}, 70%, 50%)`;
 	};
 
+	// Get color for y axis
+  const colorMap = data.reduce((acc, entry, index) => {
+    acc[entry.country] = getColor(index, data.length);
+    return acc;
+  }, {} as Record<string, string>);
+
 	return (
 		<Card id="charts-card">
 			<CardHeader>
@@ -56,17 +62,26 @@ export default function GraphCountryByNumber({
 											fontWeight: "bold",
 											fontSize: 13 }} />
 						<YAxis
-							dataKey="country"
-							type="category"
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }} />
+              dataKey="country"
+              type="category"
+              tick={({ x, y, payload }) => (
+                <text x={ x }
+											y={ y }
+											fill={colorMap[payload.value]}
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="end"
+											dx={-10}
+											dominantBaseline="middle">
+											{ payload.value }
+                </text>
+              )} />
 						<Tooltip />
 						<Bar dataKey="count" name="Météorites">
 							{data.map((_entry, index) => (
 								<Cell
 									key={ `cell-${index}` }
-									fill={ getColor(index, data.length) }/>
+									fill={colorMap[_entry.country]} />
 							))}
 						</Bar>
 					</BarChart>

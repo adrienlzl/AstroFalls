@@ -30,14 +30,21 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 	return (
 		<Card id="charts-card">
 			<CardHeader>
-				<h3>Chute de météorites par année</h3>
+				<h3>Nombre de chutes de météorites par année</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
-					<BarChart data={chartData}>
+					<BarChart data={ chartData }>
 						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="year" label={{ value: "Années", position: "insideBottom", offset: -5 }} />
-						<YAxis label={{ value: "Nombre de météorites", angle: -90, position: "insideLeft" }} />
+						<XAxis
+							dataKey="year"
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }} />
+						<YAxis
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }}/>
 						<Tooltip />
 						<Bar dataKey="count" fill="#b621fe" />
 					</BarChart>

@@ -259,6 +259,11 @@ body {
             color: $primary-color;
             font-weight: $text-weight-bold;
           }
+          #chart5 {
+            li {
+              margin-right: 30px !important;
+            }
+          }
         }
       }
       #kpi {

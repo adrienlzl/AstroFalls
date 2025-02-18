@@ -46,29 +46,27 @@ export default function GraphCountryByNumber({
 			<CardContent>
 				<ResponsiveContainer width="100%" height={500}>
 					<BarChart
-						data={data}
+						data={ data }
 						layout="vertical"
 						margin={{ top: 20, right: 30, left: 100, bottom: 20 }}>
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis
 							type="number"
-							label={{
-								value: "Nombre de météorites",
-								position: "insideBottom",
-								offset: -5}} />
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }} />
 						<YAxis
 							dataKey="country"
 							type="category"
-							label={{
-								value: "Pays",
-								angle: -90,
-								position: "insideLeft"}} />
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }} />
 						<Tooltip />
 						<Bar dataKey="count" name="Météorites">
 							{data.map((_entry, index) => (
 								<Cell
-									key={`cell-${index}`}
-									fill={getColor(index, data.length)}/>
+									key={ `cell-${index}` }
+									fill={ getColor(index, data.length) }/>
 							))}
 						</Bar>
 					</BarChart>

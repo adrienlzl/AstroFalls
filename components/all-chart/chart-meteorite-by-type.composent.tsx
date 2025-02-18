@@ -52,25 +52,25 @@ export default function ChartMeteoriteByType({
 			<CardHeader>
 				<h3>Total de météorites par type</h3>
 			</CardHeader>
-			<CardContent>
+			<CardContent id="chart5">
 				<ResponsiveContainer width="100%" height={400}>
 					<PieChart>
-						<Pie
-							data={data}
-							dataKey="value"
-							nameKey="name"
-							cx="50%"
-							cy="50%"
-							outerRadius={150}
-							label>
-							{data.map((entry) => (
+						<Pie data={ data }
+								dataKey="value"
+								nameKey="name"
+								cx="50%"
+								cy="50%"
+								outerRadius={150}
+								label
+								paddingAngle={7}>
+							{ data.map((entry) => (
 								<Cell
-									key={entry.name}
-									fill={colorMap[entry.name]} />
+									key={ entry.name }
+									fill={ colorMap[entry.name] } />
 							))}
 						</Pie>
 						<Tooltip />
-						<Legend />
+						<Legend iconSize={18} />
 					</PieChart>
 				</ResponsiveContainer>
 			</CardContent>

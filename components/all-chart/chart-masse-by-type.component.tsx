@@ -4,7 +4,6 @@ import {
     Bar,
     BarChart,
     Cell,
-    Legend,
     ResponsiveContainer,
     Tooltip,
     XAxis,
@@ -74,18 +73,25 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 	return (
 		<Card id="charts-card">
 			<CardHeader>
-				<h3>Masse totale par type de météorite</h3>
+				<h3>Masse totale par type de météorites</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
-					<BarChart data={data}>
-						<XAxis dataKey="name" />
-						<YAxis />
+					<BarChart data={ data }>
+						<XAxis
+							dataKey="name"
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }} />
+						<YAxis
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }}/>
 						<Tooltip />
-						<Legend />
-						<Bar dataKey="value" name="Masse (t)">
+						<Bar
+							dataKey="value">
 							{data.map((entry) => (
-								<Cell key={entry.name} fill={colorMap[entry.name]} />
+								<Cell key={ entry.name } fill={ colorMap[entry.name] } />
 							))}
 						</Bar>
 					</BarChart>

@@ -51,18 +51,21 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
-					<BarChart data={chartData}>
+					<BarChart data={ chartData }>
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis
 							dataKey="year"
-							label={{ value: "Années", position: "insideBottom", offset: -5 }} />
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }} />
 						<YAxis
+							tick={{ fill: "#6e02c7",
+											fontWeight: "bold",
+											fontSize: 13 }}
 							scale="log"
-							domain={[1, "auto"]}
-							className="mx-6"
-							label={{ value: "Masse cumulée (t)", angle: -90, position: "insideLeft" }}
-							tickFormatter={(value) => `${value.toLocaleString()} t`} />
-						<Tooltip formatter={(value: number) => `${value.toLocaleString()} t`} />
+							domain={ [1, "auto"] }
+							tickFormatter={ (value) => `${value.toLocaleString() } t`} />
+						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`} />
 						<Bar dataKey="totalMass" fill="#b621fe" />
 					</BarChart>
 				</ResponsiveContainer>

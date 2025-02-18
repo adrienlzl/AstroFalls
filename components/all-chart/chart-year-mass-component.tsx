@@ -63,7 +63,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 							label={{ value: "Masse cumulée (t)", angle: -90, position: "insideLeft" }}
 							tickFormatter={(value) => `${value.toLocaleString()} t`} />
 						<Tooltip formatter={(value: number) => `${value.toLocaleString()} t`} />
-						<Bar dataKey="totalMass" fill="#6e02c7" />
+						<Bar dataKey="totalMass" fill="#b621fe" />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

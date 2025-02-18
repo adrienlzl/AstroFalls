@@ -39,18 +39,20 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 
 	return (
 		<>
-			<nav>
-				{menuItems.map((item) => (
-					<button
-						key={item.key}
-						onClick={() => setSelectedMenu(item.key)}
-						className={`nav-button ${
-							selectedMenu === item.key ? "active" : ""
-						}`}>
-						{item.label}
-					</button>
-				))}
-			</nav>
+			<header>
+				<nav>
+					{menuItems.map((item) => (
+						<button
+							key={item.key}
+							onClick={() => setSelectedMenu(item.key)}
+							className={`nav-button ${
+								selectedMenu === item.key ? "active" : ""
+							}`}>
+							{item.label}
+						</button>
+					))}
+				</nav>
+			</header>
 			<main>{renderContent()}</main>
 		</>
 	);

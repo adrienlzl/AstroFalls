@@ -52,7 +52,7 @@ export default function ChartMeteoriteByType({
 			<CardHeader>
 				<h3>Nombre total de météorites par type</h3>
 			</CardHeader>
-			<CardContent className="px-6">
+			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<PieChart>
 						<Pie

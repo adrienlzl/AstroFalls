@@ -9,23 +9,13 @@ import ChartYearByMass from "@/components/all-chart/chart-year-mass-component";
 
 export default function AllChartMainComponent({meteorites}: { meteorites: Meteorite[] }) {
 	return (
-		<div className="w-full">
+		<div id="charts">
 			<ChartYearByLength meteorites={meteorites}/>
-			<div className="my-12">
-				<ChartYearByLength1974 meteorites={meteorites}/>
-			</div>
-			<div className={"mb-12"}>
-				<ChartYearByMass meteorites={meteorites}/>
-			</div>
-			<div className={"mb-12"}>
-				<ChartCountryByNumber meteorites={meteorites}/>
-			</div>
-			<div className={"mb-12"}>
-				<ChartMeteoriteByType meteorites={meteorites}/>
-			</div>
-			<div className={"mb-12"}>
-				<ChartMassByType meteorites={meteorites}/>
-			</div>
+			<ChartYearByLength1974 meteorites={meteorites}/>
+			<ChartYearByMass meteorites={meteorites}/>
+			<ChartCountryByNumber meteorites={meteorites}/>
+			<ChartMeteoriteByType meteorites={meteorites}/>
+			<ChartMassByType meteorites={meteorites}/>
 		</div>
 	)
 }

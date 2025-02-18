@@ -76,7 +76,7 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 			<CardHeader>
 				<h3>Masse totale (en tonnes) par type de météorite</h3>
 			</CardHeader>
-			<CardContent className="px-6">
+			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={data}>
 						<XAxis dataKey="name" />

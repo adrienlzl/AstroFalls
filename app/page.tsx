@@ -8,9 +8,9 @@ export default async function Home() {
 	const meteoriteData: Meteorite[] = await getAllMeteorite();
 
 	return (
-		<div className="grid min-h-screen">
-			<MenuBarComponent data={meteoriteData}/>
-			<FooterComponent />
-		</div>
+		<>
+		<MenuBarComponent data={meteoriteData}/>
+		<FooterComponent />
+		</>
 	);
 }

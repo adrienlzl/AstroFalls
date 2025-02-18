@@ -116,7 +116,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 	}, [meteorites, selectedTypes, meteoriteTypeColors]);
 
 	return (
-		<div id="map-wrapper">
+		<div id="map-container">
 			<div id="map"></div>
 			<div id="checkbox-wrapper">
 				<div id="checkbox-container">

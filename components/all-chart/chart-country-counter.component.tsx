@@ -43,7 +43,7 @@ export default function GraphCountryByNumber({
 			<CardHeader>
 				<h3>Nombre de météorites par pays (plus de 100)</h3>
 			</CardHeader>
-			<CardContent className="px-6">
+			<CardContent>
 				<ResponsiveContainer width="100%" height={500}>
 					<BarChart
 						data={data}

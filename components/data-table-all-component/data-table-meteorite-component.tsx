@@ -95,14 +95,14 @@ export function DataTable<TData extends RowData, TValue>({
 							</TableRow>))
 					) : (
 						<TableRow>
-							<TableCell colSpan={columns.length} className="h-24 text-center">
+							<TableCell colSpan={columns.length}>
 								No results.
 							</TableCell>
 						</TableRow>
 					)}
 				</TableBody>
 			</Table>
-			<div className="mt-5 flex justify-end">
+			<div id="pagination-container">
 				<DataTablePagination<TData> table={typedTable} />
 			</div>
 		</div>

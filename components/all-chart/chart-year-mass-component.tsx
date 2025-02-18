@@ -49,7 +49,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 			<CardHeader>
 				<h3>Masse cumulée des météorites par année (en tonnes)</h3>
 			</CardHeader>
-			<CardContent className="px-6">
+			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={chartData}>
 						<CartesianGrid strokeDasharray="3 3" />

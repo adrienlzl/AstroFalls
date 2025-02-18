@@ -30,7 +30,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 	return (
 		<Card>
 			<CardHeader>
-				<h3>Nombre de météorites par année (à partir de 1974)</h3>
+				<h3>Nombre de météorites par année (après 1973)</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>

@@ -48,9 +48,9 @@ export default function ChartMeteoriteByType({
 	};
 
 	return (
-		<Card>
+		<Card id="charts-card">
 			<CardHeader>
-				<h3>Nombre total de météorites par type</h3>
+				<h3>Total de météorites par type</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>

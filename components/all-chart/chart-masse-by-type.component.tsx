@@ -72,9 +72,9 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 	};
 
 	return (
-		<Card>
+		<Card id="charts-card">
 			<CardHeader>
-				<h3>Masse totale (en tonnes) par type de météorite</h3>
+				<h3>Masse totale par type de météorite</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>

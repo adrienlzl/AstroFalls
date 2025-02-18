@@ -39,9 +39,9 @@ export default function GraphCountryByNumber({
 	};
 
 	return (
-		<Card>
+		<Card id="charts-card">
 			<CardHeader>
-				<h3>Nombre de météorites par pays (plus de 100)</h3>
+				<h3>Chutes de météorites par pays</h3>
 			</CardHeader>
 			<CardContent>
 				<ResponsiveContainer width="100%" height={500}>

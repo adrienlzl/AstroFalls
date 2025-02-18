@@ -253,9 +253,12 @@ body {
         padding: 20px;
         gap: 40px;
         box-sizing: border-box;
-        h3 {
-          color: $primary-color;
-          font-weight: $text-weight-bold;
+        #charts-card {
+          border: $border-width2 $border-solid $primary-color;
+          h3 {
+            color: $primary-color;
+            font-weight: $text-weight-bold;
+          }
         }
       }
       #kpi {

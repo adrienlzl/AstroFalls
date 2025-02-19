@@ -216,7 +216,7 @@ export default function OverviewDashboard({
 						<h3>Type dominant</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{ mostCommonType }</p>
+						<p>{ capitalizeWords(mostCommonType) }</p>
 						<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
 						<p>Masse cumulée: { formatMass(typeMostMass) }</p>
 					</CardContent>

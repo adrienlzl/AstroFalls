@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { capitalizeWords } from "@/lib/utils/capitalize-words";
+import { getCountryNameInFrench } from '@/lib/utils/translate-country-in-french';
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 
@@ -14,7 +16,13 @@ export default function OverviewDashboard({
 	};
 
 	const formatMass = (massInKg: number): string => {
-		return massInKg.toFixed(2) + " kg";
+		if (massInKg >= 1000) {
+			const massInTonnes = massInKg / 1000;
+			return massInTonnes.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " t";
+		}
+		else {
+			return massInKg.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " kg";
+		}
 	};
 
 	/* ========= 1. Année avec le plus de météorites (en nombre) ========= */
@@ -62,6 +70,16 @@ export default function OverviewDashboard({
 			biggestMeteorite = m;
 		}
 	});
+	let formattedWeight: string;
+	if (biggestWeight >= 1000) {
+		const weightInTonnes = biggestWeight / 1000;
+		formattedWeight = weightInTonnes % 1 === 0
+    ? weightInTonnes.toLocaleString("fr-FR") + " t"
+    : weightInTonnes.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " t";
+	}
+	else {
+		formattedWeight = biggestWeight.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " kg";
+	}
 
 	/* ========= 4. Pays avec le plus de météorites + masse totale ========= */
 	const countryStats: Record<string, { count: number; totalMass: number }> = {};
@@ -92,7 +110,7 @@ export default function OverviewDashboard({
 	/* ========= 6. Type de météorite le plus fréquent + masse totale ========= */
 	const typeStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
-		const type = m.Type?.trim();
+		const type = m.Type?.trim().toLowerCase();
 		if (type) {
 			if (!typeStats[type]) {
 				typeStats[type] = { count: 0, totalMass: 0 };
@@ -143,25 +161,28 @@ export default function OverviewDashboard({
 						<h3>Année record</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{yearMaxCount} ({maxCount} météorites)</p>
+						<p>{ yearMaxCount }</p>
+						<p>{ maxCount.toLocaleString("fr-FR") } chutes</p>
 					</CardContent>
 				</Card>
 
 				<Card id="kpi-card">
 					<CardHeader id="kpi-card-header">
-						<h3>Année record (kg)</h3>
+						<h3>Année record (t)</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-							<p>{yearMaxMass} (Masse totale : {formatMass(maxMass)})</p>
+							<p>{ yearMaxMass }</p>
+							<p>Masse cumulée: { formatMass(maxMass) }</p>
 					</CardContent>
 				</Card>
 
 				<Card id="kpi-card">
 					<CardHeader id="kpi-card-header">
-						<h3>Total de météorites</h3>
+						<h3>Chutes enregistrées</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{totalMeteorites}</p>
+						<p>Total cumulé: </p>
+						<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 					</CardContent>
 				</Card>
 
@@ -170,16 +191,12 @@ export default function OverviewDashboard({
 						<h3>La plus massive</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						{biggestMeteorite ? (
+						{ biggestMeteorite &&
 							<>
-							<p>Nom : {biggestMeteorite["Name"]}</p>
-							<p>Poids : {biggestMeteorite["Recovered weight"]}</p>
-							<p>Pays : {biggestMeteorite["Country"]}</p>
-							<p>Année : {String(biggestMeteorite["Year"]).trim()}</p>
-							</>
-						) : (
-							<p>Aucune donnée disponible</p>
-						)}
+							<p>{ biggestMeteorite["Name"] }</p>
+							<p>{ formattedWeight }</p>
+							<p>{getCountryNameInFrench(biggestMeteorite["Country"])} en {String(biggestMeteorite["Year"]).trim()}</p>
+							</> }
 					</CardContent>
 				</Card>
 
@@ -188,11 +205,9 @@ export default function OverviewDashboard({
 						<h3>Pays le plus impacté</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{countryMost}</p>
-						<p>
-							{countryMostCount} météorites, Masse totale :{" "}
-							{formatMass(countryMostMass)}
-						</p>
+						<p>{ getCountryNameInFrench(countryMost) }</p>
+						<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
+						<p>Masse cumulée: { formatMass(countryMostMass) }</p>
 					</CardContent>
 				</Card>
 
@@ -201,11 +216,9 @@ export default function OverviewDashboard({
 						<h3>Type dominant</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{mostCommonType}</p>
-						<p>
-							{typeMostCount} météorites, Masse totale :{" "}
-							{formatMass(typeMostMass)}
-						</p>
+						<p>{ mostCommonType }</p>
+						<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
+						<p>Masse cumulée: { formatMass(typeMostMass) }</p>
 					</CardContent>
 				</Card>
 
@@ -214,8 +227,8 @@ export default function OverviewDashboard({
 						<h3>Découvertes</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>Trouvées : {findCount}</p>
-						<p>Non trouvées : {notFindCount}</p>
+						<p>Oui: { findCount.toLocaleString("fr-FR") }</p>
+						<p>Non: { notFindCount.toLocaleString("fr-FR") }</p>
 					</CardContent>
 				</Card>
 
@@ -224,7 +237,7 @@ export default function OverviewDashboard({
 						<h3>Masse totale</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						<p>{formatMass(totalMassAll)}</p>
+						<p>Cumul: { formatMass(totalMassAll) }</p>
 					</CardContent>
 				</Card>
 
@@ -233,14 +246,11 @@ export default function OverviewDashboard({
 						<h3>Stats France</h3>
 					</CardHeader>
 					<CardContent id="kpi-card-content">
-						{franceStats ? (
+						{franceStats &&
 							<>
-							<p>{franceStats.count} météorites</p>
-							<p>Masse totale : {formatMass(franceStats.totalMass)}</p>
-							</>
-						) : (
-							<p>Aucune donnée pour la France</p>
-						)}
+							<p>{ franceStats.count } chutes</p>
+							<p>Masse cumulée: { formatMass(franceStats.totalMass) }</p>
+							</> }
 					</CardContent>
 				</Card>
 
@@ -250,11 +260,10 @@ export default function OverviewDashboard({
 					</CardHeader>
 					<CardContent id="kpi-card-content">
 						{Object.entries(typeStats).map(([type, stats]) => (
-							<div key={type} className="mb-2">
-								<p>
-									<strong>{type}</strong> - Nb : {stats.count}, Masse totale :{" "}
-									{formatMass(stats.totalMass)}
-								</p>
+							<div key={ type } className="mb-2">
+								<p><strong>{ capitalizeWords(type) }</strong></p>
+								<p>Chutes: { stats.count }</p>
+								<p>Masse cumulée: { formatMass(stats.totalMass) }</p>
 							</div>
 						))}
 					</CardContent>

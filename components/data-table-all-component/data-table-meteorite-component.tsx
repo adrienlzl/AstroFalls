@@ -67,7 +67,8 @@ export function DataTable<TData extends RowData, TValue>({
 					{typedTable.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
 							{headerGroup.headers.map((header) => (
-								<TableHead key={header.id}>
+								<TableHead key={header.id}
+													style={{ width: header.column.getSize() }}>
 									{header.isPlaceholder
 										? null
 										: flexRender(

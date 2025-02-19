@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table"
 import { emptyValuePipe } from "@/lib/utils/empty-value-pipe";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
@@ -6,8 +7,18 @@ import { transformStringValuePipe } from "@/lib/utils/transform-string-value-pip
 
 
 const transformationMap = {
-  "find": "Oui",
-  "fall": "Non"
+  "find": <div className="find-or-not">
+						<Image src="/images/valid.png"
+									alt="Météorite découverte"
+									width={22}
+									height={22} />
+					</div>,
+  "fall": <div className="find-or-not">
+						<Image src="/images/invalid.png"
+									alt="Météorite non découverte"
+									width={22}
+									height={22} />
+					</div>
 };
 
 export const columns: ColumnDef<Meteorite>[] = [
@@ -19,12 +30,16 @@ export const columns: ColumnDef<Meteorite>[] = [
 	{
 		accessorKey: "Year",
 		header: "Année",
-    cell: ({ row }) => emptyValuePipe(row.getValue("Year"))
+    cell: ({ row }) => emptyValuePipe(row.getValue("Year")),
+		enableResizing: false,
+		size: 25
 	},
 	{
 		accessorKey: "wg",
 		header: "Masse",
-    cell: ({ row }) => emptyValuePipe(row.getValue("wg"))
+    cell: ({ row }) => emptyValuePipe(row.getValue("wg")),
+		enableResizing: false,
+		size: 20
 	},
 	{
 		accessorKey: "Country",
@@ -39,7 +54,9 @@ export const columns: ColumnDef<Meteorite>[] = [
 	{
 		accessorKey: "ff",
 		header: "Découverte",
-		cell: ({ row }) => transformStringValuePipe(row.getValue("ff"), transformationMap)
+		cell: ({ row }) => transformStringValuePipe(row.getValue("ff"), transformationMap),
+		enableResizing: false,
+		size: 20
 	},
 	{
 		accessorKey: "Class",
@@ -49,6 +66,8 @@ export const columns: ColumnDef<Meteorite>[] = [
 	{
 		accessorKey: "Group",
 		header: "Groupe",
-    cell: ({ row }) => emptyValuePipe(row.getValue("Group"))
+    cell: ({ row }) => emptyValuePipe(row.getValue("Group")),
+		enableResizing: false,
+		size: 20
 	}
 ]

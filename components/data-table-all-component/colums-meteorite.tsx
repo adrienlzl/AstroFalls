@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import {Meteorite} from "@/lib/interfaces/meteorite-interface";
+import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 export const columns: ColumnDef<Meteorite>[] = [
 	{

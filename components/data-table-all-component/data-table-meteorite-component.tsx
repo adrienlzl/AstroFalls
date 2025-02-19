@@ -102,7 +102,7 @@ export function DataTable<TData extends RowData, TValue>({
 					)}
 				</TableBody>
 			</Table>
-			<div id="pagination-container">
+			<div id="pagination-wrapper">
 				<DataTablePagination<TData> table={typedTable} />
 			</div>
 		</div>

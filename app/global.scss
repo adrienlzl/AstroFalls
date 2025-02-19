@@ -158,37 +158,59 @@ body {
             }
           }
         }
-        #pagination-container {
+        #pagination-wrapper {
           display: flex;
-          justify-content: end;
+          align-items: center;
+          width: 100%;
           margin-top: 1.25rem;
-          #pagination {
-            #rows {
-              button {
-                svg {
-                  color: $primary-color;
-                }
-                &:hover {
-                  color: $white;
-                  border: $border-width2 $border-solid $primary-color;
+          #pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 0.5rem;
+            #total-result {
+              text-align: left;
+              font-size: 14px;
+              font-weight: $text-weight-bold;
+              color: $primary-color;
+              padding-right: 0.5rem;
+            }
+            #pagination {
+              display: flex;
+              align-items: center;
+              gap: 1.5rem;
+              text-align: right;
+              #rows {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                button {
                   svg {
+                    color: $primary-color;
+                  }
+                  &:hover {
                     color: $white;
+                    border: $border-width2 $border-solid $primary-color;
+                    svg {
+                      color: $white;
+                    }
                   }
                 }
               }
-            }
-            button {
-              border: $border-width2 $border-solid $primary-color;
-              &:hover {
-                border: none;
-                background-color: $secondary-color;
-              }
-            }
-            button.next, button.previous {
-              color: $primary-color;
-              &:hover {
-                color: $white;
+              button {
                 border: $border-width2 $border-solid $primary-color;
+                &:hover {
+                  border: none;
+                  background-color: $secondary-color;
+                }
+              }
+              button.next, button.previous {
+                color: $primary-color;
+                &:hover {
+                  color: $white;
+                  border: $border-width2 $border-solid $primary-color;
+                }
               }
             }
           }
@@ -328,6 +350,12 @@ body {
       #copyright {
         color: $primary-color;
         font-weight: $text-weight-bold;
+        margin-right: 0.75rem;
+      }
+      #heart {
+        font-size: 1rem;
+        color: red;
+        margin-right: 0.25rem;
       }
       .text-bold {
         font-weight: $text-weight-bold;

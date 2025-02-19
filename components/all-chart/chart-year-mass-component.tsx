@@ -56,26 +56,24 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 						<XAxis
 							dataKey="year"
 							tick={({ x, y, payload }) => (
-								<text
-									x={x}
-									y={y + 15}
-									fill="#6e02c7"
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="middle">
+								<text x={x}
+											y={y + 15}
+											fill="#6e02c7"
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="middle">
 									{ payload.value }
 								</text> )} />
 						<YAxis
 							domain={[1, 60]}
 							tick={({ x, y, payload }) => (
-								<text
-									x={x - 10}
-									y={y}
-									fill="#6e02c7"
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="end"
-									dominantBaseline="middle">
+								<text x={x - 10}
+											y={y}
+											fill="#6e02c7"
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="end"
+											dominantBaseline="middle">
 									{`${Math.floor(payload.value).toLocaleString()} t`}
 								</text> )} />
 

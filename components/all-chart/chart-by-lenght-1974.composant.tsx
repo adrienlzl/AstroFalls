@@ -39,25 +39,23 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 						<XAxis
 							dataKey="year"
 							tick={({ x, y, payload }) => (
-								<text
-									x={x}
-									y={y + 15}
-									fill="#6e02c7"
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="middle">
+								<text x={x}
+											y={y + 15}
+											fill="#6e02c7"
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="middle">
 									{ payload.value }
 								</text> )} />
 						<YAxis
 							tick={({ x, y, payload }) => (
-								<text
-									x={x - 5}
-									y={y}
-									fill="#6e02c7"
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="end"
-									dominantBaseline="middle">
+								<text x={x - 5}
+											y={y}
+											fill="#6e02c7"
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="end"
+											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
 						<Tooltip />

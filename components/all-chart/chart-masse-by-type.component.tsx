@@ -83,25 +83,23 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 						tick={({ x, y, payload }) => {
 							const color = colorMap[payload.value] || "#000";
 							return (
-								<text
-									x={x}
-									y={y + 15}
-									fill={ color }
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="middle">
+								<text x={x}
+											y={y + 15}
+											fill={ color }
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="middle">
 									{ payload.value }
 								</text> ); }} />
 					<YAxis
 						tick={({ x, y, payload }) => (
-							<text
-								x={x - 5}
-								y={y}
-								fill="#6e02c7"
-								fontWeight="bold"
-								fontSize={13}
-								textAnchor="end"
-								dominantBaseline="middle">
+							<text x={x - 5}
+										y={y}
+										fill="#6e02c7"
+										fontWeight="bold"
+										fontSize={13}
+										textAnchor="end"
+										dominantBaseline="middle">
 								{payload.value}
 							</text> )} />
 						<Tooltip />

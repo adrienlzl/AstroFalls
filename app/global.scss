@@ -123,6 +123,10 @@ body {
           box-shadow: $logo-shadow;
           -webkit-box-shadow: $logo-shadow;
           border: $logo-border-width $border-solid $primary-color;
+          @media (width <= 1300px) {
+            width: 350px !important;
+            height: 350px !important;
+          }
         }
       }
       #table {
@@ -264,6 +268,12 @@ body {
         }
       }
       #kpi {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        @media (width >= 768px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
         .kpi-card {
           display: flex;
           flex-direction: column;
@@ -332,32 +342,6 @@ body {
     }
   }
 }
-
-/*===============RESPONSIVE===============*/
-@media (width <= 1300px) {
-  body {
-    #home {
-      img#logo {
-        width: 350px !important;
-        height: 350px !important;
-      }
-    }
-    // #charts {
-    //   #charts-card {
-    //     h3 {
-    //       font-size: 12px;
-    //     }
-    //     .recharts-responsive-container {
-    //       width: 100% !important;
-    //       height: 350px !important;
-    //     }
-    //   }
-    // }
-  }
-}
-
-
-
 
 
 @layer base {

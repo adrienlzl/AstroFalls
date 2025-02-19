@@ -137,30 +137,39 @@ export default function OverviewDashboard({
 
 	return (
 		<div id="kpi">
-			<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-				<Card>
-					<CardHeader>
-						<h3>Année avec le plus de météorites</h3>
+			<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Année record</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
 						<p>{yearMaxCount} ({maxCount} météorites)</p>
 					</CardContent>
 				</Card>
 
-				<Card>
-					<CardHeader>
-						<h3>Année avec la plus grande masse totale</h3>
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Année record (kg)</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
 							<p>{yearMaxMass} (Masse totale : {formatMass(maxMass)})</p>
 					</CardContent>
 				</Card>
 
-				<Card>
-					<CardHeader>
-						<h3>La plus grosse météorite</h3>
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Total de météorites</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
+						<p>{totalMeteorites}</p>
+					</CardContent>
+				</Card>
+
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>La plus massive</h3>
+					</CardHeader>
+					<CardContent id="kpi-card-content">
 						{biggestMeteorite ? (
 							<>
 							<p>Nom : {biggestMeteorite["Name"]}</p>
@@ -174,11 +183,11 @@ export default function OverviewDashboard({
 					</CardContent>
 				</Card>
 
-				<Card>
-					<CardHeader>
-						<h3>Pays avec le plus de météorites</h3>
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Pays le plus impacté</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
 						<p>{countryMost}</p>
 						<p>
 							{countryMostCount} météorites, Masse totale :{" "}
@@ -187,11 +196,43 @@ export default function OverviewDashboard({
 					</CardContent>
 				</Card>
 
-				<Card>
-					<CardHeader>
-						<h3>Statistiques pour la France</h3>
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Type dominant</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
+						<p>{mostCommonType}</p>
+						<p>
+							{typeMostCount} météorites, Masse totale :{" "}
+							{formatMass(typeMostMass)}
+						</p>
+					</CardContent>
+				</Card>
+
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Découvertes</h3>
+					</CardHeader>
+					<CardContent id="kpi-card-content">
+						<p>Trouvées : {findCount}</p>
+						<p>Non trouvées : {notFindCount}</p>
+					</CardContent>
+				</Card>
+
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Masse totale</h3>
+					</CardHeader>
+					<CardContent id="kpi-card-content">
+						<p>{formatMass(totalMassAll)}</p>
+					</CardContent>
+				</Card>
+
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
+						<h3>Stats France</h3>
+					</CardHeader>
+					<CardContent id="kpi-card-content">
 						{franceStats ? (
 							<>
 							<p>{franceStats.count} météorites</p>
@@ -203,24 +244,11 @@ export default function OverviewDashboard({
 					</CardContent>
 				</Card>
 
-				<Card>
-					<CardHeader>
-						<h3>Type de météorite le plus fréquent</h3>
-					</CardHeader>
-					<CardContent>
-						<p>{mostCommonType}</p>
-						<p>
-							{typeMostCount} météorites, Masse totale :{" "}
-							{formatMass(typeMostMass)}
-						</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
+				<Card id="kpi-card">
+					<CardHeader id="kpi-card-header">
 						<h3>Types de météorites</h3>
 					</CardHeader>
-					<CardContent>
+					<CardContent id="kpi-card-content">
 						{Object.entries(typeStats).map(([type, stats]) => (
 							<div key={type} className="mb-2">
 								<p>
@@ -229,34 +257,6 @@ export default function OverviewDashboard({
 								</p>
 							</div>
 						))}
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
-						<h3>Météorites trouvées vs non trouvées</h3>
-					</CardHeader>
-					<CardContent>
-						<p>Trouvées : {findCount}</p>
-						<p>Non trouvées : {notFindCount}</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
-						<h3>Nombre total de météorites</h3>
-					</CardHeader>
-					<CardContent>
-						<p>{totalMeteorites}</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
-						<h3>Masse totale des météorites</h3>
-					</CardHeader>
-					<CardContent>
-						<p>{formatMass(totalMassAll)}</p>
 					</CardContent>
 				</Card>
 			</div>

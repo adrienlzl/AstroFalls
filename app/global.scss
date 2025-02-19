@@ -151,6 +151,11 @@ body {
             tr {
               td {
                 text-align: center;
+                .find-or-not {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
               }
               &:nth-child(even) {
                 background-color: $secondary-color-even;

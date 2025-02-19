@@ -65,9 +65,9 @@ export default function GraphCountryByNumber({
               dataKey="country"
               type="category"
               tick={({ x, y, payload }) => (
-                <text x={ x }
-											y={ y }
-											fill={colorMap[payload.value]}
+                <text x={x}
+											y={y}
+											fill={ colorMap[payload.value] }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="end"
@@ -81,7 +81,7 @@ export default function GraphCountryByNumber({
 							{data.map((_entry, index) => (
 								<Cell
 									key={ `cell-${index}` }
-									fill={colorMap[_entry.country]} />
+									fill={ colorMap[_entry.country] } />
 							))}
 						</Bar>
 					</BarChart>

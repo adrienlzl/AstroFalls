@@ -78,11 +78,21 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={ data }>
-						<XAxis
-							dataKey="name"
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }} />
+					<XAxis
+						dataKey="name"
+						tick={({ x, y, payload }) => {
+							const color = colorMap[payload.value] || "#000";
+							return (
+								<text
+									x={x}
+									y={y + 15}
+									fill={ color }
+									fontWeight="bold"
+									fontSize={13}
+									textAnchor="middle">
+									{ payload.value }
+								</text>);
+						}} />
 						<YAxis
 							tick={{ fill: "#6e02c7",
 											fontWeight: "bold",

@@ -38,13 +38,28 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis
 							dataKey="year"
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }} />
+							tick={({ x, y, payload }) => (
+								<text
+									x={x}
+									y={y + 15}
+									fill="#6e02c7"
+									fontWeight="bold"
+									fontSize={13}
+									textAnchor="middle">
+									{ payload.value }
+								</text> )} />
 						<YAxis
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }}/>
+							tick={({ x, y, payload }) => (
+								<text
+									x={x - 5}
+									y={y}
+									fill="#6e02c7"
+									fontWeight="bold"
+									fontSize={13}
+									textAnchor="end"
+									dominantBaseline="middle">
+									{payload.value}
+								</text> )} />
 						<Tooltip />
 						<Bar dataKey="count" fill="#b621fe" />
 					</BarChart>

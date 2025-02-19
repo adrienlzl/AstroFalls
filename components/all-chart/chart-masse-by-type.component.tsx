@@ -91,18 +91,24 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 									fontSize={13}
 									textAnchor="middle">
 									{ payload.value }
-								</text>);
-						}} />
-						<YAxis
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }}/>
+								</text> ); }} />
+					<YAxis
+						tick={({ x, y, payload }) => (
+							<text
+								x={x - 5}
+								y={y}
+								fill="#6e02c7"
+								fontWeight="bold"
+								fontSize={13}
+								textAnchor="end"
+								dominantBaseline="middle">
+								{payload.value}
+							</text> )} />
 						<Tooltip />
 						<Bar
 							dataKey="value">
 							{data.map((entry) => (
-								<Cell key={ entry.name } fill={ colorMap[entry.name] } />
-							))}
+								<Cell key={ entry.name } fill={ colorMap[entry.name] } /> ))}
 						</Bar>
 					</BarChart>
 				</ResponsiveContainer>

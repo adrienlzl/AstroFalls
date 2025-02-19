@@ -58,20 +58,26 @@ export default function GraphCountryByNumber({
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis
 							type="number"
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }} />
+							tick={({ x, y, payload }) => (
+								<text
+									x={x}
+									y={y + 15}
+									fill="#6e02c7"
+									fontWeight="bold"
+									fontSize={13}
+									textAnchor="middle">
+									{ payload.value }
+								</text> )} />
 						<YAxis
               dataKey="country"
               type="category"
               tick={({ x, y, payload }) => (
-                <text x={x}
+                <text x={x -10}
 											y={y}
 											fill={ colorMap[payload.value] }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="end"
-											dx={-10}
 											dominantBaseline="middle">
 											{ payload.value }
                 </text>

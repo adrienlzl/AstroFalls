@@ -25,7 +25,7 @@ export default function OverviewDashboard({
 		}
 	};
 
-	/* ========= 1. Année avec le plus de météorites (en nombre) ========= */
+	/* ========= 1. Année record en nombre ========= */
 	const yearCounts: Record<string, number> = {};
 	meteorites.forEach((m) => {
 		if (m.Year != null) {
@@ -42,7 +42,7 @@ export default function OverviewDashboard({
 		}
 	});
 
-	/* ========= 2. Année avec la plus grande masse totale ========= */
+	/* ========= 2. Année record en masse ========= */
 	const yearMass: Record<string, number> = {};
 	meteorites.forEach((m) => {
 		if (m.Year != null) {
@@ -60,7 +60,10 @@ export default function OverviewDashboard({
 		}
 	});
 
-	/* ========= 3. La plus grosse météorite ========= */
+	/* ========= 3. Chutes enregistrées ========= */
+	const totalMeteorites = meteorites.length;
+
+	/* ========= 4. La plus massive ========= */
 	let biggestMeteorite: Meteorite | null = null;
 	let biggestWeight = 0;
 	meteorites.forEach((m) => {
@@ -81,7 +84,7 @@ export default function OverviewDashboard({
 		formattedWeight = biggestWeight.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " kg";
 	}
 
-	/* ========= 4. Pays avec le plus de météorites + masse totale ========= */
+	/* ========= 4. Pays le plus impacté ========= */
 	const countryStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
 		const country = m.Country?.trim();
@@ -104,10 +107,7 @@ export default function OverviewDashboard({
 		}
 	});
 
-	/* ========= 5. Statistiques pour la France ========= */
-	const franceStats = countryStats["France"] || null;
-
-	/* ========= 6. Type de météorite le plus fréquent + masse totale ========= */
+	/* ========= 5. Type dominant ========= */
 	const typeStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
 		const type = m.Type?.trim().toLowerCase();
@@ -130,9 +130,9 @@ export default function OverviewDashboard({
 		}
 	});
 
-	/* ========= 7. Détails par type de météorite ========= */
+	/* ========= 9. Détails par type de météorite ========= */
 	// Pour chaque type, on affichera le nom, le nombre total et la masse totale en kg.
-	/* ========= 8. Nombre de météorites "Find" vs celles qui ne le sont pas ========= */
+	/* ========= 6. Découvertes ========= */
 	let findCount = 0;
 	let notFindCount = 0;
 	meteorites.forEach((m) => {
@@ -144,14 +144,17 @@ export default function OverviewDashboard({
 		}
 	});
 
-	/* ========= 9. Nombre total de météorites ========= */
-	const totalMeteorites = meteorites.length;
-
-	/* ========= 10. Masse totale de toutes les météorites ========= */
+	/* ========= 7. Masse totale ========= */
 	let totalMassAll = 0;
 	meteorites.forEach((m) => {
 		totalMassAll += parseWeight(m["Recovered weight"]);
 	});
+
+	/* ========= 8. Statistiques pour la France ========= */
+	const franceStats = countryStats["France"] || null;
+
+
+
 
 	return (
 		<div id="kpi">

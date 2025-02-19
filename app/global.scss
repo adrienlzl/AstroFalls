@@ -58,8 +58,6 @@ $nav-height: 80px;
 /*===============APP===============*/
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 body {
   display: flex;
@@ -115,7 +113,6 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        // flex-grow: 1;
         img#logo {
           width: 100%;
           height: 100%;
@@ -298,6 +295,17 @@ body {
   }
 }
 
+/*===============RESPONSIVE===============*/
+@media (width <= 1260px) {
+  body {
+    #home {
+      img#logo {
+        width: 350px !important;
+        height: 350px !important;
+      }
+    }
+  }
+}
 
 
 

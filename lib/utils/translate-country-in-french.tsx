@@ -7,10 +7,11 @@ const countryNames: CountryNames = {
   "Antarctica": "Antarctique",
   "Australia": "Australie",
   "India": "Inde",
-  "Lybia": "Lybie",
+  "Libya": "Libye",
   "Namibia": "Namibie",
   "North West Africa": "Afrique Nord/Ouest",
-  "Russia": "Russie"
+  "Russia": "Russie",
+  "USA": "Etats-Unis"
 };
 
 

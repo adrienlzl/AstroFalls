@@ -2,6 +2,13 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { emptyValuePipe } from "@/lib/utils/empty-value-pipe";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
+import { transformStringValuePipe } from "@/lib/utils/transform-string-value-pipe";
+
+
+const transformationMap = {
+  "find": "Oui",
+  "fall": "Non"
+};
 
 export const columns: ColumnDef<Meteorite>[] = [
 	{
@@ -32,15 +39,7 @@ export const columns: ColumnDef<Meteorite>[] = [
 	{
 		accessorKey: "ff",
 		header: "Découverte",
-		cell: ({ row }) => {
-			const value = row.getValue("ff") as string | undefined;
-			if (!value) return "NC";
-
-			const lowerCaseValue = value.toLowerCase();
-			if (lowerCaseValue === "find") return "Oui";
-			if (lowerCaseValue === "fall") return "Non";
-			return "NC";
-		}
+		cell: ({ row }) => transformStringValuePipe(row.getValue("ff"), transformationMap)
 	},
 	{
 		accessorKey: "Class",

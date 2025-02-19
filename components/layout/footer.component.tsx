@@ -6,9 +6,9 @@ export default function FooterComponent() {
 	return (
 		<footer>
 			<div className="py-1">
-				<span className="mr-3" id="copyright">Copyright © 2025</span>
+				<span id="copyright">Copyright © 2025</span>
 				<span className="mr-1 text-bold">Made with</span>
-				<span className="text-red-500 mr-1">❤</span>
+				<span id="heart">❤</span>
 				<span className="mr-1 text-bold">in Bordeaux</span>
 			</div>
 			<div id="authors">

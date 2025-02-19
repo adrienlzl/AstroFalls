@@ -45,7 +45,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 		.sort((a, b) => a.year - b.year);
 
 	return (
-		<Card id="charts-card">
+		<Card className="charts-card">
 			<CardHeader>
 				<h3>Masse cumulée des chutes de météorites par année (tonnes)</h3>
 			</CardHeader>

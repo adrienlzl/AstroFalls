@@ -46,7 +46,7 @@ export default function GraphCountryByNumber({
   }, {} as Record<string, string>);
 
 	return (
-		<Card id="charts-card">
+		<Card className="charts-card">
 			<CardHeader>
 				<h3>Chutes de météorites par pays</h3>
 			</CardHeader>

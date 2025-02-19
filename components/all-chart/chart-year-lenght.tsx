@@ -28,7 +28,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 		.sort((a, b) => a.year - b.year);
 
 	return (
-		<Card id="charts-card">
+		<Card className="charts-card">
 			<CardHeader>
 				<h3>Nombre de chutes de météorites par année</h3>
 			</CardHeader>

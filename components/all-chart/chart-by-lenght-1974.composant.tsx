@@ -28,7 +28,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 		.sort((a, b) => a.year - b.year);
 
 	return (
-		<Card id="charts-card">
+		<Card className="charts-card">
 			<CardHeader>
 				<h3>Nombre de chutes de météorites par année (après 1973)</h3>
 			</CardHeader>

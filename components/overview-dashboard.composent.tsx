@@ -159,41 +159,41 @@ export default function OverviewDashboard({
 	return (
 		<div id="kpi">
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Année record</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>{ yearMaxCount }</p>
 						<p>{ maxCount.toLocaleString("fr-FR") } chutes</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Année record (t)</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 							<p>{ yearMaxMass }</p>
 							<p>Masse cumulée: { formatMass(maxMass) }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Chutes enregistrées</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>Total cumulé: </p>
 						<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>La plus massive</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						{ biggestMeteorite &&
 							<>
 							<p>{ biggestMeteorite["Name"] }</p>
@@ -203,52 +203,52 @@ export default function OverviewDashboard({
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Pays le plus impacté</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>{ getCountryNameInFrench(countryMost) }</p>
 						<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
 						<p>Masse cumulée: { formatMass(countryMostMass) }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Type dominant</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>{ capitalizeWords(mostCommonType) }</p>
 						<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
 						<p>Masse cumulée: { formatMass(typeMostMass) }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Découvertes</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>Oui: { findCount.toLocaleString("fr-FR") }</p>
 						<p>Non: { notFindCount.toLocaleString("fr-FR") }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Masse totale</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						<p>Cumul: { formatMass(totalMassAll) }</p>
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Stats France</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						{franceStats &&
 							<>
 							<p>{ franceStats.count } chutes</p>
@@ -257,13 +257,13 @@ export default function OverviewDashboard({
 					</CardContent>
 				</Card>
 
-				<Card id="kpi-card">
-					<CardHeader id="kpi-card-header">
+				<Card className="kpi-card">
+					<CardHeader className="kpi-card-header">
 						<h3>Types de météorites</h3>
 					</CardHeader>
-					<CardContent id="kpi-card-content">
+					<CardContent className="kpi-card-content">
 						{Object.entries(typeStats).map(([type, stats]) => (
-							<div key={ type } className="mb-2">
+							<div key={ type }>
 								<p><strong>{ capitalizeWords(type) }</strong></p>
 								<p>Chutes: { stats.count }</p>
 								<p>Masse cumulée: { formatMass(stats.totalMass) }</p>

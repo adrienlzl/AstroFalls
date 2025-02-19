@@ -19,13 +19,13 @@ export function DataTablePagination<TData extends RowData>({
 }: DataTablePaginationProps<TData>) {
 	return (
 		<div className="flex items-center justify-between px-2"
-				 id="pagination">
-			<div className="text-sm font-medium pr-4">
-				{table.getPrePaginationRowModel().rows.length} résultats
+				id="pagination">
+			<div id="total-result">
+				{table.getPrePaginationRowModel().rows.length.toLocaleString("fr-FR")} résultats
 			</div>
 			<div className="flex items-center space-x-6 lg:space-x-8">
 				<div className="flex items-center space-x-2"
-						 id="rows">
+						id="rows">
 					<p className="text-sm font-medium">Rows per page</p>
 					<Select
 						value={`${table.getState().pagination.pageSize}`}

@@ -1,5 +1,6 @@
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { getCountryNameInFrench } from '@/lib/utils/translate-country-in-french';
 import {
     Bar,
     BarChart,
@@ -59,13 +60,12 @@ export default function GraphCountryByNumber({
 						<XAxis
 							type="number"
 							tick={({ x, y, payload }) => (
-								<text
-									x={x}
-									y={y + 15}
-									fill="#6e02c7"
-									fontWeight="bold"
-									fontSize={13}
-									textAnchor="middle">
+								<text x={x}
+											y={y + 15}
+											fill="#6e02c7"
+											fontWeight="bold"
+											fontSize={13}
+											textAnchor="middle">
 									{ payload.value }
 								</text> )} />
 						<YAxis
@@ -79,7 +79,7 @@ export default function GraphCountryByNumber({
 											fontSize={13}
 											textAnchor="end"
 											dominantBaseline="middle">
-											{ payload.value }
+									{getCountryNameInFrench(payload.value)}
                 </text>
               )} />
 						<Tooltip />

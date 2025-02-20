@@ -1,5 +1,9 @@
+console.time("⏳ Chargement Tailwind");
 import "@/app/globals.css";
+console.timeEnd("⏳ Chargement Tailwind");
+console.time("⏳ Chargement SCSS");
 import "@/app/global.scss";
+console.timeEnd("⏳ Chargement SCSS");
 import type { Metadata } from "next";
 
 

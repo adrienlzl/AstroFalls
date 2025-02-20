@@ -21,6 +21,8 @@ export async function connectToDatabase(): Promise<Db> {
     return cachedDb;
   }
 
+  console.time("⏳ Connexion MongoDB");
+
   try {
     let client: MongoClient;
 
@@ -38,8 +40,9 @@ export async function connectToDatabase(): Promise<Db> {
     }
 
     const db = client.db(MONGODB_DB);
-
     cachedDb = db;
+
+    console.timeEnd("⏳ Connexion MongoDB");
 
     return db;
   }

@@ -1,3 +1,4 @@
+/*===============RESET===============*/
 *,
 *::before,
 *::after {
@@ -152,11 +153,6 @@ body {
                   justify-content: center;
                   align-items: center;
                 }
-              }
-              .class-column {
-                overflow: "hidden";
-                text-overflow: "ellipsis";
-                white-space: "nowrap";
               }
               &:nth-child(even) {
                 background-color: $secondary-color-even;

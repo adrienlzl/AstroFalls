@@ -11,7 +11,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB = process.env.MONGODB_DB;
 
 const options: MongoClientOptions = {
-  serverSelectionTimeoutMS: 10000
+  serverSelectionTimeoutMS: 10000,
+  maxPoolSize: 50
 };
 
 let cachedDb: Db | null = null;

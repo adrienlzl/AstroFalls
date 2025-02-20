@@ -10,7 +10,9 @@ if (!process.env.MONGODB_URI || !process.env.MONGODB_DB) {
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB = process.env.MONGODB_DB;
 
-const options: MongoClientOptions = {};
+const options: MongoClientOptions = {
+  serverSelectionTimeoutMS: 5000
+};
 
 let cachedDb: Db | null = null;
 
@@ -42,8 +44,12 @@ export async function connectToDatabase(): Promise<Db> {
     return db;
   }
 
-  catch (error) {
-    console.error("Failed to connect to database", error);
-    throw error;
+  catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("❌ Erreur de connexion à MongoDB: ", error.message);
+      throw new Error("Impossible de se connecter à MongoDB !");
+    }
+    console.error("❌ Erreur inconnue lors de la connexion à MongoDB: ", error);
+    throw new Error("Une erreur inconnue est survenue !");
   }
 }

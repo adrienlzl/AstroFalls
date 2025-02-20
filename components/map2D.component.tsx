@@ -130,7 +130,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 							<label
 								htmlFor={`checkbox-${type}`}
 								style={{ color: meteoriteTypeColors[type] }}>
-								{type === "null" ? "Sans type" : type}
+								{type === "null" ? "Sans Type" : type}
 							</label>
 						</div>
 					))}

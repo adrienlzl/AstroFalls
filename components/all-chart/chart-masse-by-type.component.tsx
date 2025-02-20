@@ -60,7 +60,7 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 		{ name: "Stone", value: Math.ceil((typeMass.Stone / 1000) * 10) / 10 },
 		{ name: "Iron", value: Math.ceil((typeMass.Iron / 1000) * 10) / 10 },
 		{ name: "Stony-Iron", value: Math.ceil((typeMass["Stony-Iron"] / 1000) * 10) / 10 },
-		{ name: "Sans type", value: Math.ceil((typeMass.null / 1000) * 10) / 10 },
+		{ name: "Sans Type", value: Math.ceil((typeMass.null / 1000) * 10) / 10 },
 	];
 
 	const colorMap: Record<string, string> = {

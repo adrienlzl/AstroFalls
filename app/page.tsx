@@ -9,8 +9,8 @@ export default async function Home() {
 
 	return (
 		<>
-		<MenuBarComponent data={meteoriteData}/>
-		<FooterComponent />
+			<MenuBarComponent data={meteoriteData}/>
+			<FooterComponent />
 		</>
 	);
 }

@@ -80,45 +80,47 @@ export function DataTable<TData extends RowData, TValue>({
 	};
 
 	return (
-		<div id="table">
-			<Table>
-				<TableHeader>
-					{ typedTable.getHeaderGroups().map((headerGroup) => (
-						<TableRow key={ headerGroup.id }>
-							{ headerGroup.headers.map((header) => (
-								<TableHead key={ header.id }
-													style={{ width: header.column.getSize() }}
-                  				onClick={() => handleSort(header)}>
-									{ header.isPlaceholder
-										? null
-										: flexRender(header.column.columnDef.header, header.getContext()) }
-									<span>
-										{header.column.getIsSorted() === "desc" ? " ▼" : header.column.getIsSorted() === "asc" ? " ▲" : " ▽"}
-                  </span>
-								</TableHead>
-							)) }
-						</TableRow>
-					)) }
-				</TableHeader>
-				<TableBody>
-					{ typedTable.getRowModel().rows?.length ? (
-						typedTable.getRowModel().rows.map((row) => (
-							<TableRow key={ row.id } data-state={ row.getIsSelected() && "selected" }>
-								{ row.getVisibleCells().map((cell) => (
-									<TableCell key={ cell.id }>
-										{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
-									</TableCell>
+		<div id="table-container">
+			<div id="table">
+				<Table>
+					<TableHeader>
+						{ typedTable.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={ headerGroup.id }>
+								{ headerGroup.headers.map((header) => (
+									<TableHead key={ header.id }
+														style={{ width: header.column.getSize() }}
+														onClick={() => handleSort(header)}>
+										{ header.isPlaceholder
+											? null
+											: flexRender(header.column.columnDef.header, header.getContext()) }
+										<span>
+											{ header.column.getIsSorted() === "desc" ? " ▼" : header.column.getIsSorted() === "asc" ? " ▲" : " ▽" }
+										</span>
+									</TableHead>
 								)) }
-							</TableRow>))
-					) : (
-						<TableRow>
-							<TableCell colSpan={ columns.length }>
-								No results.
-							</TableCell>
-						</TableRow>
-					) }
-				</TableBody>
-			</Table>
+							</TableRow>
+						)) }
+					</TableHeader>
+					<TableBody>
+						{ typedTable.getRowModel().rows?.length ? (
+							typedTable.getRowModel().rows.map((row) => (
+								<TableRow key={ row.id } data-state={ row.getIsSelected() && "selected" }>
+									{ row.getVisibleCells().map((cell) => (
+										<TableCell key={ cell.id }>
+											{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
+										</TableCell>
+									)) }
+								</TableRow>))
+						) : (
+							<TableRow>
+								<TableCell colSpan={ columns.length }>
+									No results.
+								</TableCell>
+							</TableRow>
+						) }
+					</TableBody>
+				</Table>
+			</div>
 			<div id="pagination-wrapper">
 				<DataTablePagination<TData> table={ typedTable } />
 			</div>

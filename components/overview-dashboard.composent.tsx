@@ -172,7 +172,7 @@ export default function OverviewDashboard({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 						<p>{ yearMaxMass }</p>
-						<p>Masse cumulée: { formatMass(maxMass) }</p>
+						<p>Masse cumulée : { formatMass(maxMass) }</p>
 				</CardContent>
 			</Card>
 
@@ -181,7 +181,7 @@ export default function OverviewDashboard({
 					<h3>Chutes enregistrées</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Total cumulé: </p>
+					<p>Total cumulé : </p>
 					<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 				</CardContent>
 			</Card>
@@ -207,7 +207,7 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					<p>{ getCountryNameInFrench(countryMost) }</p>
 					<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
-					<p>Masse cumulée: { formatMass(countryMostMass) }</p>
+					<p>Masse cumulée : { formatMass(countryMostMass) }</p>
 				</CardContent>
 			</Card>
 
@@ -218,7 +218,7 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					<p>{ capitalizeWords(mostCommonType) }</p>
 					<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
-					<p>Masse cumulée: { formatMass(typeMostMass) }</p>
+					<p>Masse cumulée : { formatMass(typeMostMass) }</p>
 				</CardContent>
 			</Card>
 
@@ -227,8 +227,8 @@ export default function OverviewDashboard({
 					<h3>Découvertes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Oui: { findCount.toLocaleString("fr-FR") }</p>
-					<p>Non: { notFindCount.toLocaleString("fr-FR") }</p>
+					<p>Oui : { findCount.toLocaleString("fr-FR") }</p>
+					<p>Non : { notFindCount.toLocaleString("fr-FR") }</p>
 				</CardContent>
 			</Card>
 
@@ -237,7 +237,7 @@ export default function OverviewDashboard({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Cumul: { formatMass(totalMassAll) }</p>
+					<p>Cumul : { formatMass(totalMassAll) }</p>
 				</CardContent>
 			</Card>
 
@@ -249,7 +249,7 @@ export default function OverviewDashboard({
 					{franceStats &&
 						<>
 						<p>{ franceStats.count } chutes</p>
-						<p>Masse cumulée: { formatMass(franceStats.totalMass) }</p>
+						<p>Masse cumulée : { formatMass(franceStats.totalMass) }</p>
 						</> }
 				</CardContent>
 			</Card>
@@ -262,8 +262,8 @@ export default function OverviewDashboard({
 					{Object.entries(typeStats).map(([type, stats]) => (
 						<div key={ type }>
 							<p><strong>{ capitalizeWords(type) }</strong></p>
-							<p>Chutes: { stats.count }</p>
-							<p>Masse cumulée: { formatMass(stats.totalMass) }</p>
+							<p>Chutes : { stats.count }</p>
+							<p>Masse cumulée : { formatMass(stats.totalMass) }</p>
 						</div>
 					))}
 				</CardContent>

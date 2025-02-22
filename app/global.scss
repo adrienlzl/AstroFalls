@@ -18,7 +18,8 @@
 /*------Colors------*/
 $white: white;
 $black: black;
-$grey-light: #afafaf;
+$grey: #afafaf;
+$grey-light: #dadada;
 
 $primary-color: #02afac;
 $secondary-color: #226A90;
@@ -38,7 +39,7 @@ $text-serif: 'roboto serif', serif;
 $font-size-footer: 14px;
 $font-size-nav: 18px;
 $font-size-table: 14px;
-$font-size-table-header: 16px;
+$font-size-table-header: 14px;
 
 /*------Fonts size responsive------*/
 $font-size-footer-responsive-S: 12px;
@@ -46,15 +47,14 @@ $font-size-footer-responsive-M: 13px;
 $font-size-nav-responsive-S: 16px;
 $font-size-nav-responsive-M: 17px;
 $font-size-table-responsive-S: 10px;
-$font-size-table-responsive-M: 12px;
+$font-size-table-responsive-M: 11px;
 $font-size-table-header-responsive-S: 10px;
-$font-size-table-header-responsive-M: 13px;
+$font-size-table-header-responsive-M: 11px;
+$font-size-table-header-responsive-L: 12px;
+$font-size-table-header-responsive-XL: 13px;
 
 /*------Text color------*/
-$button-text-color: $grey-light;
-
-/*------Background------*/
-$table-background-color: #f7f7f7;
+$button-text-color: $grey;
 
 /*------Border------*/
 $border-width1: 1px;
@@ -72,7 +72,8 @@ $gradient-effect: linear-gradient(325deg, $gradient2 0%, $gradient1 50%);
 $table-head-text-weight: $text-weight;
 $table-head-text: $text-serif;
 $table-body-text: $text;
-$secondary-color-even: #e2a7ff;
+$table-color-odd: $grey;
+$table-color-even: $grey-light;
 
 /*------Height------*/
 $checkbox-wrapper-height: 40px;
@@ -203,13 +204,20 @@ body {
                   letter-spacing: 1px;
                   color: $white;
                   text-align: center;
-                  border: $border-width1 $border-solid $white;
+                  border: $border-width1 $border-solid $accent-color;
+                  user-select: none;
                   &:hover {
                     cursor: pointer;
                   }
                   @media (width <= 1250px) {
-                    font-size: $font-size-table-header-responsive-M;
+                    font-size: $font-size-table-header-responsive-XL;
                     letter-spacing: 0px;
+                  }
+                  @media (width <= 1100px) {
+                    font-size: $font-size-table-header-responsive-L;
+                  }
+                  @media (width <= 1060px) {
+                    font-size: $font-size-table-header-responsive-M;
                   }
                   @media (width <= 850px) {
                     font-size: $font-size-table-header-responsive-S;
@@ -224,7 +232,8 @@ body {
                   font-family: $table-body-text;
                   font-size: $font-size-table;
                   text-align: center;
-                  border: $border-width1 $border-solid $white;
+                  border: $border-width1 $border-solid $accent-color;
+                  user-select: none;
                   .find-or-not {
                     display: flex;
                     justify-content: center;
@@ -238,10 +247,10 @@ body {
                   }
                 }
                 &:nth-child(odd) {
-                  background-color: $table-background-color;
+                  background-color: $table-color-odd;
                 }
                 &:nth-child(even) {
-                  background-color: $secondary-color-even;
+                  background-color: $table-color-even;
                 }
               }
             }
@@ -455,7 +464,7 @@ body {
           margin-right: 0.25rem;
         }
         .from {
-          color: $grey-light;
+          color: $grey;
           font-weight: $text-weight-bold;
           margin-right: 0.25rem;
         }

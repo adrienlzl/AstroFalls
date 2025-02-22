@@ -13,9 +13,10 @@
 $white: white;
 $black: black;
 $grey-light: #afafaf;
+
 $primary-color: #02afac;
 $secondary-color: #226A90;
-$third-color: #02afac;
+
 $accent-color: #6e02c7;
 $accent-color2: #226A90;
 $accent-color3: #ff8000;
@@ -412,27 +413,50 @@ body {
       align-items: center;
       font-size: $font-size-footer;
       width: 100%;
-      padding: 1rem 1rem 2rem 1rem;
+      padding: 1rem 1rem 3rem 1rem;
       height: $footer-height;
       flex-shrink: 0;
-      #copyright {
-        color: $primary-color;
-        font-weight: $text-weight-bold;
-        margin-right: 0.75rem;
-      }
-      #heart {
-        font-size: 1rem;
-        color: red;
-        margin-right: 0.25rem;
-      }
-      .text-bold {
-        font-weight: $text-weight-bold;
+      #footer-header {
+        padding: 0.25rem 0;
+        #copyright {
+          color: $secondary-color;
+          font-weight: $text-weight-bold;
+          margin-right: 0.75rem;
+        }
+        #heart {
+          font-size: 1rem;
+          color: red;
+          margin-right: 0.25rem;
+        }
+        .from {
+          color: $grey-light;
+          font-weight: $text-weight-bold;
+          margin-right: 0.25rem;
+        }
       }
       #authors {
         display: flex;
-        align-items: center;
-        .linkedin-link {
+        img {
+          margin-right: 0.5rem;
+          vertical-align: middle;
+        }
+        .linkedin-links {
+          color: $primary-color;
+          font-weight: $text-weight-bold;
+        }
+        .linkedin-links:first-of-type {
+          margin-right: 0.25rem;
+        }
+        .linkedin-links:nth-of-type(2),
+        .linkedin-links:nth-of-type(3) {
+          margin: 0 0.25rem;
+        }
+        .linkedin-links:last-of-type {
+          margin-left: 0.25rem;
+        }
+        span {
           color: $secondary-color;
+          font-weight: $text-weight-bold;
         }
       }
     }

@@ -139,6 +139,7 @@ body {
           border-collapse: separate;
           border-spacing: 0;
           overflow: hidden;
+          table-layout: fixed;
           thead {
             tr {
               background-color: $primary-color;

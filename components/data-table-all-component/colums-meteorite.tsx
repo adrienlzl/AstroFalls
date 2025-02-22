@@ -52,7 +52,7 @@ export const columns: ColumnDef<Meteorite>[] = [
 	},
 	{
 		accessorKey: "Recovered weight",
-		header: "Masse",
+		header: "Masse (kg)",
 		cell: ({ row }) => emptyValuePipe(row.getValue("Recovered weight")),
 		enableResizing: false,
 		size: 30
@@ -69,6 +69,6 @@ export const columns: ColumnDef<Meteorite>[] = [
 		header: "Classe",
     cell: ({ row }) => emptyValuePipe(row.getValue("Class")),
 		enableResizing: false,
-		size: 30
+		size: 25
 	}
 ]

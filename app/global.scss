@@ -12,13 +12,14 @@
 /*------Colors------*/
 $white: white;
 $black: black;
+$grey-light: #afafaf;
 $primary-color: #02afac;
 $secondary-color: #226A90;
 $third-color: #02afac;
-$third-color2: #226A90;
-$accent-color: #ff8000;
-$accent-color2: #FFCC00;
-$accent-color3: #6e02c7;
+$accent-color: #6e02c7;
+$accent-color2: #226A90;
+$accent-color3: #ff8000;
+$accent-color4: #FFCC00;
 
 /*------Fonts size------*/
 $font-size-h1: 20px;
@@ -35,6 +36,9 @@ $font-size-nav-responsive: 17px;
 $font-size-table-responsive: 12px;
 $font-size-table-header-responsive: 14px;
 
+/*------Text color------*/
+$button-text-color: $grey-light;
+
 /*------Background------*/
 $table-background-color: #f7f7f7;
 
@@ -45,10 +49,10 @@ $border-width3: 3px;
 $logo-border-width: 4px;
 $border-solid: solid;
 
-/*------Shadows------*/
-$logo-shadow-color: rgba(7, 0, 0, 0.918);
-
-$logo-shadow: 0 10px 20px $logo-shadow-color;
+/*------Gradient------*/
+$gradient1: $secondary-color;
+$gradient2: $accent-color;
+$gradient-effect: linear-gradient(325deg, $gradient2 0%, $gradient1 50%);
 
 /*------Fonts------*/
 $text: 'Arial', sans-serif;
@@ -102,8 +106,8 @@ body {
           font-size: $font-size-nav-responsive;
         }
         .nav-button {
-          color: $primary-color;
-          background-color: $white;
+          cursor: pointer;
+          color: $button-text-color;
           padding: 6px 12px;
           border-radius: 8px;
           box-shadow: inset 0 0 0 $border-width2 $primary-color;
@@ -111,11 +115,15 @@ body {
           &:hover {
             color: $white;
             background-color: $secondary-color;
+            box-shadow: inset 0 0 0 $border-width2 $accent-color;
+            -webkit-box-shadow: inset 0 0 0 $border-width2 $accent-color;
           }
         }
         .nav-button.active {
-          background-color: $secondary-color;
           color: $white;
+          background-image: $gradient-effect;
+          box-shadow: inset 0 0 0 $border-width2 $primary-color;
+          -webkit-box-shadow: inset 0 0 0 $border-width2 $primary-color;
           pointer-events: none;
         }
       }
@@ -141,8 +149,6 @@ body {
           border-radius: 50%;
           -webkit-border-radius: 50%;
           object-fit: contain;
-          box-shadow: $logo-shadow;
-          -webkit-box-shadow: $logo-shadow;
           border: $logo-border-width $border-solid $primary-color;
           @media (width <= 1300px) {
             width: 350px !important;

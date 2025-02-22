@@ -7,6 +7,8 @@ import {
 	getCoreRowModel,
 	getFilteredRowModel,
 	getPaginationRowModel,
+	getSortedRowModel,
+	Header,
 	RowData,
 	SortingState,
 	Table as TableType,
@@ -35,7 +37,9 @@ export function DataTable<TData extends RowData, TValue>({
 	columns,
 	data,
 }: DataTableProps<TData, TValue>) {
-	const [sorting, setSorting] = React.useState<SortingState>([]);
+	const [sorting, setSorting] = React.useState<SortingState>([
+		{ id: "Recovered weight", desc: true }
+	]);
 	const [pagination, setPagination] = React.useState({
 		pageIndex: 0,
 		pageSize: 10,
@@ -48,8 +52,9 @@ export function DataTable<TData extends RowData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
-		onPaginationChange: setPagination,
+    getSortedRowModel: getSortedRowModel(),
 		onColumnFiltersChange: setColumnFilters,
+		onPaginationChange: setPagination,
 		onSortingChange: setSorting,
 		state: {
 			pagination,
@@ -60,51 +65,62 @@ export function DataTable<TData extends RowData, TValue>({
 
 	const typedTable = table as unknown as TableType<TData>;
 
+	const [, setForceRender] = React.useState(0);
+	const handleSort = (header: Header<TData, TValue>) => {
+		setSorting((prevSorting) => {
+			const currentSort = prevSorting.find((s) => s.id === header.column.id);
+			if (!currentSort) {
+				return [{ id: header.column.id, desc: true }];
+			}
+			else {
+				return [{ id: header.column.id, desc: !currentSort.desc }];
+			}
+		});
+		setForceRender((prev) => prev + 1);
+	};
+
 	return (
 		<div id="table">
 			<Table>
 				<TableHeader>
-					{typedTable.getHeaderGroups().map((headerGroup) => (
-						<TableRow key={headerGroup.id}>
-							{headerGroup.headers.map((header) => (
-								<TableHead key={header.id}
-													style={{ width: header.column.getSize() }}>
-									{header.isPlaceholder
+					{ typedTable.getHeaderGroups().map((headerGroup) => (
+						<TableRow key={ headerGroup.id }>
+							{ headerGroup.headers.map((header) => (
+								<TableHead key={ header.id }
+													style={{ width: header.column.getSize() }}
+                  				onClick={() => handleSort(header)}>
+									{ header.isPlaceholder
 										? null
-										: flexRender(
-											header.column.columnDef.header,
-											header.getContext()
-										)}
+										: flexRender(header.column.columnDef.header, header.getContext()) }
+									<span>
+										{header.column.getIsSorted() === "desc" ? " ▼" : header.column.getIsSorted() === "asc" ? " ▲" : " ▽"}
+                  </span>
 								</TableHead>
-							))}
-						</TableRow>))}
+							)) }
+						</TableRow>
+					)) }
 				</TableHeader>
 				<TableBody>
-					{typedTable.getRowModel().rows?.length ? (
+					{ typedTable.getRowModel().rows?.length ? (
 						typedTable.getRowModel().rows.map((row) => (
-							<TableRow
-								key={row.id}
-								data-state={row.getIsSelected() && "selected"}>
-								{row.getVisibleCells().map((cell) => (
-									<TableCell key={cell.id}>
-										{flexRender(
-											cell.column.columnDef.cell,
-											cell.getContext()
-										)}
+							<TableRow key={ row.id } data-state={ row.getIsSelected() && "selected" }>
+								{ row.getVisibleCells().map((cell) => (
+									<TableCell key={ cell.id }>
+										{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
 									</TableCell>
-								))}
+								)) }
 							</TableRow>))
 					) : (
 						<TableRow>
-							<TableCell colSpan={columns.length}>
+							<TableCell colSpan={ columns.length }>
 								No results.
 							</TableCell>
 						</TableRow>
-					)}
+					) }
 				</TableBody>
 			</Table>
 			<div id="pagination-wrapper">
-				<DataTablePagination<TData> table={typedTable} />
+				<DataTablePagination<TData> table={ typedTable } />
 			</div>
 		</div>
 	);

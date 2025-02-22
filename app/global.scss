@@ -128,6 +128,10 @@ body {
       }
       #table {
         width: 100%;
+        max-width: 1200px;
+        @media (width <= 850px) {
+          max-width: none;
+        }
         table {
           background-color: $background-color;
           border: $border-width3 $border-solid $primary-color;
@@ -141,6 +145,9 @@ body {
               th {
                 color: $white;
                 text-align: center;
+                &:hover {
+                  cursor: pointer;
+                }
               }
             }
           }
@@ -153,6 +160,11 @@ body {
                   justify-content: center;
                   align-items: center;
                 }
+              }
+              .class-column {
+                overflow: "hidden";
+                text-overflow: "ellipsis";
+                white-space: "nowrap";
               }
               &:nth-child(even) {
                 background-color: $secondary-color-even;

@@ -12,19 +12,31 @@
 /*------Colors------*/
 $white: white;
 $black: black;
-$primary-color: #6e02c7;
-$secondary-color: #b621fe;
+$primary-color: #02afac;
+$secondary-color: #226A90;
 $third-color: #02afac;
+$third-color2: #226A90;
+$accent-color: #ff8000;
+$accent-color2: #FFCC00;
+$accent-color3: #6e02c7;
 
 /*------Fonts size------*/
-$font-size-body: 24px;
-$font-size-button: 16px;
-$font-size-h1: 40px;
+$font-size-h1: 20px;
 $font-size-p: 14px;
+
 $font-size-footer: 13px;
+$font-size-nav: 18px;
+$font-size-table: 14px;
+$font-size-table-header: 16px;
+
+/*------Fonts size responsive------*/
+$font-size-footer-responsive: 11px;
+$font-size-nav-responsive: 17px;
+$font-size-table-responsive: 12px;
+$font-size-table-header-responsive: 14px;
 
 /*------Background------*/
-$background-color: #f5f5f5;
+$table-background-color: #f7f7f7;
 
 /*------Border------*/
 $border-width1: 1px;
@@ -40,11 +52,14 @@ $logo-shadow: 0 10px 20px $logo-shadow-color;
 
 /*------Fonts------*/
 $text: 'Arial', sans-serif;
-$text-weight-regular: 400;
+$text-weight: 400;
 $text-weight-bold: bold;
 
+$table-head-text: 'roboto serif', serif;
+$table-head-text-weight: 400;
+
 /*------Table------*/
-$secondary-color-even: #b421feb4;
+$secondary-color-even: #e2a7ff;
 
 /*------Height------*/
 $checkbox-wrapper-height: 40px;
@@ -60,9 +75,13 @@ body {
   display: flex;
   flex-direction: column;
   font-family: $text;
-  font-weight: $text-weight-regular;
+  font-weight: $text-weight;
   line-height: 1.6;
   min-height: 100vh;
+  background-image: url('/images/bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   #body-container {
     display: flex;
     flex-direction: column;
@@ -74,9 +93,13 @@ body {
       height: $nav-height;
       flex-shrink: 0;
       nav {
+        font-size: $font-size-nav;
         padding-top: 1rem;
         > *:not(:last-child) {
           margin-right: 1.5rem;
+        }
+        @media (width <= 1250px) {
+          font-size: $font-size-nav-responsive;
         }
         .nav-button {
           color: $primary-color;
@@ -116,6 +139,7 @@ body {
           max-width: 450px;
           max-height: 450px;
           border-radius: 50%;
+          -webkit-border-radius: 50%;
           object-fit: contain;
           box-shadow: $logo-shadow;
           -webkit-box-shadow: $logo-shadow;
@@ -126,49 +150,67 @@ body {
           }
         }
       }
-      #table {
+      #table-container {
         width: 100%;
         max-width: 1200px;
         @media (width <= 850px) {
           max-width: none;
         }
-        table {
-          background-color: $background-color;
+        #table {
+          padding: 0.7vh;
           border: $border-width3 $border-solid $primary-color;
           border-radius: 12px;
-          border-collapse: separate;
-          border-spacing: 0;
-          overflow: hidden;
-          table-layout: fixed;
-          thead {
-            tr {
-              background-color: $primary-color;
-              th {
-                color: $white;
-                text-align: center;
-                &:hover {
-                  cursor: pointer;
+          -webkit-border-radius: 12px;
+          table {
+            border-collapse: collapse;
+            overflow: hidden;
+            table-layout: fixed;
+            &:focus {
+              outline: none;
+            }
+            thead {
+              height: 45px;
+              tr {
+                background-color: $primary-color;
+                th {
+                  font-size: $font-size-table-header;
+                  font-family: $table-head-text;
+                  font-weight: $table-head-text-weight;
+                  letter-spacing: 1px;
+                  color: $white;
+                  text-align: center;
+                  border: $border-width1 $border-solid $white;
+                  &:hover {
+                    cursor: pointer;
+                  }
+                  @media (width <= 1300px) {
+                    font-size: $font-size-table-header-responsive;
+                    letter-spacing: 0px;
+                  }
                 }
               }
             }
-          }
-          tbody {
-            tr {
-              td {
-                text-align: center;
-                .find-or-not {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
+            tbody {
+              tr {
+                td {
+                  font-size: $font-size-table;
+                  text-align: center;
+                  border: $border-width1 $border-solid $white;
+                  @media (width <= 1300px) {
+                    font-size: $font-size-table-responsive;
+                  }
+                  .find-or-not {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  }
                 }
-              }
-              .class-column {
-                overflow: "hidden";
-                text-overflow: "ellipsis";
-                white-space: "nowrap";
-              }
-              &:nth-child(even) {
-                background-color: $secondary-color-even;
+                &:nth-child(odd) {
+                  background-color: $table-background-color;
+                }
+                &:nth-child(even) {
+                  background-color: $secondary-color-even;
+                }
               }
             }
           }
@@ -260,6 +302,7 @@ body {
             gap: 1rem;
             border: $border-width2 $border-solid $primary-color;
             border-radius: 8px;
+            -webkit-border-radius: 8px;
             #checkbox-div {
               display: flex;
               align-items: center;
@@ -288,9 +331,13 @@ body {
         display: flex;
         flex-direction: column;
         width: 100%;
+        max-width: 1200px;
         padding: 20px;
         gap: 80px;
         box-sizing: border-box;
+        @media (width <= 850px) {
+          max-width: none;
+        }
         .charts-card {
           border: $border-width2 $border-solid $primary-color;
           h3 {

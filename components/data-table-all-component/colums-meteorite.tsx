@@ -34,14 +34,14 @@ export const columns: ColumnDef<Meteorite>[] = [
 		header: "Année",
     cell: ({ row }) => emptyValuePipe(row.getValue("Year")),
 		enableResizing: false,
-		size: 25
+		size: 20
 	},
 	{
 		accessorKey: "Country",
 		header: "Pays",
     cell: ({ row }) => emptyValuePipe(row.getValue("Country")),
 		enableResizing: false,
-		size: 40
+		size: 30
 	},
 	{
 		accessorKey: "Locality",
@@ -55,14 +55,14 @@ export const columns: ColumnDef<Meteorite>[] = [
 		header: "Masse (kg)",
 		cell: ({ row }) => emptyValuePipe(row.getValue("Recovered weight")),
 		enableResizing: false,
-		size: 25
+		size: 30
 	},
 	{
 		accessorKey: "ff",
 		header: "Découverte",
 		cell: ({ row }) => transformStringValuePipe(row.getValue("ff"), transformationMap),
 		enableResizing: false,
-		size: 25
+		size: 30
 	},
 	{
 		accessorKey: "Class",
@@ -76,6 +76,6 @@ export const columns: ColumnDef<Meteorite>[] = [
 		header: "Groupe",
     cell: ({ row }) => emptyValuePipe(row.getValue("Group")),
 		enableResizing: false,
-		size: 20
+		size: 30
 	}
 ]

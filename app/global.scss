@@ -1,6 +1,6 @@
 /*===============FONT IMPORT===============*/
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:wght@100;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400&display=swap');
 
 
@@ -27,6 +27,8 @@ $accent-color: #6e02c7;
 
 /*------Fonts------*/
 $text-weight: 400;
+$text-weight-500: 500;
+$text-weight-600: 600;
 $text-weight-bold: bold;
 // Roboto
 $text: 'roboto';
@@ -38,8 +40,10 @@ $text-serif: 'roboto serif', serif;
 /*------Fonts size------*/
 $font-size-footer: 14px;
 $font-size-nav: 18px;
+$font-size-page: 13px;
 $font-size-table: 13px;
 $font-size-table-header: 14px;
+$font-size-total-result: 13px;
 
 /*------Fonts size responsive------*/
 $font-size-footer-responsive-S: 12px;
@@ -98,6 +102,15 @@ body {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  #number-page-dropdown {
+    border: $border-width2 $border-solid $accent-color;
+    #select-page-item {
+      &:hover {
+        color: $white;
+        background-color: $primary-color;
+      }
+    }
+  }
   #body-container {
     display: flex;
     flex-direction: column;
@@ -206,7 +219,7 @@ body {
                   font-family: $table-head-text;
                   font-size: $font-size-table-header;
                   font-weight: $table-head-text-weight;
-                  letter-spacing: 1px;
+                  letter-spacing: 0.5px;
                   color: $white;
                   text-align: center;
                   border: $border-width1 $border-solid $accent-color;
@@ -285,7 +298,8 @@ body {
             padding: 0 0.5rem;
             #total-result {
               text-align: left;
-              font-size: 14px;
+              font-size: $font-size-total-result;
+              font-weight: $text-weight-600;
               font-weight: $text-weight-bold;
               color: $primary-color;
               margin-left: 1rem;
@@ -294,6 +308,7 @@ body {
               -webkit-border-radius: 6px;
               border: $border-width2 $border-solid $accent-color;
               background-color: $white;
+              user-select: none;
             }
             #pagination {
               display: flex;
@@ -305,30 +320,45 @@ body {
                 align-items: center;
                 gap: 0.5rem;
                 button {
+                  font-weight: $text-weight-600;
+                  color: $primary-color;
+                  background-color: $white;
+                  border: $border-width2 $border-solid $accent-color;
                   svg {
                     color: $primary-color;
                   }
                   &:hover {
                     color: $white;
-                    border: $border-width2 $border-solid $primary-color;
+                    background-color: $secondary-color;
                     svg {
                       color: $white;
+                      opacity: 1;
                     }
                   }
                 }
               }
-              button {
-                border: $border-width2 $border-solid $primary-color;
-                &:hover {
-                  border: none;
-                  background-color: $secondary-color;
-                }
-              }
-              button.next, button.previous {
+              #page-count {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: $font-size-page;
+                font-weight: $text-weight-600;
                 color: $primary-color;
-                &:hover {
-                  color: $white;
-                  border: $border-width2 $border-solid $primary-color;
+                width: 130px;
+              }
+              #page {
+                margin-right: 1rem;
+                button {
+                  color: $primary-color;
+                  border: $border-width2 $border-solid $accent-color;
+                  font-weight: $text-weight-bold;
+                  &:hover {
+                    color: $white;
+                    background-color: $secondary-color;
+                  }
+                  &:focus {
+                    outline: none;
+                  }
                 }
               }
             }

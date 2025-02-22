@@ -470,6 +470,14 @@ body {
         .linkedin-links {
           color: $primary-color;
           font-weight: $text-weight-bold;
+          &:hover {
+            color: $accent-color;
+            text-decoration: underline;
+          }
+          &:visited {
+            color: $primary-color;
+            text-decoration: none;
+          }
         }
         .linkedin-links:first-of-type {
           margin-right: 0.25rem;

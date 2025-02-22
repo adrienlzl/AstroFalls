@@ -471,8 +471,7 @@ body {
           color: $primary-color;
           font-weight: $text-weight-bold;
           &:hover {
-            color: $accent-color;
-            text-decoration: underline;
+            color: $accent-color !important;
           }
           &:visited {
             color: $primary-color;

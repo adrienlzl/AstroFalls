@@ -520,8 +520,26 @@ body {
             }
           }
           #chart-content-meteorite-by-type {
-            li {
-              margin-right: 30px !important;
+            .recharts-responsive-container {
+              width: 100%;
+              ul {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: center !important;
+                width: 100%;
+                li {
+                  display: flex !important;
+                  align-items: center;
+                  margin-right: 30px !important;
+                  span {
+                    padding: 0.1rem 0 0 3px;
+                  }
+                  svg {
+                    height: 15px !important;
+                    width: 15px !important;
+                  }
+                }
+              }
             }
           }
         }

@@ -38,7 +38,7 @@ export default function ChartMeteoriteByType({
 		{ name: "Stone", value: typeCounts.Stone },
 		{ name: "Iron", value: typeCounts.Iron },
 		{ name: "Stony-Iron", value: typeCounts["Stony-Iron"] },
-		{ name: "Sans type", value: typeCounts.null }
+		{ name: "Sans Type", value: typeCounts.null }
 	];
 
 	// Get generic colors
@@ -50,7 +50,7 @@ export default function ChartMeteoriteByType({
 				<h3>Total de météorites par type</h3>
 			</CardHeader>
 			<CardContent id="chart-content-meteorite-by-type">
-				<ResponsiveContainer width="100%" height={400}>
+				<ResponsiveContainer height={400}>
 					<PieChart>
 						<Pie data={ data }
 								dataKey="value"

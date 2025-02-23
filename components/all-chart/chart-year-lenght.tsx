@@ -10,6 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 export default function ChartYearByLength({ meteorites }: { meteorites: Meteorite[] }) {
@@ -27,6 +28,9 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 		.map(([year, count]) => ({ year: parseInt(year), count }))
 		.sort((a, b) => a.year - b.year);
 
+	// Get generic colors
+	const { accentColor } = useGenericColorsHook();
+
 	return (
 		<Card className="charts-card">
 			<CardHeader className="charts-card-header">
@@ -41,7 +45,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 							tick={({ x, y, payload }) => (
 								<text x={x}
 											y={y + 15}
-											fill="#6e02c7"
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="middle">
@@ -51,7 +55,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 							tick={({ x, y, payload }) => (
 								<text x={x - 5}
 											y={y}
-											fill="#6e02c7"
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="end"

@@ -47,6 +47,7 @@ $text-serif: 'roboto serif', serif;
 /*------Fonts size------*/
 $font-size-footer: 14px;
 $font-size-h3-charts: 14px;
+$font-size-layer: 13px;
 $font-size-nav: 18px;
 $font-size-page: 13px;
 $font-size-pagination: 13px;
@@ -500,6 +501,33 @@ body {
                 border: $border-width2 $border-solid $meteorite-type-null;
               }
             }
+          }
+        }
+        #layer-control-buttons {
+          font-size: $font-size-layer;
+          color: $secondary-color;
+          position: absolute;
+          bottom: 50px;
+          left: 90px;
+          padding: 3px 8px;
+          border-radius: 6px;
+          -webkit-border-radius: 6px;
+          border: $border-width2 $border-solid $accent-color;
+          background-color: $white;
+          z-index: 1;
+          user-select: none;
+          :nth-of-type(1),
+          :nth-of-type(2) {
+            margin-right: 10px;
+          }
+          button {
+            &:hover {
+              color: $accent-color;
+            }
+          }
+          button.active {
+            color: $accent-color;
+            pointer-events: none;
           }
         }
       }

@@ -31,6 +31,8 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 		new Set(meteoriteTypes)
 	);
 
+	const [activeLayer, setActiveLayer] = useState<string>('normal');
+
 	const toggleType = (type: MeteoriteTypeKey) => {
 		setSelectedTypes((prev) => {
 			const newSet = new Set(prev);
@@ -72,7 +74,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 						image: new CircleStyle({
 							radius: 5,
 							fill: new Fill({ color: colorMeteoriteType[typeKey] })
-						}),
+						})
 					})
 				);
 
@@ -81,15 +83,34 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 		});
 
 		const vectorLayer = new VectorLayer({
-			source: vectorSource,
+			source: vectorSource
+		});
+
+		// Normal view
+		const normalLayer = new TileLayer({
+      source: new OSM()
+    });
+
+		// Satellite view
+		const satelliteLayer = new TileLayer({
+			source: new OSM({
+				url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+			})
+		});
+
+		// Relief view
+		const reliefLayer = new TileLayer({
+			source: new OSM({
+				url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"
+			})
 		});
 
 		const map = new Map({
 			target: "map",
 			layers: [
-				new TileLayer({
-					source: new OSM()
-				}),
+				normalLayer,
+				satelliteLayer,
+				reliefLayer,
 				vectorLayer
 			],
 			view: new View({
@@ -105,12 +126,32 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 			controls: defaultControls()
 		});
 
+		const toggleLayers = () => {
+			if (activeLayer === 'normal') {
+        normalLayer.setVisible(true);
+        satelliteLayer.setVisible(false);
+        reliefLayer.setVisible(false);
+      }
+			else if (activeLayer === 'satellite') {
+        normalLayer.setVisible(false);
+        satelliteLayer.setVisible(true);
+        reliefLayer.setVisible(false);
+      }
+			else {
+        normalLayer.setVisible(false);
+        satelliteLayer.setVisible(false);
+        reliefLayer.setVisible(true);
+      }
+		};
+
+		toggleLayers();
+
 		return () => {
 			if (map) {
 				map.setTarget(undefined);
 			}
 		};
-	}, [meteorites, selectedTypes, colorMeteoriteType]);
+	}, [meteorites, selectedTypes, colorMeteoriteType, activeLayer]);
 
 	return (
 		<div id="map-container">
@@ -123,15 +164,29 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 								id={ `checkbox-${type}` }
 								checked={ selectedTypes.has(type) }
 								onCheckedChange={() => toggleType(type) }
-								style={{ accentColor: colorMeteoriteType[type] }}/>
+								style={{ accentColor: colorMeteoriteType[type] }} />
 							<label
-								htmlFor={`checkbox-${type}`}
-								style={{ color: colorMeteoriteType[type] }}>
+								htmlFor={ `checkbox-${type}` }
+								style={{ color: colorMeteoriteType[type] }} >
 								{ type === "null" ? "Sans Type" : type }
 							</label>
 						</div>
 					))}
 				</div>
+			</div>
+			<div id="layer-control-buttons">
+				<button onClick={ () => setActiveLayer('normal') }
+								className={ activeLayer === 'normal' ? 'active' : '' } >
+          Normal
+        </button>
+				<button onClick={ () => setActiveLayer('relief') }
+								className={ activeLayer === 'relief' ? 'active' : '' } >
+					Relief
+				</button>
+				<button onClick={ () => setActiveLayer('satellite') }
+								className={ activeLayer === 'satellite' ? 'active' : '' } >
+					Satellite
+				</button>
 			</div>
 		</div>
 	);

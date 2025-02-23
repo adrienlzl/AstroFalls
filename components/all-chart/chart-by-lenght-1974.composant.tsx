@@ -10,6 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 export default function ChartYearByLength1974({ meteorites }: { meteorites: Meteorite[] }) {
@@ -22,10 +23,14 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 		return acc;
 }, {});
 
+	// Construct data for Recharts
 	const chartData = Object.entries(data)
 		.map(([year, count]) => ({ year: parseInt(year), count }))
 		.filter((item) => item.year >= 1974)
 		.sort((a, b) => a.year - b.year);
+
+	// Get generic colors
+	const { accentColor } = useGenericColorsHook();
 
 	return (
 		<Card className="charts-card">
@@ -41,7 +46,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 							tick={({ x, y, payload }) => (
 								<text x={x}
 											y={y + 15}
-											fill="#6e02c7"
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="middle">
@@ -51,7 +56,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 							tick={({ x, y, payload }) => (
 								<text x={x - 5}
 											y={y}
-											fill="#6e02c7"
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="end"

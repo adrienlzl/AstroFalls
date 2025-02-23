@@ -19,7 +19,9 @@ export function useGenericColorsHook() {
     setTimeout(() => {
       const rootStyles = getComputedStyle(document.documentElement);
 
-      setAccentColor(rootStyles.getPropertyValue("--rod-color").trim());
+      setAccentColor(rootStyles.getPropertyValue("--accent-color").trim());
+
+      setColorRod(rootStyles.getPropertyValue("--rod-color").trim());
 
       setColorMeteoriteType({
         Iron: rootStyles.getPropertyValue("--meteorite-type-iron").trim(),
@@ -28,7 +30,6 @@ export function useGenericColorsHook() {
         "Sans Type": rootStyles.getPropertyValue("--meteorite-type-null").trim(),
       });
 
-      setColorRod(rootStyles.getPropertyValue("--rod-color").trim());
     }, 100);
   }, []);
 

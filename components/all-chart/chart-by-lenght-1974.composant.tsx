@@ -30,7 +30,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 		.sort((a, b) => a.year - b.year);
 
 	// Get generic colors
-	const { accentColor } = useGenericColorsHook();
+	const { accentColor, rodColor } = useGenericColorsHook();
 
 	return (
 		<Card className="charts-card">
@@ -64,7 +64,7 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 									{payload.value}
 								</text> )} />
 						<Tooltip />
-						<Bar dataKey="count" fill="#02afac" />
+						<Bar dataKey="count" fill={ rodColor} />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

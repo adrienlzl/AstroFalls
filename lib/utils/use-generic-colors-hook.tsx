@@ -8,12 +8,12 @@ export function useGenericColorsHook() {
     Iron: "#ff7f0e",
     Stone: "#1f77b4",
     "Stony-Iron": "#2ca02c",
-    "Sans Type": "#464646",
+    "Sans Type": "#383838",
   });
 
-  const [accentColor, setAccentColor] = useState<string>("");
+  const [accentColor, setAccentColor] = useState<string>("#6e02c7");
 
-  const [rodColor, setColorRod] = useState<string>("");
+  const [rodColor, setColorRod] = useState<string>("#02afac");
 
   useEffect(() => {
     setTimeout(() => {

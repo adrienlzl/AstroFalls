@@ -28,7 +28,7 @@ $accent-color: #6e02c7;
 $meteorite-type-iron: #ff7f0e;
 $meteorite-type-stone: #1f77b4;
 $meteorite-type-stony-iron: #2ca02c;
-$meteorite-type-null: #464646;
+$meteorite-type-null: #383838;
 
 
 /*------Fonts------*/
@@ -380,6 +380,10 @@ body {
         #map {
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
           border: $border-width3 $border-solid $accent-color;
+          ul {
+            border-left: $border-width2 $border-solid $accent-color;
+            border-top: $border-width2 $border-solid $accent-color;
+          }
           .ol-zoom {
             margin: 1rem;
             border: $border-width2 $border-solid $accent-color;
@@ -421,6 +425,9 @@ body {
               cursor: pointer;
               label {
                 cursor: pointer;
+              }
+              label[for="checkbox-null"] {
+                color: $meteorite-type-null;
               }
               button[role="checkbox"] {
                 width: 1rem;

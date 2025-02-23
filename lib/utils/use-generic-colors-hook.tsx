@@ -8,7 +8,7 @@ export function useGenericColorsHook() {
     Iron: "#ff7f0e",
     Stone: "#1f77b4",
     "Stony-Iron": "#2ca02c",
-    "Sans Type": "#000000",
+    "Sans Type": "#464646",
   });
 
   const [accentColor, setAccentColor] = useState<string>("");

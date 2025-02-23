@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 
 import { DataTablePagination } from "@/components/data-table-all-component/data-table-pagination";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 interface DataTableProps<TData extends RowData, TValue> {
@@ -35,7 +36,7 @@ interface DataTableProps<TData extends RowData, TValue> {
 
 export function DataTable<TData extends RowData, TValue>({
 	columns,
-	data,
+	data
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{ id: "Recovered weight", desc: true }
@@ -46,9 +47,22 @@ export function DataTable<TData extends RowData, TValue>({
 	});
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
+	// Get generic colors
+	const { colorMeteoriteType  } = useGenericColorsHook();
+	// Enrich column "Type" with colors
+	const columnEnrichesWithColors = columns.map((column) => {
+		if ('accessorKey' in column && column.accessorKey === "Type") {
+			return {
+				...column,
+				meta: { colorMeteoriteType }
+			};
+		}
+		return column;
+	});
+
 	const table = useReactTable<TData>({
 		data,
-		columns,
+		columns: columnEnrichesWithColors,
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
@@ -66,7 +80,7 @@ export function DataTable<TData extends RowData, TValue>({
 	const typedTable = table as unknown as TableType<TData>;
 
 	const [, setForceRender] = React.useState(0);
-	const handleSort = (header: Header<TData, TValue>) => {
+	const handleSort = (header: Header<TData, unknown>) => {
 		setSorting((prevSorting) => {
 			const currentSort = prevSorting.find((s) => s.id === header.column.id);
 			if (!currentSort) {
@@ -89,7 +103,7 @@ export function DataTable<TData extends RowData, TValue>({
 								{ headerGroup.headers.map((header) => (
 									<TableHead key={ header.id }
 														style={{ width: header.column.getSize() }}
-														onClick={() => handleSort(header)}>
+														onClick={ () => handleSort(header) }>
 										{ header.isPlaceholder
 											? null
 											: flexRender(header.column.columnDef.header, header.getContext()) }
@@ -104,12 +118,22 @@ export function DataTable<TData extends RowData, TValue>({
 					<TableBody>
 						{ typedTable.getRowModel().rows?.length ? (
 							typedTable.getRowModel().rows.map((row) => (
-								<TableRow key={ row.id } data-state={ row.getIsSelected() && "selected" }>
-									{ row.getVisibleCells().map((cell) => (
-										<TableCell key={ cell.id }>
-											{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
-										</TableCell>
-									)) }
+								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+									{row.getVisibleCells().map((cell) => {
+										const isTypeColumn = cell.column.id === "Type";
+										const typeValue = cell.getValue<string>();
+										const typeColor = isTypeColumn && typeValue ? colorMeteoriteType[typeValue] : undefined;
+										const style = isTypeColumn ? {
+											color: typeColor,
+											fontWeight: 'bold',
+											letterSpacing: '1px'
+										} : {};
+										return (
+											<TableCell key={cell.id} style={ style }>
+												{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
+											</TableCell>
+										);
+									})}
 								</TableRow>))
 						) : (
 							<TableRow>

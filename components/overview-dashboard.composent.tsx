@@ -176,7 +176,7 @@ export default function OverviewDashboard({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					<p>{ yearMaxMass }</p>
-					<p className="card-content-strong">Masse cumulée :
+					<p className="card-content-text-strong">Masse cumulée :
 						<span> { formatMass(maxMass) }</span>
 					</p>
 				</CardContent>
@@ -187,7 +187,7 @@ export default function OverviewDashboard({
 					<h3>Chutes enregistrées</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-strong">Total cumulé : </p>
+					<p className="card-content-text-strong">Total cumulé : </p>
 					<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 				</CardContent>
 			</Card>
@@ -199,7 +199,7 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					{ biggestMeteorite &&
 						<>
-							<p>{ biggestMeteorite["Name"] }</p>
+							<p id="more">{ biggestMeteorite["Name"] }</p>
 							<p>{ formattedWeight }</p>
 							<p>{ getCountryNameInFrench(biggestMeteorite["Country"]) } en { String(biggestMeteorite["Year"]).trim() }</p>
 						</>
@@ -212,9 +212,9 @@ export default function OverviewDashboard({
 					<h3>Pays le plus impacté</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>{ getCountryNameInFrench(countryMost) }</p>
+					<p id="more">{ getCountryNameInFrench(countryMost) }</p>
 					<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
-					<p className="card-content-strong">Masse cumulée :
+					<p className="card-content-text-strong">Masse cumulée :
 						<span> { formatMass(countryMostMass) }</span>
 					</p>
 				</CardContent>
@@ -229,7 +229,7 @@ export default function OverviewDashboard({
 						<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>{ capitalizeWords(mostCommonType) }</strong>
 					</p>
 					<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
-					<p className="card-content-strong">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
+					<p className="card-content-text-strong">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -238,10 +238,10 @@ export default function OverviewDashboard({
 					<h3>Découvertes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-strong">Oui :
+					<p className="card-content-text-strong">Oui :
 						<span> { findCount.toLocaleString("fr-FR") }</span>
 					</p>
-					<p className="card-content-strong">Non :
+					<p className="card-content-text-strong">Non :
 						<span> { notFindCount.toLocaleString("fr-FR") }</span>
 					</p>
 				</CardContent>
@@ -252,7 +252,7 @@ export default function OverviewDashboard({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-strong">Cumul :
+					<p className="card-content-text-strong">Cumul :
 						<span> { formatMass(totalMassAll) }</span>
 					</p>
 				</CardContent>
@@ -266,7 +266,7 @@ export default function OverviewDashboard({
 					{franceStats &&
 						<>
 							<p>{ franceStats.count } chutes</p>
-							<p className="card-content-strong">Masse cumulée :
+							<p className="card-content-text-strong">Masse cumulée :
 								<span> { formatMass(franceStats.totalMass) }</span>
 							</p>
 						</> }
@@ -279,14 +279,14 @@ export default function OverviewDashboard({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					{Object.entries(typeStats).map(([type, stats]) => (
-						<div key={ type }>
+						<div className="type-meteorite" key={ type }>
 							<p>
 								<strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong>
 							</p>
-							<p className="card-content-strong">Chutes :
+							<p className="card-content-text-strong">Chutes :
 								<span> { stats.count }</span>
 							</p>
-							<p className="card-content-strong">Masse cumulée :
+							<p className="card-content-text-strong">Masse cumulée :
 								<span> { formatMass(stats.totalMass) }</span>
 							</p>
 						</div>

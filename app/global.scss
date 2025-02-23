@@ -20,6 +20,7 @@ $white: white;
 $black: black;
 $grey: #afafaf;
 $grey-light: #dadada;
+$red: #eb0000;
 
 $primary-color: #02afac;
 $secondary-color: #226A90;
@@ -588,13 +589,23 @@ body {
             p {
               text-align: center;
             }
-            p.card-content-strong {
+            p.card-content-text-strong {
               color: $secondary-color;
               font-weight: $text-weight-600;
               span {
                 color: $primary-color;
                 font-weight: $text-weight;
               }
+            }
+            #more {
+              font-weight: $text-weight-bold;
+              color: $red;
+            }
+            .type-meteorite:nth-of-type(1) {
+              margin-bottom: 16px;
+            }
+            .type-meteorite:nth-of-type(2) {
+              margin-bottom: 16px;
             }
           }
         }

@@ -41,6 +41,7 @@ $text-serif: 'roboto serif', serif;
 $font-size-footer: 14px;
 $font-size-nav: 18px;
 $font-size-page: 13px;
+$font-size-pagination: 13px;
 $font-size-table: 13px;
 $font-size-table-header: 14px;
 $font-size-total-result: 13px;
@@ -320,6 +321,7 @@ body {
                 align-items: center;
                 gap: 0.5rem;
                 button {
+                  font-size: $font-size-pagination;
                   font-weight: $text-weight-600;
                   color: $primary-color;
                   background-color: $white;
@@ -340,18 +342,19 @@ body {
               #page-count {
                 display: flex;
                 justify-content: center;
-                align-items: center;
                 font-size: $font-size-page;
                 font-weight: $text-weight-600;
+                align-items: center;
                 color: $primary-color;
                 width: 130px;
               }
               #page {
                 margin-right: 1rem;
                 button {
+                  font-size: $font-size-pagination;
+                  font-weight: $text-weight-bold;
                   color: $primary-color;
                   border: $border-width2 $border-solid $accent-color;
-                  font-weight: $text-weight-bold;
                   &:hover {
                     color: $white;
                     background-color: $secondary-color;

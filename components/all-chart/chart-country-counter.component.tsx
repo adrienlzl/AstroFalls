@@ -11,6 +11,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 export default function GraphCountryByNumber({
@@ -45,6 +46,9 @@ export default function GraphCountryByNumber({
     return acc;
   }, {} as Record<string, string>);
 
+	// Get generic colors
+	const { accentColor } = useGenericColorsHook();
+
 	return (
 		<Card id="chart-meteorite-country-counter" className="charts-card">
 			<CardHeader className="charts-card-header">
@@ -60,9 +64,9 @@ export default function GraphCountryByNumber({
 						<XAxis
 							type="number"
 							tick={({ x, y, payload }) => (
-								<text x={x}
-											y={y + 15}
-											fill="#6e02c7"
+								<text x={ x }
+											y={ y + 15 }
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
 											textAnchor="middle">
@@ -72,8 +76,8 @@ export default function GraphCountryByNumber({
               dataKey="country"
               type="category"
               tick={({ x, y, payload }) => (
-                <text x={x -10}
-											y={y}
+                <text x={ x -10 }
+											y={ y }
 											fill={ colorMap[payload.value] }
 											fontWeight="bold"
 											fontSize={13}

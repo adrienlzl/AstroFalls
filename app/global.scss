@@ -421,18 +421,64 @@ body {
               button[role="checkbox"] {
                 width: 1rem;
                 height: 1rem;
-              }
-              button#checkbox-Stone {
-                background-color: $meteorite-type-stone;
+                border: $border-width2 $border-solid $accent-color;
+                outline: none;
+                &:hover {
+                  background-color: $white !important;
+                }
+                span[data-state="checked"] {
+                  svg {
+                    height: 10px !important;
+                    width: 10px !important;
+                  }
+                }
               }
               button#checkbox-Iron {
                 background-color: $meteorite-type-iron;
+                &:hover {
+                  color: $meteorite-type-iron;
+                  border: $border-width2 $border-solid $meteorite-type-iron;
+                  background-color: $white;
+                }
+              }
+              button#checkbox-Stone {
+                background-color: $meteorite-type-stone;
+                &:hover {
+                  color: $meteorite-type-stone;
+                  border: $border-width2 $border-solid $meteorite-type-stone;
+                  background-color: $white;
+                }
               }
               button#checkbox-Stony-Iron {
                 background-color: $meteorite-type-stony-iron;
+                &:hover {
+                  color: $meteorite-type-stony-iron;
+                  border: $border-width2 $border-solid $meteorite-type-stony-iron;
+                  background-color: $white;
+                }
               }
               button#checkbox-null {
                 background-color: $meteorite-type-null;
+                &:hover {
+                  color: $meteorite-type-null;
+                  border: $border-width2 $border-solid $meteorite-type-null;
+                  background-color: $white;
+                }
+              }
+              button[data-state="unchecked"] {
+                background-color: $white !important;
+              }
+              button[data-state="unchecked"]#checkbox-Iron {
+                border: $border-width2 $border-solid $meteorite-type-iron;
+              }
+              button[data-state="unchecked"]#checkbox-Stone {
+                border: $border-width2 $border-solid $meteorite-type-stone;
+              }
+              button[data-state="unchecked"]#checkbox-Stony-Iron {
+                border: $border-width2 $border-solid $meteorite-type-stony-iron;
+              }
+              button[data-state="unchecked"]#checkbox-null {
+                border: $border-width2 $border-solid $meteorite-type-null;
               }
             }
           }

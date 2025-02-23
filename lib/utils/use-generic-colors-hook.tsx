@@ -13,11 +13,13 @@ export function useGenericColorsHook() {
 
   const [accentColor, setAccentColor] = useState<string>("");
 
+  const [rodColor, setColorRod] = useState<string>("");
+
   useEffect(() => {
     setTimeout(() => {
       const rootStyles = getComputedStyle(document.documentElement);
 
-      setAccentColor(rootStyles.getPropertyValue("--accent-color").trim());
+      setAccentColor(rootStyles.getPropertyValue("--rod-color").trim());
 
       setColorMeteoriteType({
         Iron: rootStyles.getPropertyValue("--meteorite-type-iron").trim(),
@@ -25,8 +27,10 @@ export function useGenericColorsHook() {
         "Stony-Iron": rootStyles.getPropertyValue("--meteorite-type-stony-iron").trim(),
         "Sans Type": rootStyles.getPropertyValue("--meteorite-type-null").trim(),
       });
+
+      setColorRod(rootStyles.getPropertyValue("--rod-color").trim());
     }, 100);
   }, []);
 
-  return { accentColor, colorMeteoriteType };
+  return { accentColor, colorMeteoriteType, rodColor };
 }

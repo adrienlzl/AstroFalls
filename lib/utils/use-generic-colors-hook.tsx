@@ -28,5 +28,5 @@ export function useGenericColorsHook() {
     }, 100);
   }, []);
 
-  return { colorMeteoriteType, accentColor };
+  return { accentColor, colorMeteoriteType };
 }

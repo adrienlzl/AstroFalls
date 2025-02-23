@@ -25,6 +25,12 @@ $primary-color: #02afac;
 $secondary-color: #226A90;
 $accent-color: #6e02c7;
 
+$meteorite-type-iron: #ff7f0e;
+$meteorite-type-stone: #1f77b4;
+$meteorite-type-stony-iron: #2ca02c;
+$meteorite-type-null: #000000;
+
+
 /*------Fonts------*/
 $text-weight: 400;
 $text-weight-500: 500;
@@ -39,6 +45,7 @@ $text-serif: 'roboto serif', serif;
 
 /*------Fonts size------*/
 $font-size-footer: 14px;
+$font-size-h3-charts: 14px;
 $font-size-nav: 18px;
 $font-size-page: 13px;
 $font-size-pagination: 13px;
@@ -372,15 +379,23 @@ body {
         width: 100%;
         #map {
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
-          border: $border-width3 $border-solid $primary-color;
+          border: $border-width3 $border-solid $accent-color;
           .ol-zoom {
             margin: 1rem;
-            border: $border-width2 $border-solid $primary-color;
+            border: $border-width2 $border-solid $accent-color;
             .ol-zoom-in {
               color: $primary-color;
+              &:hover {
+                color: $white;
+                background-color: $secondary-color;
+              }
             }
             .ol-zoom-out {
               color: $primary-color;
+              &:hover {
+                color: $white;
+                background-color: $secondary-color;
+              }
             }
           }
         }
@@ -395,9 +410,10 @@ body {
             margin: 1rem;
             padding: 0.5rem 1rem;
             gap: 1rem;
-            border: $border-width2 $border-solid $primary-color;
             border-radius: 8px;
             -webkit-border-radius: 8px;
+            border: $border-width2 $border-solid $accent-color;
+            background-color: $white;
             #checkbox-div {
               display: flex;
               align-items: center;
@@ -407,16 +423,16 @@ body {
                 height: 1rem;
               }
               button#checkbox-Stone {
-                background-color: #1f77b4;
+                background-color: $meteorite-type-stone;
               }
               button#checkbox-Iron {
-                background-color: #ff7f0e;
+                background-color: $meteorite-type-iron;
               }
               button#checkbox-Stony-Iron {
-                background-color: #2ca02c;
+                background-color: $meteorite-type-stony-iron;
               }
               button#checkbox-null {
-                background-color: #000000;
+                background-color: $meteorite-type-null;
               }
             }
           }
@@ -430,13 +446,23 @@ body {
         padding: 20px;
         gap: 80px;
         box-sizing: border-box;
+        #chart-meteorite-by-type .charts-card-header h3,
+        #chart-meteorite-country-counter .charts-card-header h3,
+        #chart-meteorite-mass-by-type .charts-card-header h3 {
+          text-align: left;
+          margin-left: 5px;
+        }
         .charts-card {
-          border: $border-width2 $border-solid $primary-color;
-          h3 {
-            color: $primary-color;
-            font-weight: $text-weight-bold;
+          border: $border-width3 $border-solid $accent-color;
+          .charts-card-header {
+            text-align: center;
+            h3 {
+              font-size: $font-size-h3-charts;
+              font-weight: $text-weight-bold;
+              color: $primary-color;
+            }
           }
-          #chart-meteorite-by-type {
+          #chart-content-meteorite-by-type {
             li {
               margin-right: 30px !important;
             }

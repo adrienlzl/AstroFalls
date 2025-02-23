@@ -46,7 +46,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 
 	return (
 		<Card className="charts-card">
-			<CardHeader>
+			<CardHeader className="charts-card-header">
 				<h3>Masse cumulée des chutes de météorites par année (tonnes)</h3>
 			</CardHeader>
 			<CardContent>
@@ -84,7 +84,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 							domain={ [1, 60] }
 							tickFormatter={ (value) => `${Math.floor(value).toLocaleString()} t`} />
 						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`} />
-						<Bar dataKey="totalMass" fill="#b621fe" />
+						<Bar dataKey="totalMass" fill="#02afac" />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

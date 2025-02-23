@@ -48,11 +48,11 @@ export default function ChartMeteoriteByType({
 	};
 
 	return (
-		<Card className="charts-card">
-			<CardHeader>
+		<Card id="chart-meteorite-by-type" className="charts-card">
+			<CardHeader className="charts-card-header">
 				<h3>Total de météorites par type</h3>
 			</CardHeader>
-			<CardContent id="chart-meteorite-by-type">
+			<CardContent id="chart-content-meteorite-by-type">
 				<ResponsiveContainer width="100%" height={400}>
 					<PieChart>
 						<Pie data={ data }

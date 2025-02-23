@@ -29,7 +29,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 
 	return (
 		<Card className="charts-card">
-			<CardHeader>
+			<CardHeader className="charts-card-header">
 				<h3>Nombre de chutes de météorites par année</h3>
 			</CardHeader>
 			<CardContent>
@@ -59,7 +59,7 @@ export default function ChartYearByLength({ meteorites }: { meteorites: Meteorit
 									{payload.value}
 								</text> )} />
 						<Tooltip />
-						<Bar dataKey="count" fill="#b621fe" />
+						<Bar dataKey="count" fill="#02afac" />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

@@ -384,6 +384,12 @@ body {
           ul {
             border-left: $border-width2 $border-solid $accent-color;
             border-top: $border-width2 $border-solid $accent-color;
+            li {
+              color: $secondary-color;
+              a {
+                color: $secondary-color;
+              }
+            }
           }
           .ol-zoom {
             margin: 1rem;
@@ -426,6 +432,7 @@ body {
               cursor: pointer;
               label {
                 cursor: pointer;
+                user-select: none;
               }
               label[for="checkbox-null"] {
                 color: $meteorite-type-null;

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { capitalizeWords } from "@/lib/utils/capitalize-words";
 import { getCountryNameInFrench } from '@/lib/utils/translate-country-in-french';
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 export default function OverviewDashboard({
@@ -24,6 +25,9 @@ export default function OverviewDashboard({
 			return massInKg.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " kg";
 		}
 	};
+
+	// Get generic colors
+	const { colorMeteoriteType } = useGenericColorsHook();
 
 	/* ========= 1. Année record en nombre ========= */
 	const yearCounts: Record<string, number> = {};
@@ -171,8 +175,8 @@ export default function OverviewDashboard({
 					<h3>Année record (t)</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-						<p>{ yearMaxMass }</p>
-						<p>Masse cumulée : { formatMass(maxMass) }</p>
+					<p>{ yearMaxMass }</p>
+					<p className="card-content-strong">Masse cumulée : <span>{ formatMass(maxMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -181,7 +185,7 @@ export default function OverviewDashboard({
 					<h3>Chutes enregistrées</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Total cumulé : </p>
+					<p className="card-content-strong">Total cumulé : </p>
 					<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 				</CardContent>
 			</Card>
@@ -193,10 +197,11 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					{ biggestMeteorite &&
 						<>
-						<p>{ biggestMeteorite["Name"] }</p>
-						<p>{ formattedWeight }</p>
-						<p>{getCountryNameInFrench(biggestMeteorite["Country"])} en {String(biggestMeteorite["Year"]).trim()}</p>
-						</> }
+							<p>{ biggestMeteorite["Name"] }</p>
+							<p>{ formattedWeight }</p>
+							<p>{getCountryNameInFrench(biggestMeteorite["Country"])} en {String(biggestMeteorite["Year"]).trim()}</p>
+						</>
+					}
 				</CardContent>
 			</Card>
 
@@ -207,7 +212,7 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					<p>{ getCountryNameInFrench(countryMost) }</p>
 					<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
-					<p>Masse cumulée : { formatMass(countryMostMass) }</p>
+					<p className="card-content-strong">Masse cumulée : <span>{ formatMass(countryMostMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -218,7 +223,7 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					<p>{ capitalizeWords(mostCommonType) }</p>
 					<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
-					<p>Masse cumulée : { formatMass(typeMostMass) }</p>
+					<p className="card-content-strong">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -227,8 +232,8 @@ export default function OverviewDashboard({
 					<h3>Découvertes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Oui : { findCount.toLocaleString("fr-FR") }</p>
-					<p>Non : { notFindCount.toLocaleString("fr-FR") }</p>
+					<p className="card-content-strong">Oui : <span>{ findCount.toLocaleString("fr-FR") }</span></p>
+					<p className="card-content-strong">Non : <span>{ notFindCount.toLocaleString("fr-FR") }</span></p>
 				</CardContent>
 			</Card>
 
@@ -237,7 +242,7 @@ export default function OverviewDashboard({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>Cumul : { formatMass(totalMassAll) }</p>
+					<p className="card-content-strong">Cumul : <span>{ formatMass(totalMassAll) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -248,8 +253,8 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					{franceStats &&
 						<>
-						<p>{ franceStats.count } chutes</p>
-						<p>Masse cumulée : { formatMass(franceStats.totalMass) }</p>
+							<p>{ franceStats.count } chutes</p>
+							<p className="card-content-strong">Masse cumulée : <span>{ formatMass(franceStats.totalMass) }</span></p>
 						</> }
 				</CardContent>
 			</Card>
@@ -261,9 +266,9 @@ export default function OverviewDashboard({
 				<CardContent className="kpi-card-content">
 					{Object.entries(typeStats).map(([type, stats]) => (
 						<div key={ type }>
-							<p><strong>{ capitalizeWords(type) }</strong></p>
-							<p>Chutes : { stats.count }</p>
-							<p>Masse cumulée : { formatMass(stats.totalMass) }</p>
+							<p><strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong></p>
+							<p className="card-content-strong">Chutes : <span>{ stats.count }</span></p>
+							<p className="card-content-strong">Masse cumulée : <span>{ formatMass(stats.totalMass) }</span></p>
 						</div>
 					))}
 				</CardContent>

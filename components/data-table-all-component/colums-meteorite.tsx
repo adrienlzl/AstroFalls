@@ -65,9 +65,9 @@ export const columns: ColumnDef<Meteorite>[] = [
 		size: 30
 	},
 	{
-		accessorKey: "Class",
-		header: "Classe",
-    cell: ({ row }) => emptyValuePipe(row.getValue("Class")),
+		accessorKey: "Type",
+		header: "Type",
+    cell: ({ row }) => emptyValuePipe(row.getValue("Type")),
 		enableResizing: false,
 		size: 25
 	}

@@ -91,6 +91,13 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
       source: new OSM()
     });
 
+		// Relief view
+		const reliefLayer = new TileLayer({
+			source: new OSM({
+				url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg'
+			})
+		});
+
 		// Satellite view
 		const satelliteLayer = new TileLayer({
 			source: new OSM({
@@ -98,19 +105,12 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 			})
 		});
 
-		// Relief view
-		const reliefLayer = new TileLayer({
-			source: new OSM({
-				url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"
-			})
-		});
-
 		const map = new Map({
 			target: "map",
 			layers: [
 				normalLayer,
-				satelliteLayer,
 				reliefLayer,
+				satelliteLayer,
 				vectorLayer
 			],
 			view: new View({
@@ -127,21 +127,10 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 		});
 
 		const toggleLayers = () => {
-			if (activeLayer === 'normal') {
-        normalLayer.setVisible(true);
-        satelliteLayer.setVisible(false);
-        reliefLayer.setVisible(false);
-      }
-			else if (activeLayer === 'satellite') {
-        normalLayer.setVisible(false);
-        satelliteLayer.setVisible(true);
-        reliefLayer.setVisible(false);
-      }
-			else {
-        normalLayer.setVisible(false);
-        satelliteLayer.setVisible(false);
-        reliefLayer.setVisible(true);
-      }
+			// Hide all layers => only show selected one
+			normalLayer.setVisible(activeLayer === 'normal');
+			satelliteLayer.setVisible(activeLayer === 'satellite');
+			reliefLayer.setVisible(activeLayer === 'relief');
 		};
 
 		toggleLayers();

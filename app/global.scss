@@ -383,6 +383,7 @@ body {
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
           border: $border-width3 $border-solid $accent-color;
           ul {
+            padding: 4px 4px 4px 6px;
             border-left: $border-width2 $border-solid $accent-color;
             border-top: $border-width2 $border-solid $accent-color;
             li {

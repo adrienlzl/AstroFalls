@@ -9,6 +9,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 // Assume "Recovered weight" field is already in kg
@@ -63,12 +64,8 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 		{ name: "Sans Type", value: Math.ceil((typeMass.null / 1000) * 10) / 10 },
 	];
 
-	const colorMap: Record<string, string> = {
-		Stone: "#1f77b4",
-		Iron: "#ff7f0e",
-		"Stony-Iron": "#2ca02c",
-		"Sans type": "#000000",
-	};
+	// Get generic colors
+  const { colorMeteoriteType, accentColor } = useGenericColorsHook();
 
 	return (
 		<Card id="chart-meteorite-mass-by-type" className="charts-card">
@@ -81,10 +78,10 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 					<XAxis
 						dataKey="name"
 						tick={({ x, y, payload }) => {
-							const color = colorMap[payload.value] || "#000";
+							const color = colorMeteoriteType[payload.value] || "#000";
 							return (
-								<text x={x}
-											y={y + 15}
+								<text x={ x }
+											y={ y + 15 }
 											fill={ color }
 											fontWeight="bold"
 											fontSize={13}
@@ -93,9 +90,9 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 								</text> ); }} />
 					<YAxis
 						tick={({ x, y, payload }) => (
-							<text x={x - 5}
-										y={y}
-										fill="#6e02c7"
+							<text x={ x - 5 }
+										y={ y }
+										fill={ accentColor }
 										fontWeight="bold"
 										fontSize={13}
 										textAnchor="end"
@@ -106,7 +103,7 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 						<Bar
 							dataKey="value">
 							{data.map((entry) => (
-								<Cell key={ entry.name } fill={ colorMap[entry.name] } /> ))}
+								<Cell key={ entry.name } fill={ colorMeteoriteType[entry.name] || "#000" } /> ))}
 						</Bar>
 					</BarChart>
 				</ResponsiveContainer>

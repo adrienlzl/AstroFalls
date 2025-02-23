@@ -8,6 +8,7 @@ import {
 	ResponsiveContainer,
 	Tooltip
 } from "recharts";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 export default function ChartMeteoriteByType({
@@ -40,12 +41,8 @@ export default function ChartMeteoriteByType({
 		{ name: "Sans type", value: typeCounts.null }
 	];
 
-	const colorMap: Record<string, string> = {
-		Stone: "#1f77b4",
-		Iron: "#ff7f0e",
-		"Stony-Iron": "#2ca02c",
-		"Sans type": "#000000"
-	};
+	// Get generic colors
+	const { colorMeteoriteType } = useGenericColorsHook();
 
 	return (
 		<Card id="chart-meteorite-by-type" className="charts-card">
@@ -66,7 +63,7 @@ export default function ChartMeteoriteByType({
 							{ data.map((entry) => (
 								<Cell
 									key={ entry.name }
-									fill={ colorMap[entry.name] } />
+									fill={ colorMeteoriteType[entry.name] } />
 							))}
 						</Pie>
 						<Tooltip />

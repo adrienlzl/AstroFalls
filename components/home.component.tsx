@@ -10,7 +10,7 @@ export default function HomeComponent() {
 				id="logo"
 				src="/images/astroFallLogo.webp"
 				alt="AstroFalls Logo"
-				className={ styles.bounce }
+				className={ styles.grow }
 				width={500}
 				height={300}
 				priority />

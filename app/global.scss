@@ -111,7 +111,7 @@ body {
   min-height: 100vh;
   &::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

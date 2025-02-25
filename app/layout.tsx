@@ -2,6 +2,7 @@ import "@/styles/tailwind.css";
 import "@/styles/global.scss";
 
 import type { Metadata } from "next";
+import Background from "@/components/background-component";
 
 
 export const metadata: Metadata = {
@@ -20,9 +21,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fr">
       <body>
-        <div id="body-container">
-          {children}
-        </div>
+        <Background />
+        <div id="body-container">{ children }</div>
       </body>
     </html>
   );

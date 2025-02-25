@@ -13,7 +13,6 @@ export async function getAllMeteorite(): Promise<Meteorite[]> {
 		console.time("⏳ Exécution de la requête MongoDB");
 		const MeteoriteDatas: Meteorite[] = await db.collection<Meteorite>(CollectionName.METEORITE_FRONT)
 			.find({})
-			// .limit(50)
 			.toArray();
 		console.timeEnd("⏳ Exécution de la requête MongoDB");
 
@@ -27,6 +26,7 @@ export async function getAllMeteorite(): Promise<Meteorite[]> {
 	}
 
 	catch (error) {
+		console.error('💣 Erreur récupération météorites : ', error);
 		throw error;
 	}
 }

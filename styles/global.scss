@@ -374,10 +374,13 @@ body {
         }
       }
       #map-container {
+        position: relative;
         width: 100%;
+        height: auto;
         #map {
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
           border: $border-width3 $border-solid $accent-color;
+          transition: all 0.5s ease;
           ul {
             padding: 4px 4px 4px 6px;
             border-left: $border-width2 $border-solid $accent-color;
@@ -405,6 +408,33 @@ body {
                 color: $white;
                 background-color: $secondary-color;
               }
+            }
+          }
+          #layer-control-buttons {
+            font-size: $font-size-layer;
+            color: $secondary-color;
+            position: absolute;
+            bottom: 90px;
+            left: 35px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border: $border-width2 $border-solid $accent-color;
+            background-color: $white;
+            z-index: 1;
+            user-select: none;
+            :nth-of-type(1),
+            :nth-of-type(2) {
+              margin-right: 10px;
+            }
+            button {
+              &:hover {
+                color: $accent-color;
+              }
+            }
+            button.active {
+              color: $accent-color;
+              pointer-events: none;
             }
           }
         }
@@ -498,33 +528,6 @@ body {
                 border: $border-width2 $border-solid $meteorite-type-null;
               }
             }
-          }
-        }
-        #layer-control-buttons {
-          font-size: $font-size-layer;
-          color: $secondary-color;
-          position: absolute;
-          bottom: 50px;
-          left: 90px;
-          padding: 3px 8px;
-          border-radius: 6px;
-          -webkit-border-radius: 6px;
-          border: $border-width2 $border-solid $accent-color;
-          background-color: $white;
-          z-index: 1;
-          user-select: none;
-          :nth-of-type(1),
-          :nth-of-type(2) {
-            margin-right: 10px;
-          }
-          button {
-            &:hover {
-              color: $accent-color;
-            }
-          }
-          button.active {
-            color: $accent-color;
-            pointer-events: none;
           }
         }
       }

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "@/app/animations.module.scss";
+import styles from "@/styles/modules/animations.module.scss";
 
 
 export default function HomeComponent() {

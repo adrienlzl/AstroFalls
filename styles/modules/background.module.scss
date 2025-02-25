@@ -3,9 +3,7 @@
   inset: 0;
   z-index: -1;
   overflow: hidden;
-}
-
-.image {
-  object-fit: cover;
-  filter: brightness(0.8);
+  .image {
+    filter: brightness(0.8);
+  }
 }

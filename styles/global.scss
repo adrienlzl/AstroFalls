@@ -378,6 +378,7 @@ body {
         width: 100%;
         height: auto;
         #map {
+          width: 100%;
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
           border: $border-width3 $border-solid $accent-color;
           transition: all 0.5s ease;
@@ -411,9 +412,9 @@ body {
             }
           }
           #layer-control-buttons {
+            position: absolute;
             font-size: $font-size-layer;
             color: $secondary-color;
-            position: absolute;
             bottom: 90px;
             left: 35px;
             padding: 3px 8px;

@@ -144,7 +144,22 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 
 	return (
 		<div id="map-container">
-			<div id="map"></div>
+			<div id="map">
+				<div id="layer-control-buttons">
+					<button onClick={ () => setActiveLayer('normal') }
+									className={ activeLayer === 'normal' ? 'active' : '' } >
+						Normal
+					</button>
+					<button onClick={ () => setActiveLayer('relief') }
+									className={ activeLayer === 'relief' ? 'active' : '' } >
+						Relief
+					</button>
+					<button onClick={ () => setActiveLayer('satellite') }
+									className={ activeLayer === 'satellite' ? 'active' : '' } >
+						Satellite
+					</button>
+				</div>
+			</div>
 			<div id="checkbox-wrapper">
 				<div id="checkbox-container">
 					{ meteoriteTypes.map((type) => (
@@ -162,20 +177,6 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 						</div>
 					))}
 				</div>
-			</div>
-			<div id="layer-control-buttons">
-				<button onClick={ () => setActiveLayer('normal') }
-								className={ activeLayer === 'normal' ? 'active' : '' } >
-          Normal
-        </button>
-				<button onClick={ () => setActiveLayer('relief') }
-								className={ activeLayer === 'relief' ? 'active' : '' } >
-					Relief
-				</button>
-				<button onClick={ () => setActiveLayer('satellite') }
-								className={ activeLayer === 'satellite' ? 'active' : '' } >
-					Satellite
-				</button>
 			</div>
 		</div>
 	);

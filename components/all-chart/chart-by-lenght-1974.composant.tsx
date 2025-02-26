@@ -63,8 +63,10 @@ export default function ChartYearByLength1974({ meteorites }: { meteorites: Mete
 											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
-						<Tooltip />
-						<Bar dataKey="count" fill={ rodColor} />
+						<Tooltip cursor={{ width: '100%' }} />
+						<Bar dataKey="count"
+								fill={ rodColor}
+								activeBar={{ fill: accentColor }} />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

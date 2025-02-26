@@ -232,6 +232,10 @@ body {
                   user-select: none;
                   &:hover {
                     cursor: pointer;
+                    color: $accent-color;
+                    box-shadow: inset 0 0 0 $border-width3 $primary-color;
+                    -webkit-box-shadow: inset 0 0 0 $border-width3 $primary-color;
+                    background-color: $white;
                   }
                   @media (width <= 1250px) {
                     font-size: $font-size-table-header-responsive-L;
@@ -554,6 +558,15 @@ body {
               font-size: $font-size-h3-charts;
               font-weight: $text-weight-bold;
               color: $primary-color;
+            }
+          }
+          .recharts-wrapper {
+            .recharts-tooltip-wrapper {
+              color: $primary-color;
+              border: $border-width2 $border-solid $secondary-color;
+              .recharts-tooltip-label {
+                color: $accent-color;
+              }
             }
           }
           #chart-content-meteorite-by-type {

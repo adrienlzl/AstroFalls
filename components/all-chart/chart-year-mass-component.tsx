@@ -46,7 +46,7 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 		.sort((a, b) => a.year - b.year);
 
 	// Get generic colors
-	const { accentColor, rodColor } = useGenericColorsHook();
+	const { activeRodColor, accentColor, rodColor } = useGenericColorsHook();
 
 	return (
 		<Card className="charts-card">
@@ -87,8 +87,11 @@ export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[
 											fontSize: 13 }}
 							domain={ [1, 60] }
 							tickFormatter={ (value) => `${Math.floor(value).toLocaleString()} t`} />
-						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`} />
-						<Bar dataKey="totalMass" fill={ rodColor} />
+						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`}
+										cursor={{ fill: accentColor }} />
+						<Bar dataKey="totalMass"
+								fill={ rodColor}
+								activeBar={{ fill: activeRodColor }} />
 					</BarChart>
 				</ResponsiveContainer>
 			</CardContent>

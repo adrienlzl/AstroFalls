@@ -12,9 +12,7 @@ export function useGenericColorsHook() {
   });
 
   const [accentColor, setAccentColor] = useState<string>("#6e02c7");
-
   const [primaryColor, setPrimaryColor] = useState<string>("#02afac");
-
   const [secondaryColor, setSecondaryColor] = useState<string>("#226A90");
 
   const [rodColor, setColorRod] = useState<string>("#02afac");

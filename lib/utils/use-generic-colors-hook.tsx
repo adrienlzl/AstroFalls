@@ -13,6 +13,10 @@ export function useGenericColorsHook() {
 
   const [accentColor, setAccentColor] = useState<string>("#6e02c7");
 
+  const [primaryColor, setPrimaryColor] = useState<string>("#02afac");
+
+  const [secondaryColor, setSecondaryColor] = useState<string>("#226A90");
+
   const [rodColor, setColorRod] = useState<string>("#02afac");
 
   useEffect(() => {
@@ -20,6 +24,8 @@ export function useGenericColorsHook() {
       const rootStyles = getComputedStyle(document.documentElement);
 
       setAccentColor(rootStyles.getPropertyValue("--accent-color").trim());
+      setPrimaryColor(rootStyles.getPropertyValue("--primary-color").trim());
+      setSecondaryColor(rootStyles.getPropertyValue("--secondary-color").trim());
 
       setColorRod(rootStyles.getPropertyValue("--rod-color").trim());
 
@@ -33,5 +39,5 @@ export function useGenericColorsHook() {
     }, 100);
   }, []);
 
-  return { accentColor, colorMeteoriteType, rodColor };
+  return { accentColor, colorMeteoriteType, primaryColor, rodColor, secondaryColor };
 }

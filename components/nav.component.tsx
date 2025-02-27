@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ChartsComponent from "@/components/charts.component";
 import HomeComponent from "@/components/home.component";
-import Map2D from "@/components/map2d.component";
+import Map2D from "@/components/map2D.component";
 import Kpi from "@/components/kpi.component";
 
 import { columns } from "@/components/data-table-all-component/data-table-columns.component";

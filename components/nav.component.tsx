@@ -1,16 +1,16 @@
 "use client";
 import { useState } from "react";
-import AllChartMainComponent from "@/components/all-chart-main.component";
+import AllChartMainComponent from "@/components/charts.component";
 import HomeComponent from "@/components/home.component";
-import Map2D from "@/components/map2D.component";
-import OverviewDashboard from "@/components/overview-dashboard.composent";
+import Map2D from "@/components/map2d.component";
+import Kpi from "@/components/kpi.component";
 
 import { columns } from "@/components/data-table-all-component/colums-meteorite";
 import { DataTable } from "@/components/data-table-all-component/data-table-meteorite-component";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 
-export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
+export default function NavComponent({ data }: { data: Meteorite[] }) {
 	const [selectedMenu, setSelectedMenu] = useState("home");
 	const menuItems = [
 		{ key: "home", label: "Accueil" },
@@ -31,7 +31,7 @@ export default function MenuBarComponent({ data }: { data: Meteorite[] }) {
 			case "graphique":
 				return <AllChartMainComponent meteorites={data} />;
 			case "data":
-				return <OverviewDashboard meteorites={data}/>
+				return <Kpi meteorites={data}/>
 			default:
 				return <div>Sélectionnez un menu pour voir le contenu.</div>;
 		}

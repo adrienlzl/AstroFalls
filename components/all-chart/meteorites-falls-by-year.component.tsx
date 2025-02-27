@@ -13,7 +13,7 @@ import {
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function ChartYearByLength({ meteorites }: { meteorites: Meteorite[] }) {
+export default function MeteoritesFallsByYear({ meteorites }: { meteorites: Meteorite[] }) {
 	// Regroup meteorites by year
 	const data = meteorites.reduce((acc: Record<string, number>, meteorite) => {
 		if (meteorite.Year) {

@@ -13,7 +13,7 @@ import {
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function ChartYearByMass({ meteorites }: { meteorites: Meteorite[] }) {
+export default function MeteoritesTotalMassByYear({ meteorites }: { meteorites: Meteorite[] }) {
 	const parseWeight = (weight: string | number | null): number => {
 		if (weight == null) {
 			return 0;

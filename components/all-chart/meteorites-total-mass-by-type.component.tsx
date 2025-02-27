@@ -27,7 +27,7 @@ function parseMassInKg(mass: string | number | null | undefined): number {
 	return isNaN(parsed) ? 0 : parsed;
 }
 
-export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteorite[] }) {
+export default function MeteoritesTotalMassByType({ meteorites }: { meteorites: Meteorite[] }) {
 	// Store total mass (kg) for each of categories
 	const typeMass = {
 		Stone: 0,

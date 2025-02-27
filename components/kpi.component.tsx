@@ -6,7 +6,7 @@ import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function OverviewDashboard({
+export default function Kpi({
   meteorites,
 }: {
   meteorites: Meteorite[];

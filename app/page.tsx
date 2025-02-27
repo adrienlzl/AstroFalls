@@ -1,5 +1,5 @@
 import FooterComponent from "@/components/layout/footer.component";
-import MenuBarComponent from "@/components/menu-bar.component";
+import NavComponent from "@/components/nav.component";
 import { getAllMeteorite } from "@/lib/action/meteorite.action";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
@@ -9,7 +9,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<MenuBarComponent data={meteoriteData}/>
+			<NavComponent data={meteoriteData}/>
 			<FooterComponent />
 		</>
 	);

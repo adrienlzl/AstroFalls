@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { capitalizeWords } from "@/lib/utils/capitalize-words";
 import { getCountryNameInFrench } from '@/lib/utils/translate-country-in-french';
+import { getMonthNameInFrench } from '@/lib/utils/translate-month-in-french';
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
@@ -27,7 +28,7 @@ export default function Kpi({
 	};
 
 	// Get generic colors
-	const { colorMeteoriteType } = useGenericColorsHook();
+	const { bronzeColor, colorMeteoriteType, goldColor, silverColor } = useGenericColorsHook();
 
 	/* ========= 1. Année record en nombre ========= */
 	const yearCounts: Record<string, number> = {};
@@ -134,7 +135,7 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 9. Détails par type de météorite ========= */
+	/* ========= 10. Détails par type de météorite ========= */
 	// Pour chaque type, on affichera le nom, le nombre total et la masse totale en kg.
 	/* ========= 6. Découvertes ========= */
 	let findCount = 0;
@@ -156,6 +157,18 @@ export default function Kpi({
 
 	/* ========= 8. Statistiques pour la France ========= */
 	const franceStats = countryStats["France"] || null;
+
+	/* ========= 9. Mois record en nombre ========= */
+	const monthCounts: Record<string, number> = {};
+	meteorites.forEach((m) => {
+		if (m.Month) {
+			const month = capitalizeWords(m.Month.trim());
+			monthCounts[month] = (monthCounts[month] || 0) + 1;
+		}
+	});
+	const topMonths = Object.entries(monthCounts)
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, 3)
 
 
 	return (
@@ -281,14 +294,42 @@ export default function Kpi({
 
 			<Card className="kpi-card">
 				<CardHeader className="kpi-card-header">
+					<h3>Mois record de chutes</h3>
+				</CardHeader>
+				<CardContent className="kpi-card-content">
+					{topMonths.map(([month, count], index) => {
+						let emoji = '';
+						let color = '';
+
+						if (index === 0) {
+							emoji = '🏆';
+							color = goldColor;
+						} else if (index === 1) {
+							emoji = '🥈';
+							color = silverColor;
+						} else if (index === 2) {
+							emoji = '🥉';
+							color = bronzeColor;
+						}
+						return (
+							<p key={ month } className="card-content-text">
+								<span>{ emoji } </span>
+								<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
+								<span> { count.toLocaleString("fr-FR") }</span>
+							</p>
+						);
+					})}
+				</CardContent>
+			</Card>
+
+			<Card className="kpi-card">
+				<CardHeader className="kpi-card-header">
 					<h3>Types de météorites</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					{Object.entries(typeStats).map(([type, stats]) => (
 						<div className="type-meteorite" key={ type }>
-							<p>
-								<strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong>
-							</p>
+							<p><strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong></p>
 							<p className="card-content-text">Chutes :
 								<span> { stats.count }</span>
 							</p>

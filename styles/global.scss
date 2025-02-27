@@ -649,6 +649,9 @@ body {
                 color: $primary-color;
                 font-weight: $text-weight;
               }
+              span.top-month {
+                font-weight: $text-weight-bold;
+              }
             }
             .country-color {
               font-weight: $text-weight-bold;

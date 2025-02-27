@@ -6,7 +6,7 @@ import "@/styles/hook/generic-colors.scss";
 export function useGenericColorsHook() {
   const [colorMeteoriteType, setColorMeteoriteType] = useState<Record<string, string>>({
     Iron: "#ff7f0e",
-    Stone: "#1f77b4",
+    Stone: "#6e3b00",
     "Stony-Iron": "#2ca02c",
     "Sans Type": "#383838",
   });

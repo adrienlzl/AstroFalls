@@ -193,6 +193,20 @@ export default function Kpi({
 		.sort((a, b) => b[1] - a[1])
 		.slice(0, 3)
 
+	/* ========= Météorites par hémisphère ========= */
+	let northernHemisphereCount = 0;
+	let southernHemisphereCount = 0;
+	meteorites.forEach((m) => {
+		if (m.latitude !== undefined) {
+			if (m.latitude > 0) {
+				northernHemisphereCount++;
+			}
+			else if (m.latitude < 0) {
+				southernHemisphereCount++;
+			}
+		}
+	});
+
 
 	return (
 		<div id="kpi">
@@ -370,6 +384,20 @@ export default function Kpi({
 							</p>
 						);
 					})}
+				</CardContent>
+			</Card>
+
+			<Card className="kpi-card">
+				<CardHeader className="kpi-card-header">
+					<h3>Hémisphère</h3>
+				</CardHeader>
+				<CardContent className="kpi-card-content">
+					<p className="card-content-text hemisphere">Nord : 
+						<span> { northernHemisphereCount.toLocaleString("fr-FR") }</span>
+					</p>
+					<p className="card-content-text">Sud : 
+						<span> { southernHemisphereCount.toLocaleString("fr-FR") }</span>
+					</p>
 				</CardContent>
 			</Card>
 

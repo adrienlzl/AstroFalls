@@ -654,10 +654,13 @@ body {
               }
             }
             p.card-content-text.record:nth-of-type(1) {
-              margin-bottom: 7px;
+              margin-bottom: 5px;
             }
             p.card-content-text.record:nth-of-type(2) {
-              margin-bottom: 7px;
+              margin-bottom: 5px;
+            }
+            p.card-content-text.hemisphere {
+              margin-bottom: 4px;
             }
             .country-color {
               font-weight: $text-weight-bold;

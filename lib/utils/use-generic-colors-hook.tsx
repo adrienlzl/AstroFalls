@@ -18,6 +18,10 @@ export function useGenericColorsHook() {
   const [rodColor, setRodColor] = useState<string>("#02afac");
   const [activeRodColor, setActiveRodColor] = useState<string>("#FF0000");
 
+  const [bronzeColor, setBronzeColor] = useState<string>("#c06905");
+  const [goldColor, setGoldColor] = useState<string>("#ffc400");
+  const [silverColor, setSilverColor] = useState<string>("#c0c0c0");
+
   useEffect(() => {
     setTimeout(() => {
       const rootStyles = getComputedStyle(document.documentElement);
@@ -29,6 +33,10 @@ export function useGenericColorsHook() {
       setRodColor(rootStyles.getPropertyValue("--rod-color").trim());
       setActiveRodColor(rootStyles.getPropertyValue("--active-rod-color").trim());
 
+      setBronzeColor(rootStyles.getPropertyValue("--bronze-color").trim());
+      setGoldColor(rootStyles.getPropertyValue("--gold-color").trim());
+      setSilverColor(rootStyles.getPropertyValue("--silver-color").trim());
+
       setColorMeteoriteType({
         Iron: rootStyles.getPropertyValue("--meteorite-type-iron").trim(),
         Stone: rootStyles.getPropertyValue("--meteorite-type-stone").trim(),
@@ -39,5 +47,14 @@ export function useGenericColorsHook() {
     }, 100);
   }, []);
 
-  return { accentColor, colorMeteoriteType, primaryColor, rodColor, activeRodColor, secondaryColor };
+  return {  accentColor,
+            activeRodColor,
+            bronzeColor,
+            colorMeteoriteType,
+            goldColor,
+            primaryColor,
+            rodColor,
+            secondaryColor,
+            silverColor
+          };
 }

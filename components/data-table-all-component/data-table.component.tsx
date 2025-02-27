@@ -24,7 +24,7 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 
-import { DataTablePagination } from "@/components/data-table-all-component/data-table-pagination";
+import { DataTablePagination } from "@/components/data-table-all-component/data-table-pagination.component";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 

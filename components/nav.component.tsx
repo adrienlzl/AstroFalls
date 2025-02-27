@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import AllChartMainComponent from "@/components/charts.component";
+import ChartsComponent from "@/components/charts.component";
 import HomeComponent from "@/components/home.component";
 import Map2D from "@/components/map2d.component";
 import Kpi from "@/components/kpi.component";
 
-import { columns } from "@/components/data-table-all-component/colums-meteorite";
-import { DataTable } from "@/components/data-table-all-component/data-table-meteorite-component";
+import { columns } from "@/components/data-table-all-component/data-table-columns.component";
+import { DataTable } from "@/components/data-table-all-component/data-table.component";
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 
@@ -29,7 +29,7 @@ export default function NavComponent({ data }: { data: Meteorite[] }) {
 			case "carte":
 				return <Map2D meteorites={data} />;
 			case "graphique":
-				return <AllChartMainComponent meteorites={data} />;
+				return <ChartsComponent meteorites={data} />;
 			case "data":
 				return <Kpi meteorites={data}/>
 			default:

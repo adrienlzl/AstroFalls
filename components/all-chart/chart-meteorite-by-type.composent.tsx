@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -66,13 +67,16 @@ export default function ChartMeteoriteByType({
 									fill={ colorMeteoriteType[entry.type] } />
 							))}
 						</Pie>
-						<Tooltip
-							labelFormatter={(label) => (
-								<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
-									{ label }
+						<Tooltip formatter={(value: number, _name: string, props: any) => {
+							const meteoriteType = props.payload.type;
+							const color = colorMeteoriteType[meteoriteType];
+							return [
+								<span key={ `tooltip-${meteoriteType}` }>
+									<span style={{ color, fontWeight: "bold" }}>{ meteoriteType } : </span>
+									<span>{ value.toLocaleString() }</span>
 								</span>
-							)}
-							formatter={ (value: number) => [`${value.toLocaleString()}`] } />
+							];
+						}} />
 						<Legend iconSize={18} />
 					</PieChart>
 				</ResponsiveContainer>

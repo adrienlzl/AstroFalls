@@ -240,7 +240,22 @@ export default function Kpi({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					<p className="card-content-text">Total cumulé : </p>
-					<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
+					<p>{ totalMeteorites.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></p>
+				</CardContent>
+			</Card>
+
+			<Card className="kpi-card">
+				<CardHeader className="kpi-card-header">
+					<h3>Type dominant</h3>
+				</CardHeader>
+				<CardContent className="kpi-card-content">
+					<p>
+						<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>{ capitalizeWords(mostCommonType) }</strong>
+					</p>
+					<p className="card-content-text">Chutes :
+						<span> { typeMostCount.toLocaleString("fr-FR") }</span>
+					</p>
+					<p className="card-content-text">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -278,28 +293,16 @@ export default function Kpi({
 
 			<Card className="kpi-card">
 				<CardHeader className="kpi-card-header">
-					<h3>Type dominant</h3>
+					<h3>Stats France</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p>
-						<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>{ capitalizeWords(mostCommonType) }</strong>
-					</p>
-					<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
-					<p className="card-content-text">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Découvertes</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="card-content-text">Oui :
-						<span> { findCount.toLocaleString("fr-FR") }</span>
-					</p>
-					<p className="card-content-text">Non :
-						<span> { notFindCount.toLocaleString("fr-FR") }</span>
-					</p>
+					{franceStats &&
+						<>
+							<p>{ franceStats.count }<span className="emoji"> ☄️</span></p>
+							<p className="card-content-text">Masse cumulée :
+								<span> { formatMass(franceStats.totalMass) }</span>
+							</p>
+						</> }
 				</CardContent>
 			</Card>
 
@@ -308,6 +311,7 @@ export default function Kpi({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
+					<p className="card-content-text mass">🧱</p>
 					<p className="card-content-text">Cumul :
 						<span> { formatMass(totalMassAll) }</span>
 					</p>
@@ -316,16 +320,15 @@ export default function Kpi({
 
 			<Card className="kpi-card">
 				<CardHeader className="kpi-card-header">
-					<h3>Stats France</h3>
+					<h3>Découvertes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					{franceStats &&
-						<>
-							<p>{ franceStats.count } chutes</p>
-							<p className="card-content-text">Masse cumulée :
-								<span> { formatMass(franceStats.totalMass) }</span>
-							</p>
-						</> }
+					<p className="card-content-text find-fall">✔️
+						<span> { findCount.toLocaleString("fr-FR") }</span>
+					</p>
+					<p className="card-content-text find-fall">❌
+						<span> { notFindCount.toLocaleString("fr-FR") }</span>
+					</p>
 				</CardContent>
 			</Card>
 
@@ -392,11 +395,12 @@ export default function Kpi({
 					<h3>Hémisphère</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-text hemisphere">Nord : 
-						<span> { northernHemisphereCount.toLocaleString("fr-FR") }</span>
+					<p className="cardinal-points">🧭</p>
+					<p className="card-content-text">Nord :
+						<span> { northernHemisphereCount.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></span>
 					</p>
-					<p className="card-content-text">Sud : 
-						<span> { southernHemisphereCount.toLocaleString("fr-FR") }</span>
+					<p className="card-content-text">Sud :
+						<span> { southernHemisphereCount.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></span>
 					</p>
 				</CardContent>
 			</Card>

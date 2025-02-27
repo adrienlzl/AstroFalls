@@ -45,6 +45,7 @@ $text-button: 'roboto condensed', sans-serif;
 $text-serif: 'roboto serif', serif;
 
 /*------Fonts size------*/
+$font-size-card: 16px;
 $font-size-footer: 14px;
 $font-size-h3-charts: 14px;
 $font-size-layer: 13px;
@@ -601,6 +602,7 @@ body {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        font-size: $font-size-card;
         .kpi-card {
           display: flex;
           flex-direction: column;
@@ -640,6 +642,9 @@ body {
             width: 100%;
             padding: 0.5rem;
             background-color: $white;
+            .emoji {
+              font-size: 15px;
+            }
             p {
               text-align: center;
               cursor: default;
@@ -655,14 +660,23 @@ body {
                 font-weight: $text-weight-bold;
               }
             }
+            p.cardinal-points {
+              font-size: 24px;
+            }
+            p.mass {
+              font-size: 24px;
+            }
+            p.find-fall {
+              font-size: 18px;
+              span {
+                font-size: $font-size-card;
+              }
+            }
             p.card-content-text.record:nth-of-type(1) {
               margin-bottom: 5px;
             }
             p.card-content-text.record:nth-of-type(2) {
               margin-bottom: 5px;
-            }
-            p.card-content-text.hemisphere {
-              margin-bottom: 4px;
             }
             .country-color {
               font-weight: $text-weight-bold;
@@ -677,10 +691,10 @@ body {
               color: $red;
             }
             .type-meteorite:nth-of-type(1) {
-              margin-bottom: 16px;
+              margin-bottom: 12px;
             }
             .type-meteorite:nth-of-type(2) {
-              margin-bottom: 16px;
+              margin-bottom: 12px;
             }
           }
         }

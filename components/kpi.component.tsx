@@ -199,7 +199,7 @@ export default function Kpi({
 				<CardContent className="kpi-card-content">
 					{ biggestMeteorite &&
 						<>
-							<p id="more">{ biggestMeteorite["Name"] }</p>
+							<p id="highlight">{ biggestMeteorite["Name"] }</p>
 							<p>{ formattedWeight }</p>
 							<p>{ getCountryNameInFrench(biggestMeteorite["Country"]) } en { String(biggestMeteorite["Year"]).trim() }</p>
 						</>
@@ -212,7 +212,7 @@ export default function Kpi({
 					<h3>Pays le plus impacté</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p id="more">{ getCountryNameInFrench(countryMost) }</p>
+					<p id="hightlight">{ getCountryNameInFrench(countryMost) }</p>
 					<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
 					<p className="card-content-text-strong">Masse cumulée :
 						<span> { formatMass(countryMostMass) }</span>

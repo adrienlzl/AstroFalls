@@ -14,7 +14,7 @@ import {
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function MeteoritesFallsByCountry({
+export default function ChartFallsByCountry({
   meteorites,
 }: {
   meteorites: Meteorite[];

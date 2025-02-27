@@ -12,7 +12,7 @@ import {
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function MeteoritesTotalByType({
+export default function ChartTotalByType({
   meteorites,
 }: {
 	meteorites: Meteorite[];

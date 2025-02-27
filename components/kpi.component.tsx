@@ -117,7 +117,7 @@ export default function Kpi({
 	});
 
 
-	/* ========= Type dominant ========= */
+	/* ========= Type dominant + Détails par type de météorite ========= */
 	const typeStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
 		const type = m.Type?.trim();
@@ -141,7 +141,6 @@ export default function Kpi({
 	});
 
 
-	/* ========= Détails par type de météorite ========= */
 	/* ========= Découvertes ========= */
 	let findCount = 0;
 	let notFindCount = 0;

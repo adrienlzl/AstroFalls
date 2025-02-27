@@ -627,6 +627,7 @@ body {
             h3 {
               color: $white;
               text-align: center;
+              cursor: default;
             }
           }
           .kpi-card-content {
@@ -641,6 +642,7 @@ body {
             background-color: $white;
             p {
               text-align: center;
+              cursor: default;
             }
             p.card-content-text {
               color: $secondary-color;
@@ -684,6 +686,9 @@ body {
         }
         @media (width >= 768px) {
           grid-template-columns: repeat(3, 1fr);
+          .kpi-card:last-child {
+            grid-column: 2 / 3;
+          }
         }
       }
     }

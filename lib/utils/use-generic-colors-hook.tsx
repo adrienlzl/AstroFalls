@@ -18,7 +18,7 @@ export function useGenericColorsHook() {
   const [rodColor, setRodColor] = useState<string>("#02afac");
   const [activeRodColor, setActiveRodColor] = useState<string>("#FF0000");
 
-  const [bronzeColor, setBronzeColor] = useState<string>("#c06905");
+  const [bronzeColor, setBronzeColor] = useState<string>("#a93900");
   const [goldColor, setGoldColor] = useState<string>("#ffc400");
   const [silverColor, setSilverColor] = useState<string>("#c0c0c0");
 

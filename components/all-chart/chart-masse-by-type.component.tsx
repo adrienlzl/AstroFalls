@@ -101,7 +101,7 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 							</text> )} />
 						<Tooltip cursor={{ width: '100%' }}
 										labelFormatter={(label) => (
-											<span style={{ color: colorMeteoriteType[label] }}>
+											<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
 												{ label }
 											</span>
 										)}

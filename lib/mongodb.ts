@@ -19,13 +19,8 @@ let cachedDb: Db | null = null;
 
 export async function connectToDatabase(): Promise<Db> {
   if (cachedDb) {
-    console.log("✅ Utilisation de la connexion MongoDB mise en cache");
     return cachedDb;
   }
-
-  console.log("❌ Création d'une nouvelle connexion MongoDB...");
-
-  console.time("⏳ Connexion MongoDB");
 
   try {
     let client: MongoClient;
@@ -45,8 +40,6 @@ export async function connectToDatabase(): Promise<Db> {
 
     const db = client.db(MONGODB_DB);
     cachedDb = db;
-
-    console.timeEnd("⏳ Connexion MongoDB");
 
     return db;
   }

@@ -642,9 +642,17 @@ body {
             p {
               text-align: center;
             }
-            p.card-content-text-strong {
+            p.card-content-text {
               color: $secondary-color;
               font-weight: $text-weight-600;
+              span {
+                color: $primary-color;
+                font-weight: $text-weight;
+              }
+            }
+            .country-color {
+              font-weight: $text-weight-bold;
+              color: $accent-color;
               span {
                 color: $primary-color;
                 font-weight: $text-weight;

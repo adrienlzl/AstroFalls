@@ -166,7 +166,9 @@ export default function Kpi({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					<p>{ yearMaxCount }</p>
-					<p>{ maxCount.toLocaleString("fr-FR") } chutes</p>
+					<p className="card-content-text">Chutes :
+						<span> { maxCount.toLocaleString("fr-FR") }</span>
+					</p>
 				</CardContent>
 			</Card>
 
@@ -176,7 +178,7 @@ export default function Kpi({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					<p>{ yearMaxMass }</p>
-					<p className="card-content-text-strong">Masse cumulée :
+					<p className="card-content-text">Masse cumulée :
 						<span> { formatMass(maxMass) }</span>
 					</p>
 				</CardContent>
@@ -187,7 +189,7 @@ export default function Kpi({
 					<h3>Chutes enregistrées</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-text-strong">Total cumulé : </p>
+					<p className="card-content-text">Total cumulé : </p>
 					<p>{ totalMeteorites.toLocaleString("fr-FR") }</p>
 				</CardContent>
 			</Card>
@@ -199,9 +201,11 @@ export default function Kpi({
 				<CardContent className="kpi-card-content">
 					{ biggestMeteorite &&
 						<>
-							<p id="highlight">{ biggestMeteorite["Name"] }</p>
+							<p className="highlight">{ biggestMeteorite["Name"] }</p>
 							<p>{ formattedWeight }</p>
-							<p>{ getCountryNameInFrench(biggestMeteorite["Country"]) } en { String(biggestMeteorite["Year"]).trim() }</p>
+							<p className="country-color">{ getCountryNameInFrench(biggestMeteorite["Country"]) }
+								<span> en { String(biggestMeteorite["Year"]).trim() }</span>
+							</p>
 						</>
 					}
 				</CardContent>
@@ -212,9 +216,11 @@ export default function Kpi({
 					<h3>Pays le plus impacté</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p id="hightlight">{ getCountryNameInFrench(countryMost) }</p>
-					<p>{ countryMostCount.toLocaleString("fr-FR") } impacts</p>
-					<p className="card-content-text-strong">Masse cumulée :
+					<p className="country-color">{ getCountryNameInFrench(countryMost) }</p>
+					<p className="card-content-text">Impacts :
+						<span> { countryMostCount.toLocaleString("fr-FR") }</span>
+					</p>
+					<p className="card-content-text">Masse cumulée :
 						<span> { formatMass(countryMostMass) }</span>
 					</p>
 				</CardContent>
@@ -229,7 +235,7 @@ export default function Kpi({
 						<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>{ capitalizeWords(mostCommonType) }</strong>
 					</p>
 					<p>{ typeMostCount.toLocaleString("fr-FR") } météorites</p>
-					<p className="card-content-text-strong">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
+					<p className="card-content-text">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
 				</CardContent>
 			</Card>
 
@@ -238,10 +244,10 @@ export default function Kpi({
 					<h3>Découvertes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-text-strong">Oui :
+					<p className="card-content-text">Oui :
 						<span> { findCount.toLocaleString("fr-FR") }</span>
 					</p>
-					<p className="card-content-text-strong">Non :
+					<p className="card-content-text">Non :
 						<span> { notFindCount.toLocaleString("fr-FR") }</span>
 					</p>
 				</CardContent>
@@ -252,7 +258,7 @@ export default function Kpi({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-text-strong">Cumul :
+					<p className="card-content-text">Cumul :
 						<span> { formatMass(totalMassAll) }</span>
 					</p>
 				</CardContent>
@@ -266,7 +272,7 @@ export default function Kpi({
 					{franceStats &&
 						<>
 							<p>{ franceStats.count } chutes</p>
-							<p className="card-content-text-strong">Masse cumulée :
+							<p className="card-content-text">Masse cumulée :
 								<span> { formatMass(franceStats.totalMass) }</span>
 							</p>
 						</> }
@@ -283,10 +289,10 @@ export default function Kpi({
 							<p>
 								<strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong>
 							</p>
-							<p className="card-content-text-strong">Chutes :
+							<p className="card-content-text">Chutes :
 								<span> { stats.count }</span>
 							</p>
-							<p className="card-content-text-strong">Masse cumulée :
+							<p className="card-content-text">Masse cumulée :
 								<span> { formatMass(stats.totalMass) }</span>
 							</p>
 						</div>

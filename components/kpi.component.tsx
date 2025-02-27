@@ -30,7 +30,7 @@ export default function Kpi({
 	// Get generic colors
 	const { bronzeColor, colorMeteoriteType, goldColor, silverColor } = useGenericColorsHook();
 
-	/* ========= 1. Année record en nombre ========= */
+	/* ========= Année record en nombre ========= */
 	const yearCounts: Record<string, number> = {};
 	meteorites.forEach((m) => {
 		if (m.Year != null) {
@@ -47,7 +47,8 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 2. Année record en masse ========= */
+
+	/* ========= Année record en masse ========= */
 	const yearMass: Record<string, number> = {};
 	meteorites.forEach((m) => {
 		if (m.Year != null) {
@@ -65,10 +66,12 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 3. Chutes enregistrées ========= */
+
+	/* ========= Chutes enregistrées ========= */
 	const totalMeteorites = meteorites.length;
 
-	/* ========= 4. La plus massive ========= */
+
+	/* ========= La plus massive ========= */
 	let biggestMeteorite: Meteorite | null = null;
 	let biggestWeight = 0;
 	meteorites.forEach((m) => {
@@ -89,7 +92,8 @@ export default function Kpi({
 		formattedWeight = biggestWeight.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " kg";
 	}
 
-	/* ========= 4. Pays le plus impacté ========= */
+
+	/* ========= Pays le plus impacté ========= */
 	const countryStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
 		const country = m.Country?.trim();
@@ -112,7 +116,8 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 5. Type dominant ========= */
+
+	/* ========= Type dominant ========= */
 	const typeStats: Record<string, { count: number; totalMass: number }> = {};
 	meteorites.forEach((m) => {
 		const type = m.Type?.trim();
@@ -135,9 +140,9 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 10. Détails par type de météorite ========= */
-	// Pour chaque type, on affichera le nom, le nombre total et la masse totale en kg.
-	/* ========= 6. Découvertes ========= */
+
+	/* ========= Détails par type de météorite ========= */
+	/* ========= Découvertes ========= */
 	let findCount = 0;
 	let notFindCount = 0;
 	meteorites.forEach((m) => {
@@ -149,16 +154,34 @@ export default function Kpi({
 		}
 	});
 
-	/* ========= 7. Masse totale ========= */
+
+	/* ========= Masse totale ========= */
 	let totalMassAll = 0;
 	meteorites.forEach((m) => {
 		totalMassAll += parseWeight(m["Recovered weight"]);
 	});
 
-	/* ========= 8. Statistiques pour la France ========= */
+
+	/* ========= Statistiques pour la France ========= */
 	const franceStats = countryStats["France"] || null;
 
-	/* ========= 9. Mois record en nombre ========= */
+
+	/* ========= Mois record de découverte ========= */
+	const findMonthCounts: Record<string, number> = {};
+	meteorites
+		.filter((m) => m.ff === "Find")
+		.forEach((m) => {
+			if (m.Month) {
+				const month = capitalizeWords(m.Month.trim());
+				findMonthCounts[month] = (findMonthCounts[month] || 0) + 1;
+			}
+		});
+	const topFindMonths = Object.entries(findMonthCounts)
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, 3);
+
+
+	/* ========= Mois record en nombre ========= */
 	const monthCounts: Record<string, number> = {};
 	meteorites.forEach((m) => {
 		if (m.Month) {
@@ -294,13 +317,12 @@ export default function Kpi({
 
 			<Card className="kpi-card">
 				<CardHeader className="kpi-card-header">
-					<h3>Mois record de chutes</h3>
+					<h3>Record de chutes</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					{topMonths.map(([month, count], index) => {
 						let emoji = '';
 						let color = '';
-
 						if (index === 0) {
 							emoji = '🏆';
 							color = goldColor;
@@ -312,7 +334,36 @@ export default function Kpi({
 							color = bronzeColor;
 						}
 						return (
-							<p key={ month } className="card-content-text">
+							<p key={ month } className="card-content-text record">
+								<span>{ emoji } </span>
+								<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
+								<span> { count.toLocaleString("fr-FR") }</span>
+							</p>
+						);
+					})}
+				</CardContent>
+			</Card>
+
+			<Card className="kpi-card">
+				<CardHeader className="kpi-card-header">
+					<h3>Record de découvertes</h3>
+				</CardHeader>
+				<CardContent className="kpi-card-content">
+					{topFindMonths.map(([month, count], index) => {
+						let emoji = '';
+						let color = '';
+						if (index === 0) {
+							emoji = '🏆';
+							color = goldColor;
+						} else if (index === 1) {
+							emoji = '🥈';
+							color = silverColor;
+						} else if (index === 2) {
+							emoji = '🥉';
+							color = bronzeColor;
+						}
+						return (
+							<p key={ month } className="card-content-text record">
 								<span>{ emoji } </span>
 								<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
 								<span> { count.toLocaleString("fr-FR") }</span>

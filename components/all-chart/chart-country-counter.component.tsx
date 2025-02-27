@@ -96,9 +96,8 @@ export default function GraphCountryByNumber({
 								name="Météorites"
 								activeBar={{ fill: accentColor }}>
 							{data.map((_entry, index) => (
-								<Cell
-									key={`cell-${_entry.country}-${index}`}
-									fill={ colorMap[_entry.country] } />
+								<Cell key={`cell-${_entry.country}-${index}`}
+											fill={ colorMap[_entry.country] } />
 							))}
 						</Bar>
 					</BarChart>

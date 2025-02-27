@@ -282,7 +282,7 @@ export default function Kpi({
 				</CardHeader>
 				<CardContent className="kpi-card-content">
 					<p className="country-color">{ getCountryNameInFrench(countryMost) }</p>
-					<p className="card-content-text">Impacts :
+					<p className="card-content-text">Chutes :
 						<span> { countryMostCount.toLocaleString("fr-FR") }</span>
 					</p>
 					<p className="card-content-text">Masse cumulée :
@@ -414,7 +414,7 @@ export default function Kpi({
 						<div className="type-meteorite" key={ type }>
 							<p><strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong></p>
 							<p className="card-content-text">Chutes :
-								<span> { stats.count }</span>
+								<span> { stats.count.toLocaleString("fr-FR") }</span>
 							</p>
 							<p className="card-content-text">Masse cumulée :
 								<span> { formatMass(stats.totalMass) }</span>

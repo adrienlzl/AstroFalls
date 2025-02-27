@@ -1,21 +1,21 @@
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
-import MeteoritesFallsByCountry from "@/components/all-chart/meteorites-falls-by-country.component";
-import MeteoritesTotalByType from "@/components/all-chart/meteorites-total-mass-by-type.component";
-import MeteoritesTotalMassByType from "@/components/all-chart/meteorites-total-by-type.component";
-import MeteoritesFallsByYear from "@/components/all-chart/meteorites-falls-by-year.component";
-import MeteoritesFallsByYearAfter1974 from "@/components/all-chart/meteorites-falls-by-year-after-1974.component";
-import MeteoritesTotalMassByYear from "@/components/all-chart/meteorites-total-mass-by-year.component";
+import ChartFallsByCountry from "@/components/all-chart/chart-falls-by-country.component";
+import ChartTotalByType from "@/components/all-chart/chart-total-mass-by-type.component";
+import ChartTotalMassByType from "@/components/all-chart/chart-total-by-type.component";
+import ChartFallsByYear from "@/components/all-chart/chart-falls-by-year.component";
+import ChartFallsByYearAfter1974 from "@/components/all-chart/chart-falls-by-year-after-1974.component";
+import ChartTotalMassByYear from "@/components/all-chart/chart-total-mass-by-year.component";
 
 
 export default function ChartsComponent({meteorites}: { meteorites: Meteorite[] }) {
 	return (
 		<div id="charts">
-			<MeteoritesFallsByYear meteorites={meteorites}/>
-			<MeteoritesFallsByYearAfter1974 meteorites={meteorites}/>
-			<MeteoritesTotalMassByYear meteorites={meteorites}/>
-			<MeteoritesFallsByCountry meteorites={meteorites}/>
-			<MeteoritesTotalMassByType meteorites={meteorites}/>
-			<MeteoritesTotalByType meteorites={meteorites}/>
+			<ChartFallsByYear meteorites={meteorites}/>
+			<ChartFallsByYearAfter1974 meteorites={meteorites}/>
+			<ChartTotalMassByYear meteorites={meteorites}/>
+			<ChartFallsByCountry meteorites={meteorites}/>
+			<ChartTotalMassByType meteorites={meteorites}/>
+			<ChartTotalByType meteorites={meteorites}/>
 		</div>
 	)
 }

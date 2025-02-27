@@ -106,7 +106,7 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 									{ label }
 								</span>
 							)}
-							formatter={ (value: number) => [`${value.toLocaleString() } tonnes`] } />
+							formatter={ (value: number) => [`${value.toLocaleString() } t`] } />
 						<Bar dataKey="value">
 							{data.map((entry) => (
 								<Cell key={ entry.type }

@@ -87,15 +87,11 @@ export default function GraphCountryByNumber({
                 </text>
               )} />
 						<Tooltip cursor={{ width: '100%' }}
-										formatter={(value: number, name: string, props: any) => {
-											const countryName = getCountryNameInFrench(props.payload.country);
-											const yAxisColor = colorMap[props.payload.country];
-											return [
-												<div key={`tooltip-${props.payload.country}`}>
-													<span style={{ color: yAxisColor }}>{countryName}</span> : {value.toLocaleString()} météorites
-												</div>
-											];
-										}}/>
+										labelFormatter={(label) => {
+											const countryName = getCountryNameInFrench(label);
+											return <span style={{ color: colorMap[label], fontWeight: 'bold' }}>{countryName}</span>;
+										}}
+										formatter={(value: number) => [`${value.toLocaleString()} météorites`]} />
 						<Bar dataKey="count"
 								name="Météorites"
 								activeBar={{ fill: accentColor }}>

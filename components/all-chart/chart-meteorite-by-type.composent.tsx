@@ -35,10 +35,10 @@ export default function ChartMeteoriteByType({
 
 	// Construct data for Recharts
 	const data = [
-		{ name: "Stone", value: typeCounts.Stone },
-		{ name: "Iron", value: typeCounts.Iron },
-		{ name: "Stony-Iron", value: typeCounts["Stony-Iron"] },
-		{ name: "Sans Type", value: typeCounts.null }
+		{ type: "Stone", value: typeCounts.Stone },
+		{ type: "Iron", value: typeCounts.Iron },
+		{ type: "Stony-Iron", value: typeCounts["Stony-Iron"] },
+		{ type: "Sans Type", value: typeCounts.null }
 	];
 
 	// Get generic colors
@@ -54,7 +54,7 @@ export default function ChartMeteoriteByType({
 					<PieChart>
 						<Pie data={ data }
 								dataKey="value"
-								nameKey="name"
+								nameKey="type"
 								cx="50%"
 								cy="50%"
 								outerRadius={150}
@@ -62,11 +62,17 @@ export default function ChartMeteoriteByType({
 								paddingAngle={7}>
 							{ data.map((entry) => (
 								<Cell
-									key={ entry.name }
-									fill={ colorMeteoriteType[entry.name] } />
+									key={ entry.type }
+									fill={ colorMeteoriteType[entry.type] } />
 							))}
 						</Pie>
-						<Tooltip />
+						<Tooltip
+							labelFormatter={(label) => (
+								<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
+									{ label }
+								</span>
+							)}
+							formatter={ (value: number) => [`${value.toLocaleString()}`] } />
 						<Legend iconSize={18} />
 					</PieChart>
 				</ResponsiveContainer>

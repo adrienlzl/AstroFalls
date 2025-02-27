@@ -99,13 +99,14 @@ export default function ChartMassByTypeBar({ meteorites }: { meteorites: Meteori
 										dominantBaseline="middle">
 								{payload.value}
 							</text> )} />
-						<Tooltip cursor={{ width: '100%' }}
-										labelFormatter={(label) => (
-											<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
-												{ label }
-											</span>
-										)}
-										formatter={ (value: number) => [`${value.toLocaleString() } tonnes`] } />
+						<Tooltip
+							cursor={{ width: '100%' }}
+							labelFormatter={(label) => (
+								<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
+									{ label }
+								</span>
+							)}
+							formatter={ (value: number) => [`${value.toLocaleString() } tonnes`] } />
 						<Bar dataKey="value">
 							{data.map((entry) => (
 								<Cell key={ entry.type }

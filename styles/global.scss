@@ -610,6 +610,10 @@ body {
           max-width: 280px;
           border: $border-width3 $border-solid $accent-color;
           overflow: hidden;
+          transition: transform 0.3s ease-in-out;
+          &:hover {
+            transform: scale(1.1);
+          }
           .kpi-card-header {
             display: flex;
             justify-content: center;

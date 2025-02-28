@@ -1,7 +1,52 @@
-/*===============FONT IMPORT===============*/
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto:wght@100;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400&display=swap');
+/*===============FONT-FACE IMPORTS===============*/
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto condensed';
+  src: url('/fonts/Roboto_Condensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto serif';
+  src: url('/fonts/RobotoSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto serif';
+  src: url('/fonts/RobotoSerif-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
 
 
 /*===============RESET===============*/
@@ -36,9 +81,9 @@ $meteorite-type-null: #383838;
 $text-weight: 400;
 $text-weight-500: 500;
 $text-weight-600: 600;
-$text-weight-bold: bold;
+$text-weight-bold: 700;
 // Roboto
-$text: 'roboto';
+$text: 'roboto', sans-serif;
 // Roboto condensed
 $text-button: 'roboto condensed', sans-serif;
 // Roboto serif
@@ -86,11 +131,11 @@ $gradient2: $accent-color;
 $gradient-effect: linear-gradient(325deg, $gradient2 0%, $gradient1 50%);
 
 /*------Table------*/
-$table-head-text-weight: $text-weight;
-$table-head-text: $text-serif;
 $table-body-text: $text;
-$table-color-odd: $grey;
 $table-color-even: $grey-light;
+$table-color-odd: $grey;
+$table-head-text: $text-serif;
+$table-head-text-weight: $text-weight-bold;
 
 /*------Height------*/
 $checkbox-wrapper-height: 40px;
@@ -603,8 +648,8 @@ body {
       #kpi {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.5rem;
         font-size: $font-size-card;
+        gap: 1.5rem;
         .kpi-card {
           display: flex;
           flex-direction: column;
@@ -709,11 +754,13 @@ body {
       }
     }
     footer {
+      font-family: $text;
+      font-weight: $text-weight;
+      font-size: $font-size-footer;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: $font-size-footer;
       width: 100%;
       padding: 1.5rem 1rem 3rem 1rem;
       height: $footer-height;

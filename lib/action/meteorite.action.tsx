@@ -7,26 +7,22 @@ import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 
 export async function getAllMeteorite(): Promise<Meteorite[]> {
 	try {
-		console.time("⏳ Récupération des météorites");
 		const db = await connectToDatabase();
 
-		console.time("⏳ Exécution de la requête MongoDB");
 		const MeteoriteDatas: Meteorite[] = await db.collection<Meteorite>(CollectionName.METEORITE_FRONT)
 			.find({})
 			.toArray();
-		console.timeEnd("⏳ Exécution de la requête MongoDB");
 
 		const result =  MeteoriteDatas.map((MeteoriteData) => ({
 			...MeteoriteData,
 			_id: MeteoriteData?._id?.toString()
 		}));
 
-		console.timeEnd("⏳ Récupération des météorites");
 		return result;
 	}
 
 	catch (error) {
-		console.error('💣 Erreur récupération météorites : ', error);
+		console.error('💣 Get data errror : ', error);
 		throw error;
 	}
 }

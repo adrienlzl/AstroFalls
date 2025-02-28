@@ -306,6 +306,7 @@ body {
               tr {
                 td {
                   font-family: $table-body-text;
+                  font-weight: $text-weight;
                   font-size: $font-size-table;
                   text-align: center;
                   border: $border-width1 $border-solid $accent-color;
@@ -427,6 +428,7 @@ body {
       }
       #map-container {
         position: relative;
+        font-family: $text;
         width: 100%;
         height: auto;
         #map {
@@ -601,6 +603,7 @@ body {
         .charts-card {
           border: $border-width3 $border-solid $accent-color;
           .charts-card-header {
+            font-family: $text;
             text-align: center;
             h3 {
               font-size: $font-size-h3-charts;

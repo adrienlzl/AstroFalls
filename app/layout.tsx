@@ -2,7 +2,7 @@ import "@/styles/tailwind.css";
 import "@/styles/global.scss";
 
 import type { Metadata } from "next";
-import Background from "@/components/background.component";
+import Background from "@/components/ui/background.component";
 
 
 export const metadata: Metadata = {

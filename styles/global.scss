@@ -175,16 +175,16 @@ body {
       height: $nav-height;
       flex-shrink: 0;
       nav {
-        font-size: $font-size-nav;
+        font-size: $font-size-nav-responsive-S;
         padding-top: 1rem;
         > *:not(:last-child) {
           margin-right: 1.5rem;
         }
-        @media (width <= 1250px) {
+        @media (width >= 850px) {
           font-size: $font-size-nav-responsive-M;
         }
-        @media (width <= 850px) {
-          font-size: $font-size-nav-responsive-S;
+        @media (width >= 1250px) {
+          font-size: $font-size-nav;
         }
         .nav-button {
           font-family: $text-button;
@@ -223,9 +223,9 @@ body {
       flex-grow: 1;
       width: 100%;
       height: 100%;
-      padding: 4rem 4rem;
-      @media (width <= 800px) {
-        padding: 4rem 2rem;
+      padding: 4rem 2rem;
+      @media (width >= 800px) {
+        padding: 4rem 4rem;
       }
       #home {
         display: flex;
@@ -234,23 +234,27 @@ body {
         img#logo {
           width: 100%;
           height: 100%;
-          max-width: 450px;
-          max-height: 450px;
+          max-width: 250px;
+          max-height: 250px;
           border-radius: 50%;
           -webkit-border-radius: 50%;
           object-fit: contain;
           border: $logo-border-width $border-solid $primary-color;
-          @media (width <= 1300px) {
+          @media (width >= 900px) {
             width: 350px !important;
             height: 350px !important;
+          }
+          @media (width >= 1300px) {
+            width: 450px !important;
+            height: 450px !important;
           }
         }
       }
       #table-container {
         width: 100%;
-        max-width: 1200px;
-        @media (width <= 850px) {
-          max-width: none;
+        max-width: none;
+        @media (width >= 850px) {
+          max-width: 1200px;
         }
         #table {
           padding: 0.7vh;
@@ -272,9 +276,9 @@ body {
                 background-color: $primary-color;
                 th {
                   font-family: $table-head-text;
-                  font-size: $font-size-table-header;
+                  font-size: $font-size-table-header-responsive-XS;;
                   font-weight: $table-head-text-weight;
-                  letter-spacing: 0.5px;
+                  letter-spacing: 0px;
                   color: $white;
                   text-align: center;
                   border: $border-width1 $border-solid $accent-color;
@@ -286,19 +290,18 @@ body {
                     -webkit-box-shadow: inset 0 0 0 $border-width3 $primary-color;
                     background-color: $white;
                   }
-                  @media (width <= 1250px) {
-                    font-size: $font-size-table-header-responsive-L;
-                    letter-spacing: 0px;
-                  }
-                  @media (width <= 1100px) {
-                    font-size: $font-size-table-header-responsive-M;
-                  }
-                  @media (width <= 1060px) {
+                  @media (width >= 850px) {
                     font-size: $font-size-table-header-responsive-S;
                   }
-                  @media (width <= 850px) {
-                    font-size: $font-size-table-header-responsive-XS;
-                    letter-spacing: 0px;
+                  @media (width >= 1060px) {
+                    font-size: $font-size-table-header-responsive-M;
+                  }
+                  @media (width >= 1100px) {
+                    font-size: $font-size-table-header-responsive-L;
+                  }
+                  @media (width >= 1250px) {
+                    font-size: $font-size-table-header;
+                    letter-spacing: 0.5px;
                   }
                 }
               }
@@ -308,7 +311,7 @@ body {
                 td {
                   font-family: $table-body-text;
                   font-weight: $text-weight;
-                  font-size: $font-size-table;
+                  font-size: $font-size-table-responsive-XS;
                   text-align: center;
                   border: $border-width1 $border-solid $accent-color;
                   user-select: none;
@@ -319,20 +322,20 @@ body {
                   }
                   &:first-child {
                     color: $secondary-color;
-                    font-weight: $text-weight-extra-bold;
+                    font-weight: $text-weight-bold;
                     letter-spacing: 0.5px;
                   }
-                  @media (width <= 1250px) {
-                    font-size: $font-size-table-responsive-L;
-                  }
-                  @media (width <= 1100px) {
-                    font-size: $font-size-table-responsive-M;
-                  }
-                  @media (width <= 1060px) {
+                  @media (width >= 850px) {
                     font-size: $font-size-table-responsive-S;
                   }
-                  @media (width <= 850px) {
-                    font-size: $font-size-table-responsive-XS;
+                  @media (width >= 1060px) {
+                    font-size: $font-size-table-responsive-M;
+                  }
+                  @media (width >= 1100px) {
+                    font-size: $font-size-table-responsive-L;
+                  }
+                  @media (width >= 1250px) {
+                    font-size: $font-size-table;
                   }
                 }
                 &:nth-child(odd) {
@@ -591,7 +594,7 @@ body {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 1200px;
+        max-width: none;
         padding: 20px;
         gap: 80px;
         box-sizing: border-box;
@@ -645,8 +648,8 @@ body {
             }
           }
         }
-        @media (width <= 850px) {
-          max-width: none;
+        @media (width >= 850px) {
+          max-width: 1200px;
         }
       }
       #kpi {
@@ -760,7 +763,7 @@ body {
     footer {
       font-family: $text;
       font-weight: $text-weight;
-      font-size: $font-size-footer;
+      font-size: $font-size-footer-responsive-S;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -770,6 +773,12 @@ body {
       height: $footer-height;
       flex-shrink: 0;
       filter: brightness(1.3);
+      @media (width >= 850px) {
+        font-size: $font-size-footer-responsive-M;
+      }
+      @media (width >= 1250px) {
+        font-size: $font-size-footer;
+      }
       #footer-header {
         padding: 0.25rem 0;
         #copyright {
@@ -820,12 +829,6 @@ body {
           color: $secondary-color;
           font-weight: $text-weight-bold;
         }
-      }
-      @media (width <= 1250px) {
-        font-size: $font-size-footer-responsive-M;
-      }
-      @media (width <= 850px) {
-        font-size: $font-size-footer-responsive-S;
       }
     }
   }

@@ -53,7 +53,17 @@ export const columns: ColumnDef<Meteorite>[] = [
 	{
 		accessorKey: "Recovered weight",
 		header: "Masse (kg)",
-		cell: ({ row }) => emptyValuePipe(row.getValue("Recovered weight")),
+		cell: ({ row }) => {
+			const value = row.getValue("Recovered weight");
+			if (typeof value === "number") {
+				return emptyValuePipe(value.toLocaleString("fr-FR"));
+			}
+			if (typeof value === "string") {
+				const parsedValue = parseFloat(value);
+				return emptyValuePipe(isNaN(parsedValue) ? value : parsedValue.toLocaleString("fr-FR"));
+			}
+			return emptyValuePipe(null);
+		},
 		enableResizing: false,
 		size: 30
 	},

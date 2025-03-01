@@ -79,15 +79,8 @@ export default function ChartTotalMassByYear({ meteorites }: { meteorites: Meteo
 											fontSize={13}
 											textAnchor="end"
 											dominantBaseline="middle">
-									{`${ Math.floor(payload.value).toLocaleString()} t` }
+									{ `${ Math.floor(payload.value).toLocaleString() } t` }
 								</text> )} />
-
-						<YAxis
-							tick={{ fill: "#6e02c7",
-											fontWeight: "bold",
-											fontSize: 13 }}
-							domain={ [1, 60] }
-							tickFormatter={ (value) => `${ Math.floor(value).toLocaleString()} t` } />
 						<Tooltip content={ <CustomTooltip
 										labelText="Masse totale : "
 										formatter={ (value) => `${value.toLocaleString()} t`} /> } />

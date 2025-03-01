@@ -234,8 +234,8 @@ body {
         img#logo {
           width: 100%;
           height: 100%;
-          max-width: 250px;
-          max-height: 250px;
+          width: 250px;
+          height: 250px;
           border-radius: 50%;
           -webkit-border-radius: 50%;
           object-fit: contain;
@@ -245,8 +245,8 @@ body {
             height: 350px !important;
           }
           @media (width >= 1300px) {
-            width: 450px !important;
-            height: 450px !important;
+            max-width: 450px !important;
+            max-height: 450px !important;
           }
         }
       }

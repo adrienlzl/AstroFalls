@@ -22,11 +22,13 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   const { primaryColor, secondaryColor, accentColor } = useGenericColorsHook();
 
   if (active && payload && payload.length) {
+    const formattedMassValue = `${formatter(payload[0].value)} t`;
+
     return (
       <div style={{ background: "white", padding: "8px", ...cursorStyle }}>
         <p style={{ color: accentColor, fontWeight: "bold" }}>{ label }</p>
         <p style={{ color: secondaryColor }}>{ labelText }
-          <span style={{ color: primaryColor }}>{ formatter(payload[0].value) }</span>
+          <span style={{ color: primaryColor }}>{ formattedMassValue }</span>
         </p>
       </div>
     );

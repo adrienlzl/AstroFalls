@@ -613,15 +613,20 @@ body {
               font-size: $font-size-h3-charts;
               font-weight: $text-weight-bold;
               color: $primary-color;
+              pointer-events: none;
+              caret-color: transparent;
             }
           }
           .recharts-wrapper {
+            caret-color: transparent;
             .recharts-tooltip-wrapper {
               color: $primary-color;
               border: $border-width2 $border-solid $secondary-color;
               .recharts-tooltip-label {
                 color: $accent-color;
               }
+            }
+            .recharts-layer {
             }
           }
           #chart-content-meteorite-by-type {

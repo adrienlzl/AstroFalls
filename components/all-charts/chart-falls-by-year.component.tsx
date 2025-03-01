@@ -10,6 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -29,22 +30,7 @@ export default function ChartFallsByYear({ meteorites }: { meteorites: Meteorite
 		.sort((a, b) => a.year - b.year);
 
 	// Get generic colors
-	const { accentColor, activeRodColor, primaryColor, rodColor, secondaryColor } = useGenericColorsHook();
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div style={{ background: "white", padding: "8px" }}>
-          <p style={{ color: accentColor, fontWeight: "bold" }}>{ label }</p>
-          <p style={{ color: secondaryColor }}>Count :
-						<span style={{ color: primaryColor }}> { payload[0].value }</span>
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
+	const { accentColor, activeRodColor, rodColor } = useGenericColorsHook();
 
 	return (
 		<Card className="charts-card">
@@ -77,7 +63,7 @@ export default function ChartFallsByYear({ meteorites }: { meteorites: Meteorite
 											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
-						<Tooltip content={<CustomTooltip />}  />
+								<Tooltip content={ <CustomTooltip /> } />
 						<Bar dataKey="count"
 								fill={ rodColor }
 								activeBar={{ fill: activeRodColor }} />

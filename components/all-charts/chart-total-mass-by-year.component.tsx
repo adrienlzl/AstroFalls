@@ -10,6 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -78,7 +79,7 @@ export default function ChartTotalMassByYear({ meteorites }: { meteorites: Meteo
 											fontSize={13}
 											textAnchor="end"
 											dominantBaseline="middle">
-									{`${Math.floor(payload.value).toLocaleString()} t`}
+									{`${ Math.floor(payload.value).toLocaleString()} t` }
 								</text> )} />
 
 						<YAxis
@@ -86,9 +87,10 @@ export default function ChartTotalMassByYear({ meteorites }: { meteorites: Meteo
 											fontWeight: "bold",
 											fontSize: 13 }}
 							domain={ [1, 60] }
-							tickFormatter={ (value) => `${Math.floor(value).toLocaleString()} t`} />
-						<Tooltip formatter={ (value: number) => `${value.toLocaleString() } t`}
-										cursor={{ fill: accentColor }} />
+							tickFormatter={ (value) => `${ Math.floor(value).toLocaleString()} t` } />
+						<Tooltip content={ <CustomTooltip
+										labelText="Masse totale : "
+										formatter={ (value) => `${value.toLocaleString()} t`} /> } />
 						<Bar dataKey="totalMass"
 								fill={ rodColor}
 								activeBar={{ fill: activeRodColor }} />

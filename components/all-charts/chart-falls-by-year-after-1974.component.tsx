@@ -10,6 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -31,6 +32,9 @@ export default function ChartFallsByYearAfter1974({ meteorites }: { meteorites: 
 
 	// Get generic colors
 	const { accentColor, rodColor } = useGenericColorsHook();
+
+	// Tooltip
+	const cursorStyle = true;
 
 	return (
 		<Card className="charts-card">
@@ -63,7 +67,9 @@ export default function ChartFallsByYearAfter1974({ meteorites }: { meteorites: 
 											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
-						<Tooltip cursor={{ width: '100%' }} />
+								<Tooltip
+									content={ <CustomTooltip /> }
+									cursor={ cursorStyle ? { width: '100%' } : {} } />
 						<Bar dataKey="count"
 								fill={ rodColor}
 								activeBar={{ fill: accentColor }} />

@@ -78,16 +78,17 @@ $meteorite-type-null: #383838;
 
 
 /*------Fonts------*/
-$text-weight: 400;
-$text-weight-500: 500;
-$text-weight-600: 600;
-$text-weight-bold: 700;
 // Roboto
 $text: 'roboto', sans-serif;
 // Roboto condensed
 $text-button: 'roboto condensed', sans-serif;
 // Roboto serif
 $text-serif: 'roboto serif', serif;
+
+$text-weight: 400;
+$text-weight-500: 500;
+$text-weight-600: 600;
+$text-weight-bold: 700;
 
 /*------Fonts size------*/
 $font-size-card: 16px;
@@ -318,7 +319,7 @@ body {
                   }
                   &:first-child {
                     color: $secondary-color;
-                    font-weight: $text-weight-bold;
+                    font-weight: $text-weight-extra-bold;
                     letter-spacing: 0.5px;
                   }
                   @media (width <= 1250px) {

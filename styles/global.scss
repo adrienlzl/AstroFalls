@@ -232,21 +232,27 @@ body {
         justify-content: center;
         align-items: center;
         img#logo {
-          width: 100%;
-          height: 100%;
-          width: 250px;
-          height: 250px;
+          width: 200px;
+          height: 200px;
           border-radius: 50%;
           -webkit-border-radius: 50%;
           object-fit: contain;
           border: $logo-border-width $border-solid $primary-color;
+          @media (width >= 750px) {
+            width: 300px !important;
+            height: 300px !important;
+          }
           @media (width >= 900px) {
             width: 350px !important;
             height: 350px !important;
           }
+          @media (width >= 1150px) {
+            width: 400px !important;
+            height: 400px !important;
+          }
           @media (width >= 1300px) {
-            max-width: 450px !important;
-            max-height: 450px !important;
+            width: 430px !important;
+            height: 430px !important;
           }
         }
       }
@@ -625,8 +631,6 @@ body {
               .recharts-tooltip-label {
                 color: $accent-color;
               }
-            }
-            .recharts-layer {
             }
           }
           #chart-content-meteorite-by-type {

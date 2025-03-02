@@ -13,7 +13,7 @@ export default function HomeComponent() {
 				alt="AstroFalls Logo"
 				className={ styles.grow }
 				width={500}
-				height={300}
+				height={500}
 				priority />
 		</div>
 	);

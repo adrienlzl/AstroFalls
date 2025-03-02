@@ -1,6 +1,6 @@
 "use client";
 import 'ol/ol.css';
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Feature from "ol/Feature";
 import Map from "ol/Map";
 import Point from "ol/geom/Point";

@@ -44,7 +44,7 @@ export default function ChartFallsByYearAfter1974({ meteorites }: { meteorites: 
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={ chartData }>
-						<CartesianGrid strokeDasharray="3 3" />
+						<CartesianGrid strokeDasharray="1 1" />
 						<XAxis
 							dataKey="year"
 							tick={({ x, y, payload }) => (

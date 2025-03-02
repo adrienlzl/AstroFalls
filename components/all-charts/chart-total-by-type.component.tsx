@@ -46,6 +46,9 @@ export default function ChartTotalByType({
 	// Get generic colors
 	const { colorMeteoriteType } = useGenericColorsHook();
 
+	// Tooltip
+	const cursorStyle = true;
+
 	return (
 		<Card id="chart-meteorite-by-type" className="charts-card">
 			<CardHeader className="charts-card-header">
@@ -68,16 +71,24 @@ export default function ChartTotalByType({
 									fill={ colorMeteoriteType[entry.type] } />
 							))}
 						</Pie>
-						<Tooltip formatter={(value: number, _name: string, props: any) => {
-							const meteoriteType = props.payload.type;
-							const color = colorMeteoriteType[meteoriteType];
-							return [
-								<span key={ `tooltip-${meteoriteType}` }>
-									<span style={{ color, fontWeight: "bold" }}>{ meteoriteType } : </span>
-									<span>{ value.toLocaleString() }</span>
-								</span>
-							];
-						}} />
+						<Tooltip
+							content={({ payload, active }) => {
+								if (active && payload && payload.length) {
+									const meteoriteType = payload[0].payload.type;
+									const color = colorMeteoriteType[meteoriteType];
+									return (
+										<CustomTooltip
+											active={ active }
+											label={ meteoriteType }
+											labelText=""
+											labelColorType="type"
+											payload={ payload }
+											formatter={ (value) => `${ value.toLocaleString() } ☄️` }
+											labelColor={ color } /> );
+								}
+								return null;
+							}}
+							cursor={ cursorStyle ? { width: '100%' } : {} } />
 						<Legend iconSize={18} />
 					</PieChart>
 				</ResponsiveContainer>

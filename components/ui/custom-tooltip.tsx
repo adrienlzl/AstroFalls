@@ -33,15 +33,14 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
       labelColor = accentColor;
       break;
     case "country":
-      labelColor = cursorStyle?.color || primaryColor;
+      labelColor = cursorStyle?.color || accentColor;
       break;
     case "type":
-    default:
-      labelColor = colorMeteoriteType[label || ""] || primaryColor;
+      labelColor = colorMeteoriteType[label || ""];
       break;
   }
 
-  if (active && payload && payload.length) {
+  if (active && payload && payload.length > 0) {
     const value = payload[0].value;
     const formattedValue = typeof value === "number" ? `${formatter(value)}` : "N/A";
 

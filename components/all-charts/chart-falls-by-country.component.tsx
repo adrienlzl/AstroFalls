@@ -50,6 +50,9 @@ export default function ChartFallsByCountry({
 	// Get generic colors
 	const { accentColor } = useGenericColorsHook();
 
+	// Tooltip
+	const cursorStyle = true;
+
 	return (
 		<Card id="chart-meteorite-country-counter" className="charts-card">
 			<CardHeader className="charts-card-header">
@@ -88,7 +91,7 @@ export default function ChartFallsByCountry({
                 </text>
               )} />
 						<Tooltip
-							cursor={{ width: '100%' }}
+							cursor={ cursorStyle ? { width: '100%' } : {} }
 							content={( { label, payload, active } ) => {
 								const countryName = getCountryNameInFrench(label);
 								const countryColor = colorMap[label];

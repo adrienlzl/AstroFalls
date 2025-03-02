@@ -68,6 +68,9 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 	// Get generic colors
   const { accentColor, colorMeteoriteType } = useGenericColorsHook();
 
+	// Tooltip
+	const cursorStyle = true;
+
 	return (
 		<Card id="chart-meteorite-mass-by-type" className="charts-card">
 			<CardHeader className="charts-card-header">
@@ -102,7 +105,7 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 								</text> )} />
 								<Tooltip
 									content={ <CustomTooltip labelText="" labelColorType="type" /> }
-									cursor={{ width: "100%" }}
+									cursor={ cursorStyle ? { width: '100%' } : {} }
 									formatter={ (value) => `${ value.toLocaleString() } t` }/>
 						<Bar dataKey="value">
 							{data.map((entry) => (

@@ -81,7 +81,10 @@ export default function ChartTotalMassByYear({ meteorites }: { meteorites: Meteo
 											dominantBaseline="middle">
 									{ `${ Math.floor(payload.value).toLocaleString() } t` }
 								</text> )} />
-						<Tooltip content={ <CustomTooltip labelText="Masse totale : " /> } />
+						<Tooltip content={
+							<CustomTooltip labelText="Masse totale : "
+														formatter={ (value) => `${ value.toLocaleString() } t` } />
+						} />
 						<Bar dataKey="totalMass"
 								fill={ rodColor}
 								activeBar={{ fill: activeRodColor }} />

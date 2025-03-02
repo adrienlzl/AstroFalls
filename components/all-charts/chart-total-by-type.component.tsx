@@ -9,6 +9,7 @@ import {
 	ResponsiveContainer,
 	Tooltip
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 

@@ -9,6 +9,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -65,7 +66,7 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 	];
 
 	// Get generic colors
-  const { colorMeteoriteType, accentColor } = useGenericColorsHook();
+  const { accentColor, colorMeteoriteType } = useGenericColorsHook();
 
 	return (
 		<Card id="chart-meteorite-mass-by-type" className="charts-card">
@@ -75,38 +76,34 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 			<CardContent>
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={ data }>
-					<XAxis
-						dataKey="type"
-						tick={({ x, y, payload }) => {
-							const color = colorMeteoriteType[payload.value] || "#000";
-							return (
-								<text x={ x }
-											y={ y + 15 }
-											fill={ color }
+						<XAxis
+							dataKey="type"
+							tick={({ x, y, payload }) => {
+								const color = colorMeteoriteType[payload.value] || "#000";
+								return (
+									<text x={ x }
+												y={ y + 15 }
+												fill={ color }
+												fontWeight="bold"
+												fontSize={13}
+												textAnchor="middle">
+										{ payload.value }
+									</text> ); }} />
+						<YAxis
+							tick={({ x, y, payload }) => (
+								<text x={ x - 5 }
+											y={ y }
+											fill={ accentColor }
 											fontWeight="bold"
 											fontSize={13}
-											textAnchor="middle">
-									{ payload.value }
-								</text> ); }} />
-					<YAxis
-						tick={({ x, y, payload }) => (
-							<text x={ x - 5 }
-										y={ y }
-										fill={ accentColor }
-										fontWeight="bold"
-										fontSize={13}
-										textAnchor="end"
-										dominantBaseline="middle">
-								{payload.value}
-							</text> )} />
-						<Tooltip
-							cursor={{ width: '100%' }}
-							labelFormatter={(label) => (
-								<span style={{ color: colorMeteoriteType[label], fontWeight: "bold" }}>
-									{ label }
-								</span>
-							)}
-							formatter={ (value: number) => [`${value.toLocaleString() } t`] } />
+											textAnchor="end"
+											dominantBaseline="middle">
+									{ payload.value + " t" }
+								</text> )} />
+								<Tooltip
+									content={ <CustomTooltip labelText="" labelColorType="type" /> }
+									cursor={{ width: "100%" }}
+									formatter={ (value) => `${ value.toLocaleString() } t` }/>
 						<Bar dataKey="value">
 							{data.map((entry) => (
 								<Cell key={ entry.type }

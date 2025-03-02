@@ -24,7 +24,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   formatter = (value) => value.toLocaleString(),
   labelColorType = "accent"
 }) => {
-  const { primaryColor, secondaryColor, accentColor } = useGenericColorsHook();
+  const { accentColor, colorMeteoriteType, primaryColor, secondaryColor } = useGenericColorsHook();
 
   let labelColor: string;
 
@@ -37,7 +37,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
       break;
     case "type":
     default:
-      labelColor = primaryColor;
+      labelColor = colorMeteoriteType[label || ""] || primaryColor;
       break;
   }
 

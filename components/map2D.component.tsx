@@ -196,11 +196,24 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 
 						setTooltip(tooltipContent);
 
-						if (tooltipContent) {
-							if (tooltipElement) {
-								tooltipElement.style.left = `${evt.pixel[0] + 50}px`;
-								tooltipElement.style.top = `${evt.pixel[1] + 0}px`;
-								tooltipElement.style.visibility = 'visible';
+						if (tooltipElement) {
+							if (map && map.getSize()) {
+								const mapSize = map.getSize();
+								if (mapSize) {
+									const mapWidth = mapSize[0];
+									const tooltipWidth = tooltipElement.offsetWidth;
+									const mouseX = evt.pixel[0];
+
+									if (mouseX + tooltipWidth + 400 > mapWidth) {
+										tooltipElement.style.left = `${mouseX - tooltipWidth - 50}px`;
+									}
+									else {
+										tooltipElement.style.left = `${mouseX + 50}px`;
+									}
+
+									tooltipElement.style.top = `${evt.pixel[1] + 0}px`;
+									tooltipElement.style.visibility = 'visible';
+								}
 							}
 						}
 					}

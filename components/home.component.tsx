@@ -10,7 +10,7 @@ export default function HomeComponent() {
 			<Image
 				id="logo"
 				src="/images/astroFallLogo.webp"
-				alt="AstroFalls Logo"
+				alt="Logo de l'application AstroFalls"
 				className={ styles.grow }
 				width={500}
 				height={500}

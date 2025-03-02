@@ -82,7 +82,7 @@ export default function ChartTotalMassByYear({ meteorites }: { meteorites: Meteo
 									{ `${ Math.floor(payload.value).toLocaleString() } t` }
 								</text> )} />
 						<Tooltip content={
-							<CustomTooltip labelText="Masse totale : "
+							<CustomTooltip labelText="Masse : "
 														formatter={ (value) => `${ value.toLocaleString() } t` } />
 						} />
 						<Bar dataKey="totalMass"

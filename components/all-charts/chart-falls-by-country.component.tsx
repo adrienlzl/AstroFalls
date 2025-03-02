@@ -11,6 +11,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -88,11 +89,19 @@ export default function ChartFallsByCountry({
               )} />
 						<Tooltip
 							cursor={{ width: '100%' }}
-							labelFormatter={(label) => {
+							content={( { label, payload, active } ) => {
 								const countryName = getCountryNameInFrench(label);
-								return <span style={{ color: colorMap[label], fontWeight: 'bold' }}>{ countryName }</span>;
-							}}
-							formatter={ (value: number) => [`${ value.toLocaleString() } météorites`] } />
+								const countryColor = colorMap[label];
+								return (
+									<CustomTooltip
+										label={ countryName }
+										payload={ payload }
+										active={ active }
+										labelText=""
+										formatter={ (value) => `${ value.toLocaleString() } ☄️` }
+										cursorStyle={{ color: countryColor }}
+										labelColorType="country" /> );
+							}} />
 						<Bar dataKey="count"
 								name="Météorites"
 								activeBar={{ fill: accentColor }}>

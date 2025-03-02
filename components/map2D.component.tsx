@@ -57,30 +57,32 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 
 		const vectorSource = new VectorSource();
 
-		filteredMeteorites.forEach((meteorite) => {
-			if (meteorite.latitude && meteorite.longitude) {
-				const typeKey: MeteoriteTypeKey = meteorite.Type ? meteorite.Type : "null";
-				const feature = new Feature({
-					geometry: new Point(fromLonLat([meteorite.longitude, meteorite.latitude])),
-					properties: {
-            name: meteorite.Name,
-            type: meteorite.Type,
-            mass: meteorite.wg
-          }
-				});
+		const addMeteoritesToMap = () => {
+			filteredMeteorites.forEach((meteorite) => {
+				if (meteorite.latitude && meteorite.longitude) {
+					const typeKey: MeteoriteTypeKey = meteorite.Type ? meteorite.Type : "null";
+					const feature = new Feature({
+						geometry: new Point(fromLonLat([meteorite.longitude, meteorite.latitude])),
+						properties: {
+							name: meteorite.Name,
+							type: meteorite.Type,
+							mass: meteorite.wg
+						}
+					});
 
-				feature.setStyle(
-					new Style({
-						image: new CircleStyle({
-							radius: 5,
-							fill: new Fill({ color: colorMeteoriteType[typeKey] })
+					feature.setStyle(
+						new Style({
+							image: new CircleStyle({
+								radius: 5,
+								fill: new Fill({ color: colorMeteoriteType[typeKey] })
+							})
 						})
-					})
-				);
+					);
 
-				vectorSource.addFeature(feature);
-			}
-		});
+					vectorSource.addFeature(feature);
+				}
+			});
+		};
 
 		const vectorLayer = new VectorLayer({
 			source: vectorSource
@@ -126,6 +128,15 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 			controls: defaultControls()
 		});
 
+		map.on('loadstart', function () {
+			map.getTargetElement().classList.add('loader');
+		});
+
+		map.on('loadend', function () {
+			map.getTargetElement().classList.remove('loader');
+			addMeteoritesToMap();
+		});
+
 		const toggleLayers = () => {
 			// Hide all layers => only show selected one
 			normalLayer.setVisible(activeLayer === 'normal');
@@ -134,6 +145,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 		};
 
 		toggleLayers();
+
 
 		return () => {
 			if (map) {

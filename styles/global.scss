@@ -100,6 +100,7 @@ $font-size-page: 13px;
 $font-size-pagination: 13px;
 $font-size-table: 13px;
 $font-size-table-header: 14px;
+$font-size-tooltip: 14px;
 $font-size-total-result: 13px;
 
 /*------Fonts size responsive------*/
@@ -442,10 +443,25 @@ body {
         width: 100%;
         height: auto;
         #map {
+          position: relative;
           width: 100%;
           height: calc(100vh - $nav-height - $footer-height - $checkbox-wrapper-height);
           border: $border-width3 $border-solid $accent-color;
           transition: all 0.5s ease;
+          #tooltip {
+            position: absolute;
+            font-size: $font-size-tooltip;
+            max-width: 260px;
+            padding: 5px 10px;
+            border: $border-width2 $border-solid $accent-color;
+            border-radius: 8px;
+            background-color: $white;
+            z-index: 1000;
+            pointer-events: none;
+            div div {
+              display: inline;
+            }
+          }
           ul {
             padding: 4px 4px 4px 6px;
             border-left: $border-width2 $border-solid $accent-color;
@@ -479,7 +495,7 @@ body {
             position: absolute;
             font-size: $font-size-layer;
             color: $secondary-color;
-            bottom: 90px;
+            bottom: 20px;
             left: 35px;
             padding: 3px 8px;
             border-radius: 6px;

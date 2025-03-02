@@ -23,13 +23,15 @@ type MeteoriteTypeKey = MeteoriteType | "null";
 
 export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 	// Get generic colors
-	const { colorMeteoriteType } = useGenericColorsHook();
+	const { colorMeteoriteType, primaryColor, secondaryColor } = useGenericColorsHook();
 
 	const meteoriteTypes: MeteoriteTypeKey[] = ["Stone", "Iron", "Stony-Iron", "null"];
 
 	const [selectedTypes, setSelectedTypes] = useState<Set<MeteoriteTypeKey>>(
 		new Set(meteoriteTypes)
 	);
+
+	const [tooltip, setTooltip] = useState<string>("");
 
 	const [activeLayer, setActiveLayer] = useState<string>('normal');
 
@@ -66,7 +68,7 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 						properties: {
 							name: meteorite.Name,
 							type: meteorite.Type,
-							mass: meteorite.wg
+							mass: meteorite["Recovered weight"]
 						}
 					});
 
@@ -137,6 +139,84 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 			addMeteoritesToMap();
 		});
 
+		let isUpdatingTooltip = false;
+
+		map.on("pointermove", function (evt) {
+			if (evt.dragging) {
+				setTooltip("");
+				return;
+			}
+
+			if (!isUpdatingTooltip) {
+				isUpdatingTooltip = true;
+
+				requestAnimationFrame(() => {
+					const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+						return feature;
+					});
+
+					const tooltipElement = document.getElementById("tooltip");
+
+					if (feature) {
+						const properties = feature.getProperties().properties;
+
+						let tooltipContent = '';
+
+						if (properties.name) {
+							tooltipContent += `
+							<div>
+								<div style="color: ${ secondaryColor }">Nom : </div>
+								<strong style="color: #eb0000">${ properties.name }</strong>
+							</div>`;
+						}
+
+						if (properties.type) {
+							const meteoriteTypeColor = colorMeteoriteType[properties.type];
+							tooltipContent += `
+							<div>
+								<div style="color: ${ secondaryColor }">Type : </div>
+								<strong style="color: ${ meteoriteTypeColor }">${ properties.type }</strong>
+							</div>`;
+						}
+
+						if (properties.mass !== null) {
+							tooltipContent += `
+							<div>
+								<div style="color: ${ secondaryColor }">Masse : </div>
+								<strong style="color: ${ primaryColor }">${ properties.mass.toLocaleString('fr-FR') } kg</strong>
+							</div>`;
+						}
+
+						if (!tooltipContent) {
+							tooltipContent = `
+							<div>
+								<strong style="color: ${ secondaryColor }">Aucunes données !</strong>
+							</div>`;
+						}
+
+						setTooltip(tooltipContent);
+
+						if (tooltipContent) {
+							if (tooltipElement) {
+								tooltipElement.style.left = `${evt.pixel[0] + 50}px`;
+								tooltipElement.style.top = `${evt.pixel[1] + 0}px`;
+								tooltipElement.style.visibility = 'visible';
+							}
+						}
+					}
+					else {
+						setTooltip("");
+						if (tooltipElement) {
+							tooltipElement.style.visibility = 'hidden';
+						}
+					}
+
+					isUpdatingTooltip = false;
+				});
+			}
+		});
+
+
 		const toggleLayers = () => {
 			// Hide all layers => only show selected one
 			normalLayer.setVisible(activeLayer === 'normal');
@@ -152,11 +232,15 @@ export default function Map2D({ meteorites }: { meteorites: Meteorite[] }) {
 				map.setTarget(undefined);
 			}
 		};
-	}, [meteorites, selectedTypes, colorMeteoriteType, activeLayer]);
+	}, [meteorites, secondaryColor, selectedTypes, colorMeteoriteType, activeLayer, primaryColor]);
 
 	return (
 		<div id="map-container">
 			<div id="map">
+				<div id="tooltip"
+						style={{ visibility: tooltip ? 'visible' : 'hidden' }}
+						dangerouslySetInnerHTML={{ __html: tooltip }}>
+				</div>
 				<div id="layer-control-buttons">
 					<button onClick={ () => setActiveLayer('normal') }
 									className={ activeLayer === 'normal' ? 'active' : '' } >

@@ -25,7 +25,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   labelText = "Chutes : ",
   formatter = (value) => value.toLocaleString(),
   labelColorType = "accent",
-  labelColor =""
+  labelColor = ""
 }) => {
   const { accentColor, colorMeteoriteType, primaryColor, secondaryColor } = useGenericColorsHook();
 

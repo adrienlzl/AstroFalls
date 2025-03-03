@@ -15,6 +15,7 @@ import {
 	useReactTable
 } from "@tanstack/react-table";
 
+import { Input } from "@/components/ui/input"
 import {
 	Table,
 	TableBody,
@@ -48,7 +49,7 @@ export function DataTable<TData extends RowData, TValue>({
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
 	// Get generic colors
-	const { colorMeteoriteType  } = useGenericColorsHook();
+	const { colorMeteoriteType, primaryColor  } = useGenericColorsHook();
 	// Enrich column "Type" with colors
 	const columnEnrichesWithColors = columns.map((column) => {
 		if ('accessorKey' in column && column.accessorKey === "Type") {
@@ -95,28 +96,38 @@ export function DataTable<TData extends RowData, TValue>({
 
 	return (
 		<div id="table-container">
+			<div className="flex items-center py-4">
+				<Input
+					placeholder="Filtrer par pays..."
+					value={(table.getColumn("Country")?.getFilterValue() as string) ?? ""}
+					onChange={(event: any) =>
+						table.getColumn("Country")?.setFilterValue(event.target.value)
+					}
+					className="max-w-sm bg-amber-50"
+				/>
+			</div>
 			<div id="table">
 				<Table>
 					<TableHeader>
-						{ typedTable.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={ headerGroup.id }>
-								{ headerGroup.headers.map((header) => (
-									<TableHead key={ header.id }
-														style={{ width: header.column.getSize() }}
-														onClick={ () => handleSort(header) }>
-										{ header.isPlaceholder
+						{typedTable.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={headerGroup.id}>
+								{headerGroup.headers.map((header) => (
+									<TableHead key={header.id}
+											   style={{width: header.column.getSize()}}
+											   onClick={() => handleSort(header)}>
+										{header.isPlaceholder
 											? null
-											: flexRender(header.column.columnDef.header, header.getContext()) }
+											: flexRender(header.column.columnDef.header, header.getContext())}
 										<span>
-											{ header.column.getIsSorted() === "desc" ? " ▼" : header.column.getIsSorted() === "asc" ? " ▲" : " ▽" }
+											{header.column.getIsSorted() === "desc" ? " ▼" : header.column.getIsSorted() === "asc" ? " ▲" : " ▽"}
 										</span>
 									</TableHead>
-								)) }
+								))}
 							</TableRow>
-						)) }
+						))}
 					</TableHeader>
 					<TableBody>
-						{ typedTable.getRowModel().rows?.length ? (
+						{typedTable.getRowModel().rows?.length ? (
 							typedTable.getRowModel().rows.map((row) => (
 								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
 									{row.getVisibleCells().map((cell) => {
@@ -129,24 +140,24 @@ export function DataTable<TData extends RowData, TValue>({
 											letterSpacing: '1px'
 										} : {};
 										return (
-											<TableCell key={cell.id} style={ style }>
-												{ flexRender(cell.column.columnDef.cell, cell.getContext()) }
+											<TableCell key={cell.id} style={style}>
+												{flexRender(cell.column.columnDef.cell, cell.getContext())}
 											</TableCell>
 										);
 									})}
 								</TableRow>))
 						) : (
 							<TableRow>
-								<TableCell colSpan={ columns.length }>
+								<TableCell colSpan={columns.length}>
 									No results.
 								</TableCell>
 							</TableRow>
-						) }
+						)}
 					</TableBody>
 				</Table>
 			</div>
 			<div id="pagination-wrapper">
-				<DataTablePagination<TData> table={ typedTable } />
+				<DataTablePagination<TData> table={typedTable}/>
 			</div>
 		</div>
 	);

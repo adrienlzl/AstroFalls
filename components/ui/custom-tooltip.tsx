@@ -1,8 +1,6 @@
 import React from "react";
-import {useGenericColorsHook} from "@/lib/utils/use-generic-colors-hook";
-import {NameType, Payload, ValueType} from "recharts/types/component/DefaultTooltipContent";
-import {useGenericColorsHook} from "@/lib/utils/use-generic-colors-hook";
-import {NameType, Payload, ValueType} from "recharts/types/component/DefaultTooltipContent";
+import { NameType, Payload, ValueType } from "recharts/types/component/DefaultTooltipContent";
+import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
 type LabelColorType = "accent" | "country" | "type";

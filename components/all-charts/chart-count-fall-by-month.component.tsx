@@ -72,14 +72,14 @@ export default function ChartCountFallByMonth({ meteorites }: { meteorites: Mete
 
     if (emoji) {
       return (
-        <text x={cx - 11} y={cy + 3} fill="white" fontSize={16} fontWeight="bold">
+        <text key={ payload.month } x={cx - 11} y={cy + 3} fill="white" fontSize={16} fontWeight="bold">
           { emoji }
         </text>
       );
     }
 
     const pointColor = getPointColor(payload.month ?? "");
-    return <circle cx={cx} cy={cy} r={6} fill={ pointColor } stroke="white" />;
+    return <circle key={ payload.month } cx={cx} cy={cy} r={6} fill={ pointColor } stroke="white" />;
   };
 
   const renderActiveDot = (props: DotProps & { payload?: { month?: string } }) => {
@@ -124,7 +124,8 @@ export default function ChartCountFallByMonth({ meteorites }: { meteorites: Mete
             <XAxis
               dataKey="month"
               tick={({ x, y, payload }) => (
-                <text x={ x }
+                <text key={ payload.value }
+                      x={ x }
                       y={ y + 15 }
                       fill={ accentColor }
                       fontWeight="bold"
@@ -136,7 +137,8 @@ export default function ChartCountFallByMonth({ meteorites }: { meteorites: Mete
             <YAxis
               dataKey="fall"
               tick={({ x, y, payload }) => (
-                <text x={ x - 5 }
+                <text key={ payload.value }
+                      x={ x - 5 }
                       y={ y }
                       fill={ accentColor }
                       fontWeight="bold"

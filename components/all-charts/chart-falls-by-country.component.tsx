@@ -59,7 +59,7 @@ export default function ChartFallsByCountry({
 				<h3>Chutes de météorites par pays</h3>
 			</CardHeader>
 			<CardContent>
-				<ResponsiveContainer width="100%" height={500}>
+				<ResponsiveContainer width="100%" height={450}>
 					<BarChart
 						data={ data }
 						layout="vertical"

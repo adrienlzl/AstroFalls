@@ -49,7 +49,7 @@ export function DataTable<TData extends RowData, TValue>({
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
 	// Get generic colors
-	const { colorMeteoriteType, primaryColor  } = useGenericColorsHook();
+	const { colorMeteoriteType  } = useGenericColorsHook();
 	// Enrich column "Type" with colors
 	const columnEnrichesWithColors = columns.map((column) => {
 		if ('accessorKey' in column && column.accessorKey === "Type") {
@@ -100,7 +100,7 @@ export function DataTable<TData extends RowData, TValue>({
 				<Input
 					placeholder="Filtrer par pays..."
 					value={(table.getColumn("Country")?.getFilterValue() as string) ?? ""}
-					onChange={(event: any) =>
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
 						table.getColumn("Country")?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm bg-amber-50"

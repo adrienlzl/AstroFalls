@@ -13,6 +13,7 @@ interface CustomTooltipProps {
   labelText?: string;
   formatter?: (value: number) => string;
   labelColorType?: LabelColorType;
+  labelColor?: string;
 }
 
 
@@ -23,11 +24,10 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   cursorStyle,
   labelText = "Chutes : ",
   formatter = (value) => value.toLocaleString(),
-  labelColorType = "accent"
+  labelColorType = "accent",
+  labelColor =""
 }) => {
   const { accentColor, colorMeteoriteType, primaryColor, secondaryColor } = useGenericColorsHook();
-
-  let labelColor: string;
 
   switch (labelColorType) {
     case "accent":

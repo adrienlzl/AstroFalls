@@ -12,11 +12,7 @@ import { CustomTooltip } from "@/components/ui/custom-tooltip";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function ChartTotalByType({
-  meteorites,
-}: {
-	meteorites: Meteorite[];
-}) {
+export default function ChartTotalByType({ meteorites }: { meteorites: Meteorite[] }) {
 	const typeCounts = {
 		Stone: 0,
 		Iron: 0,
@@ -35,7 +31,7 @@ export default function ChartTotalByType({
 	});
 
 	// Construct data for Recharts
-	const data = [
+	const rechartsData = [
 		{ type: "Stone", value: typeCounts.Stone },
 		{ type: "Iron", value: typeCounts.Iron },
 		{ type: "Stony-Iron", value: typeCounts["Stony-Iron"] },
@@ -56,7 +52,7 @@ export default function ChartTotalByType({
 			<CardContent id="chart-content-meteorite-by-type">
 				<ResponsiveContainer height={400}>
 					<PieChart>
-						<Pie data={ data }
+						<Pie data={ rechartsData }
 								dataKey="value"
 								nameKey="type"
 								cx="50%"
@@ -64,7 +60,7 @@ export default function ChartTotalByType({
 								outerRadius={150}
 								label
 								paddingAngle={7}>
-							{ data.map((entry) => (
+							{ rechartsData.map((entry) => (
 								<Cell
 									key={ entry.type }
 									fill={ colorMeteoriteType[entry.type] } />

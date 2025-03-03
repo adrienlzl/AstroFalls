@@ -15,7 +15,7 @@ import { getMonthNameInFrench } from "@/lib/utils/translate-month-in-french";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function ChartFrequencyFindByMonth({ meteorites }: { meteorites: Meteorite[] }) {
+export default function ChartCountFindByMonth({ meteorites }: { meteorites: Meteorite[] }) {
   const monthCounts: Record<string, number> = {};
 
   meteorites.forEach((meteorite) => {

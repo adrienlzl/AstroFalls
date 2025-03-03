@@ -310,7 +310,7 @@ export default function Kpi({
 					<h3>Masse totale</h3>
 				</CardHeader>
 				<CardContent className="kpi-card-content">
-					<p className="card-content-text mass">🧱</p>
+					<p className="card-content-text mass">⚖️</p>
 					<p className="card-content-text">Cumul :
 						<span> { formatMass(totalMassAll) }</span>
 					</p>

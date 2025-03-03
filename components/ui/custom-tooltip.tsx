@@ -47,17 +47,13 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
     const val = payload[0].value;
 
     if (val == null) {
-    const val = payload[0].value;
-
-    if (val == null) {
       return null;
     }
     else if (Array.isArray(val)) {
       return <div>Impossible d&apos;afficher un tableau</div>
-    } else if (typeof val === "number") {
     }
 
-    const formattedValue = typeof val === "number" ? `${formatter(val)}` : "N/A";
+    const formattedValue = typeof val === "number" ? `${ formatter(val) }` : "N/A";
 
     return (
       <div style={{ background: "white", padding: "8px", ...cursorStyle }}>
@@ -68,5 +64,6 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
       </div>
     );
   }
+
   return null;
-};
+}

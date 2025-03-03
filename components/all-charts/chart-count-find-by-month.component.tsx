@@ -32,7 +32,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
 
   const chartData = monthsOrder.map((month) => {
     const count = monthCounts[month] || 0;
-    return { month, count: count };
+    return { month, find: count };
   });
 
   const sortedChartData = chartData.sort((a, b) => {
@@ -64,7 +64,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
                 </text> )}
               interval={0} />
             <YAxis
-              dataKey="count"
+              dataKey="find"
               tick={({ x, y, payload }) => (
                 <text x={ x - 5 }
                       y={ y }
@@ -87,7 +87,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
 							}} />
             <Line
               type="monotone"
-              dataKey="count"
+              dataKey="find"
               stroke={ primaryColor }
               strokeWidth={2}
               dot={{ r: 4, fill: accentColor, stroke: accentColor }}

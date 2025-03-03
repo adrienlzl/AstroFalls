@@ -16,11 +16,11 @@ import { getMonthNameInFrench } from "@/lib/utils/translate-month-in-french";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
-export default function ChartCountFindByMonth({ meteorites }: { meteorites: Meteorite[] }) {
+export default function ChartCountFallByMonth({ meteorites }: { meteorites: Meteorite[] }) {
   const monthCounts: Record<string, number> = {};
 
   meteorites.forEach((meteorite) => {
-    if (meteorite.ff === "Find" && meteorite.Month) {
+    if (meteorite.Month) {
       const month = meteorite.Month.trim();
       const normalizedMonth = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
       monthCounts[normalizedMonth] = (monthCounts[normalizedMonth] || 0) + 1;
@@ -39,7 +39,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
   // Construct data for Recharts
   const chartData = monthsOrder.map((month) => {
     const count = monthCounts[month] || 0;
-    return { month, find: count };
+    return { month, fall: count };
   });
 
   const sortedChartData = chartData.sort((a, b) => {
@@ -115,11 +115,11 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
   return (
     <Card className="charts-card">
       <CardHeader className="charts-card-header">
-        <h3>Nombre de découvertes de météorites par mois</h3>
+        <h3>Nombre de chutes de météorites par mois</h3>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={ sortedChartData } margin={{ right: 30, top: 20 }}>
+          <LineChart data={ sortedChartData } margin={{ right: 30 }}>
             <CartesianGrid vertical={ false } strokeDasharray="1 1" />
             <XAxis
               dataKey="month"
@@ -134,7 +134,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
                 </text> )}
               interval={0} />
             <YAxis
-              dataKey="find"
+              dataKey="fall"
               tick={({ x, y, payload }) => (
                 <text x={ x - 5 }
                       y={ y }
@@ -152,12 +152,11 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
 									<CustomTooltip
 										label={ monthName }
 										payload={ payload }
-										active={ active }
-										labelText="Découvertes : " /> );
+										active={ active } /> );
 							}} />
             <Line
               type="monotone"
-              dataKey="find"
+              dataKey="fall"
               stroke={ primaryColor }
               strokeWidth={2}
               dot={ renderCustomDot }

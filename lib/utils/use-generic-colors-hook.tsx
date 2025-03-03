@@ -22,6 +22,9 @@ export function useGenericColorsHook() {
   const [goldColor, setGoldColor] = useState<string>("#ffc400");
   const [silverColor, setSilverColor] = useState<string>("#c0c0c0");
 
+  const [northColor, setNorthColor] = useState<string>("#4F9DFF");
+  const [southColor, setSouthColor] = useState<string>("#FF6F61");
+
   useEffect(() => {
     setTimeout(() => {
       const rootStyles = getComputedStyle(document.documentElement);
@@ -36,6 +39,9 @@ export function useGenericColorsHook() {
       setBronzeColor(rootStyles.getPropertyValue("--bronze-color").trim());
       setGoldColor(rootStyles.getPropertyValue("--gold-color").trim());
       setSilverColor(rootStyles.getPropertyValue("--silver-color").trim());
+
+      setNorthColor(rootStyles.getPropertyValue("--north-color").trim());
+      setSouthColor(rootStyles.getPropertyValue("--south-color").trim());
 
       setColorMeteoriteType({
         Iron: rootStyles.getPropertyValue("--meteorite-type-iron").trim(),
@@ -52,9 +58,11 @@ export function useGenericColorsHook() {
             bronzeColor,
             colorMeteoriteType,
             goldColor,
+            northColor,
             primaryColor,
             rodColor,
             secondaryColor,
-            silverColor
+            silverColor,
+            southColor
           };
 }

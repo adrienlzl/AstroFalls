@@ -1,4 +1,5 @@
 import React from "react";
+import { NameType, Payload, ValueType } from "recharts/types/component/DefaultTooltipContent";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
 
 
@@ -6,7 +7,7 @@ type LabelColorType = "accent" | "country" | "type";
 
 interface CustomTooltipProps {
   active?: boolean;
-  payload?: { value: number | undefined }[];
+  payload?: Payload<ValueType, NameType>[];
   label?: string;
   cursorStyle?: React.CSSProperties;
   labelText?: string;
@@ -42,6 +43,13 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
 
   if (active && payload && payload.length > 0) {
     const value = payload[0].value;
+    if (value == null) {
+      return null;
+    }
+    else if (Array.isArray(value)) {
+      return <div>Impossible d&apos;afficher un tableau</div>
+    }
+
     const formattedValue = typeof value === "number" ? `${formatter(value)}` : "N/A";
 
     return (

@@ -63,7 +63,7 @@ export default function ChartFallsByYear({ meteorites }: { meteorites: Meteorite
 											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
-								<Tooltip content={ <CustomTooltip /> } />
+						<Tooltip content={ <CustomTooltip /> } />
 						<Bar dataKey="count"
 								fill={ rodColor }
 								activeBar={{ fill: activeRodColor }} />

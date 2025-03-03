@@ -67,9 +67,9 @@ export default function ChartFallsByYearAfter1974({ meteorites }: { meteorites: 
 											dominantBaseline="middle">
 									{payload.value}
 								</text> )} />
-								<Tooltip
-									content={ <CustomTooltip /> }
-									cursor={ cursorStyle ? { width: '100%' } : {} } />
+						<Tooltip
+							content={ <CustomTooltip /> }
+							cursor={ cursorStyle ? { width: '100%' } : {} } />
 						<Bar dataKey="count"
 								fill={ rodColor}
 								activeBar={{ fill: accentColor }} />

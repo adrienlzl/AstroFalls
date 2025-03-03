@@ -103,10 +103,10 @@ export default function ChartTotalMassByType({ meteorites }: { meteorites: Meteo
 											dominantBaseline="middle">
 									{ payload.value + " t" }
 								</text> )} />
-								<Tooltip
-									content={ <CustomTooltip labelText="" labelColorType="type" /> }
-									cursor={ cursorStyle ? { width: '100%' } : {} }
-									formatter={ (value) => `${ value.toLocaleString() } t` }/>
+						<Tooltip
+							content={ <CustomTooltip labelText="" labelColorType="type" /> }
+							cursor={ cursorStyle ? { width: '100%' } : {} }
+							formatter={ (value) => `${ value.toLocaleString() } t` }/>
 						<Bar dataKey="value">
 							{data.map((entry) => (
 								<Cell key={ entry.type }

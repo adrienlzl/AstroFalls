@@ -14,9 +14,7 @@ interface DataTablePaginationProps<TData extends RowData> {
 }
 
 
-export function DataTablePagination<TData extends RowData>({
-	table,
-}: DataTablePaginationProps<TData>) {
+export function DataTablePagination<TData extends RowData>({ table }: DataTablePaginationProps<TData>) {
 	return (
 		<div id="pagination-container">
 			<div id="total-result">

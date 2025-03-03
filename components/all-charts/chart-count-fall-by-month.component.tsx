@@ -144,7 +144,9 @@ export default function ChartCountFallByMonth({ meteorites }: { meteorites: Mete
                       textAnchor="end"
                       dominantBaseline="middle">
                   { payload.value }
-                </text> )} />
+                </text> )}
+              domain={[0, 500]}
+              ticks={[125, 250, 375, 500]} />
             <Tooltip
 							content={( { label, payload, active }  ) => {
 								const monthName = getMonthNameInFrench(label);

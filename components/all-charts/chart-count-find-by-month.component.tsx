@@ -119,7 +119,7 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={ sortedChartData } margin={{ right: 30, top: 20 }}>
+          <LineChart data={ sortedChartData } margin={{ right: 30 }}>
             <CartesianGrid vertical={ false } strokeDasharray="1 1" />
             <XAxis
               dataKey="month"
@@ -144,7 +144,8 @@ export default function ChartCountFindByMonth({ meteorites }: { meteorites: Mete
                       textAnchor="end"
                       dominantBaseline="middle">
                   { payload.value }
-                </text> )} />
+                </text> )}
+              domain={[0, 400]} />
             <Tooltip
 							content={( { label, payload, active }  ) => {
 								const monthName = getMonthNameInFrench(label);

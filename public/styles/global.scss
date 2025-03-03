@@ -100,6 +100,7 @@ $font-size-page: 13px;
 $font-size-pagination: 13px;
 $font-size-table: 13px;
 $font-size-table-header: 14px;
+$font-size-table-input-search: 13px;
 $font-size-tooltip: 14px;
 $font-size-total-result: 13px;
 
@@ -108,6 +109,10 @@ $font-size-footer-responsive-S: 12px;
 $font-size-footer-responsive-M: 13px;
 $font-size-nav-responsive-S: 16px;
 $font-size-nav-responsive-M: 17px;
+$font-size-page-responsive-S: 11px;
+$font-size-page-responsive-M: 12px;
+$font-size-pagination-responsive-S: 11px;
+$font-size-pagination-responsive-M: 12px;
 $font-size-table-responsive-XS: 9px;
 $font-size-table-responsive-S: 10px;
 $font-size-table-responsive-M: 11px;
@@ -116,6 +121,10 @@ $font-size-table-header-responsive-XS: 10px;
 $font-size-table-header-responsive-S: 11px;
 $font-size-table-header-responsive-M: 12px;
 $font-size-table-header-responsive-L: 13px;
+$font-size-table-input-search-responsive-S: 11px;
+$font-size-table-input-search-responsive-M: 12px;
+$font-size-total-result-responsive-S: 11px;
+$font-size-total-result-responsive-M: 12px;
 
 /*------Text color------*/
 $button-text-color: $grey;
@@ -263,6 +272,35 @@ body {
         @media (width >= 850px) {
           max-width: 1200px;
         }
+        #input-search {
+          display: flex;
+          align-items: center;
+          padding: 0.75rem 0;
+          caret-color: $primary-color;
+          input {
+            color: $primary-color;
+            font-size: $font-size-table-input-search-responsive-S;
+            font-weight: $text-weight;
+            max-width: 200px;
+            background-color: $white;
+            border: $border-width2 $border-solid $accent-color;
+            @media (width >= 850px) {
+              font-size: $font-size-table-input-search-responsive-M;
+            }
+            @media (width >= 1100px) {
+              font-size: $font-size-table-input-search;
+            }
+            &::placeholder {
+              color: $primary-color;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+            &:focus {
+              font-weight: $text-weight-bold;
+            }
+          }
+        }
         #table {
           padding: 0.7vh;
           border: $border-width3 $border-solid $accent-color;
@@ -283,7 +321,7 @@ body {
                 background-color: $primary-color;
                 th {
                   font-family: $table-head-text;
-                  font-size: $font-size-table-header-responsive-XS;;
+                  font-size: $font-size-table-header-responsive-XS;
                   font-weight: $table-head-text-weight;
                   letter-spacing: 0px;
                   color: $white;
@@ -368,7 +406,7 @@ body {
             padding: 0 0.5rem;
             #total-result {
               text-align: left;
-              font-size: $font-size-total-result;
+              font-size: $font-size-total-result-responsive-S;
               font-weight: $text-weight-600;
               font-weight: $text-weight-bold;
               color: $primary-color;
@@ -379,6 +417,12 @@ body {
               border: $border-width2 $border-solid $accent-color;
               background-color: $white;
               user-select: none;
+              @media (width >= 850px) {
+                font-size: $font-size-total-result-responsive-M;
+              }
+              @media (width >= 1100px) {
+                font-size: $font-size-total-result;
+              }
             }
             #pagination {
               display: flex;
@@ -390,11 +434,17 @@ body {
                 align-items: center;
                 gap: 0.5rem;
                 button {
-                  font-size: $font-size-pagination;
+                  font-size: $font-size-pagination-responsive-S;
                   font-weight: $text-weight-600;
                   color: $primary-color;
                   background-color: $white;
                   border: $border-width2 $border-solid $accent-color;
+                  @media (width >= 850px) {
+                    font-size: $font-size-pagination-responsive-M;
+                  }
+                  @media (width >= 1100px) {
+                    font-size: $font-size-pagination;
+                  }
                   svg {
                     color: $primary-color;
                   }
@@ -411,19 +461,31 @@ body {
               #page-count {
                 display: flex;
                 justify-content: center;
-                font-size: $font-size-page;
+                font-size: $font-size-page-responsive-S;
                 font-weight: $text-weight-600;
                 align-items: center;
                 color: $primary-color;
                 width: 130px;
+                @media (width >= 850px) {
+                  font-size: $font-size-page-responsive-M;
+                }
+                @media (width >= 1100px) {
+                  font-size: $font-size-page;
+                }
               }
               #page {
                 margin-right: 1rem;
                 button {
-                  font-size: $font-size-pagination;
+                  font-size: $font-size-page-responsive-S;
                   font-weight: $text-weight-bold;
                   color: $primary-color;
                   border: $border-width2 $border-solid $accent-color;
+                  @media (width >= 850px) {
+                    font-size: $font-size-page-responsive-M;
+                  }
+                  @media (width >= 1100px) {
+                    font-size: $font-size-page;
+                  }
                   &:hover {
                     color: $white;
                     background-color: $secondary-color;

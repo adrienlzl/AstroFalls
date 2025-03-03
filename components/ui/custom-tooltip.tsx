@@ -1,6 +1,8 @@
 import React from "react";
 import {useGenericColorsHook} from "@/lib/utils/use-generic-colors-hook";
 import {NameType, Payload, ValueType} from "recharts/types/component/DefaultTooltipContent";
+import {useGenericColorsHook} from "@/lib/utils/use-generic-colors-hook";
+import {NameType, Payload, ValueType} from "recharts/types/component/DefaultTooltipContent";
 
 
 type LabelColorType = "accent" | "country" | "type";
@@ -45,10 +47,14 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
     const val = payload[0].value;
 
     if (val == null) {
+    const val = payload[0].value;
+
+    if (val == null) {
       return null;
     }
     else if (Array.isArray(val)) {
       return <div>Impossible d&apos;afficher un tableau</div>
+    } else if (typeof val === "number") {
     }
 
     const formattedValue = typeof val === "number" ? `${formatter(val)}` : "N/A";

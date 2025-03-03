@@ -92,7 +92,7 @@ export default function ChartFallsByCountry({
               )} />
 						<Tooltip
 							cursor={ cursorStyle ? { width: '100%' } : {} }
-							content={( { label, payload, active } ) => {
+							content={( { label, payload, active }  ) => {
 								const countryName = getCountryNameInFrench(label);
 								const countryColor = colorMap[label];
 								return (

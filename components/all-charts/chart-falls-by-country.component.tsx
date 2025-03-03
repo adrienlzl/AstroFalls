@@ -64,7 +64,7 @@ export default function ChartFallsByCountry({
 						data={ data }
 						layout="vertical"
 						margin={{ top: 20, right: 30, left: 100, bottom: 20 }}>
-						<CartesianGrid strokeDasharray="3 3" />
+						<CartesianGrid horizontal={ false } strokeDasharray="1 1" />
 						<XAxis
 							type="number"
 							tick={({ x, y, payload }) => (

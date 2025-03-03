@@ -14,8 +14,8 @@ export default function NavComponent({ data }: { data: Meteorite[] }) {
 	const [selectedMenu, setSelectedMenu] = useState("home");
 	const menuItems = [
 		{ key: "home", label: "Accueil" },
-		{ key: "tableau", label: "Tableau" },
 		{ key: "carte", label: "Carte" },
+		{ key: "tableau", label: "Tableau" },
 		{ key: "graphique", label: "Graphique" },
 		{ key: "data", label: "KPI" },
 	];
@@ -24,10 +24,10 @@ export default function NavComponent({ data }: { data: Meteorite[] }) {
 		switch (selectedMenu) {
 			case "home" :
 				return <HomeComponent  />;
-			case "tableau":
-				return <DataTable<Meteorite, unknown> columns={columns} data={data} />;
 			case "carte":
 				return <Map2D meteorites={data} />;
+			case "tableau":
+				return <DataTable<Meteorite, unknown> columns={columns} data={data} />;
 			case "graphique":
 				return <ChartsComponent meteorites={data} />;
 			case "data":

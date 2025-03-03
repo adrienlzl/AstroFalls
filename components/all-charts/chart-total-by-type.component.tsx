@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {

@@ -1,5 +1,5 @@
-import "@/styles/tailwind.css";
-import "@/styles/global.scss";
+import "@/public/styles/tailwind.css";
+import "@/public/styles/global.scss";
 
 import type { Metadata } from "next";
 import Background from "@/components/ui/background.component";

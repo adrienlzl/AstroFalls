@@ -1,6 +1,6 @@
 import React from "react";
-import { NameType, Payload, ValueType } from "recharts/types/component/DefaultTooltipContent";
-import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
+import {useGenericColorsHook} from "@/lib/utils/use-generic-colors-hook";
+import {NameType, Payload, ValueType} from "recharts/types/component/DefaultTooltipContent";
 
 
 type LabelColorType = "accent" | "country" | "type";
@@ -25,7 +25,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   labelText = "Chutes : ",
   formatter = (value) => value.toLocaleString(),
   labelColorType = "accent",
-  labelColor =""
+                                                              labelColor = "",
 }) => {
   const { accentColor, colorMeteoriteType, primaryColor, secondaryColor } = useGenericColorsHook();
 
@@ -42,15 +42,15 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   }
 
   if (active && payload && payload.length > 0) {
-    const value = payload[0].value;
-    if (value == null) {
-      return null;
-    }
-    else if (Array.isArray(value)) {
-      return <div>Impossible d&apos;afficher un tableau</div>
-    }
+    const val = payload[0].value;
 
-    const formattedValue = typeof value === "number" ? `${formatter(value)}` : "N/A";
+    if (val == null) {
+      return null;
+    } else if (Array.isArray(val)) {
+      return <div>Impossible d&apos;afficher un tableau</div>
+    } else if (typeof val === "number") {
+    }
+    const formattedValue = typeof val === "number" ? `${formatter(val)}` : "N/A";
 
     return (
       <div style={{ background: "white", padding: "8px", ...cursorStyle }}>

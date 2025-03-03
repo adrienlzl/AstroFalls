@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "@/styles/hook/generic-colors.scss";
+import "@/public/styles/hook/generic-colors.scss";
 
 
 export function useGenericColorsHook() {

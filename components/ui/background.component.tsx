@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "@/styles/modules/background.module.scss";
+import styles from "@/public/styles/modules/background.module.scss";
 
 
 export default function Background() {

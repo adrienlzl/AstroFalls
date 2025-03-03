@@ -642,7 +642,8 @@ body {
         box-sizing: border-box;
         #chart-meteorite-by-type .charts-card-header h3,
         #chart-meteorite-country-counter .charts-card-header h3,
-        #chart-meteorite-mass-by-type .charts-card-header h3 {
+        #chart-meteorite-mass-by-type .charts-card-header h3,
+        #chart-fall-by-hemisphere .charts-card-header h3 {
           text-align: left;
           margin-left: 5px;
         }
@@ -670,7 +671,8 @@ body {
               }
             }
           }
-          #chart-content-meteorite-by-type {
+          #chart-content-meteorite-by-type,
+          #chart-content-fall-by-hemisphere {
             .recharts-responsive-container {
               width: 100%;
               ul {

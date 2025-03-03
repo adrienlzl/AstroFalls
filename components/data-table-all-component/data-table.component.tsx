@@ -35,10 +35,7 @@ interface DataTableProps<TData extends RowData, TValue> {
 }
 
 
-export function DataTable<TData extends RowData, TValue>({
-	columns,
-	data
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData extends RowData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{ id: "Recovered weight", desc: true }
 	]);
@@ -48,8 +45,12 @@ export function DataTable<TData extends RowData, TValue>({
 	});
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
+	// Focus input state
+	const [isFocused, setIsFocused] = React.useState(false);
+
 	// Get generic colors
 	const { colorMeteoriteType  } = useGenericColorsHook();
+
 	// Enrich column "Type" with colors
 	const columnEnrichesWithColors = columns.map((column) => {
 		if ('accessorKey' in column && column.accessorKey === "Type") {
@@ -96,15 +97,15 @@ export function DataTable<TData extends RowData, TValue>({
 
 	return (
 		<div id="table-container">
-			<div className="flex items-center py-4">
+			<div id="input-search">
 				<Input
-					placeholder="Filtrer par pays..."
-					value={(table.getColumn("Country")?.getFilterValue() as string) ?? ""}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+					placeholder={isFocused ? "" : "Filtrer par pays..."}
+					value={ (table.getColumn("Country")?.getFilterValue() as string) ?? "" }
+					onChange={ (event: React.ChangeEvent<HTMLInputElement> ) =>
 						table.getColumn("Country")?.setFilterValue(event.target.value)
 					}
-					className="max-w-sm bg-amber-50"
-				/>
+					onFocus={ () => setIsFocused(true) }
+          onBlur={ () => setIsFocused(false) }  />
 			</div>
 			<div id="table">
 				<Table>
@@ -113,8 +114,8 @@ export function DataTable<TData extends RowData, TValue>({
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
 									<TableHead key={header.id}
-											   style={{width: header.column.getSize()}}
-											   onClick={() => handleSort(header)}>
+														style={{width: header.column.getSize()}}
+														onClick={() => handleSort(header)}>
 										{header.isPlaceholder
 											? null
 											: flexRender(header.column.columnDef.header, header.getContext())}

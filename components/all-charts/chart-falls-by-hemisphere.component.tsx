@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
 	Cell,
 	Legend,
+	LegendProps,
 	PieChart,
 	Pie,
 	ResponsiveContainer,
@@ -36,6 +37,27 @@ export default function ChartFallsByHemisphere({ meteorites }: { meteorites: Met
 
 	// Tooltip
 	const cursorStyle = true;
+
+	// Legend
+	const CustomLegend: React.FC<LegendProps> = ({ payload }) => {
+		if (!payload) return null;
+
+		return (
+			<div id="chart-hemisphere-legend">
+				{payload.map((entry, index) => {
+					const isNorth = entry.value === "Nord";
+					const emoji = isNorth ? "🧊" : "🔥";
+        	const color = isNorth ? northColor : southColor;
+					return (
+						<div key={index} className="hemisphere-item">
+							<span className="hemisphere-emoji">{ emoji }</span>
+							<span className="hemisphere-text" style={{ color }}>{ entry.value }</span>
+						</div>
+					);
+				})}
+			</div>
+		);
+	};
 
 	return (
 		<Card id="chart-fall-by-hemisphere" className="charts-card">
@@ -74,7 +96,7 @@ export default function ChartFallsByHemisphere({ meteorites }: { meteorites: Met
 								return null;
 							}}
 							cursor={ cursorStyle ? { width: '100%' } : {} } />
-						<Legend iconSize={18} />
+						<Legend content={ <CustomLegend /> } />
 					</PieChart>
 				</ResponsiveContainer>
 			</CardContent>

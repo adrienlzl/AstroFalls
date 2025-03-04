@@ -92,6 +92,8 @@ $text-weight-bold: 700;
 
 /*------Fonts size------*/
 $font-size-card: 16px;
+$font-size-chart-legend: 16px;
+$font-size-chart-legend-emoji: 16px;
 $font-size-footer: 14px;
 $font-size-h3-charts: 14px;
 $font-size-layer: 13px;
@@ -730,6 +732,23 @@ body {
               border: $border-width2 $border-solid $secondary-color;
               .recharts-tooltip-label {
                 color: $accent-color;
+              }
+            }
+            #chart-hemisphere-legend {
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              .hemisphere-item {
+                display: flex;
+                font-size: $font-size-chart-legend;
+                align-items: center;
+                gap: 5px;
+                .hemisphere-emoji {
+                  font-size: $font-size-chart-legend-emoji;
+                }
+                .hemisphere-text {
+                  font-weight: $text-weight-bold;
+                }
               }
             }
           }

@@ -107,6 +107,8 @@ $font-size-tooltip: 14px;
 $font-size-total-result: 13px;
 
 /*------Fonts size responsive------*/
+$font-size-card-responsive-S: 14px;
+$font-size-card-responsive-M: 15px;
 $font-size-footer-responsive-S: 12px;
 $font-size-footer-responsive-M: 13px;
 $font-size-nav-responsive-S: 16px;
@@ -784,8 +786,14 @@ body {
       #kpi {
         display: grid;
         grid-template-columns: 1fr;
-        font-size: $font-size-card;
+        font-size: $font-size-card-responsive-S;
         gap: 1.5rem;
+        @media (width >= 850px) {
+          font-size: $font-size-card-responsive-M;
+        }
+        @media (width >= 1100px) {
+          font-size: $font-size-card;
+        }
         .kpi-card {
           display: flex;
           flex-direction: column;
@@ -813,6 +821,8 @@ body {
               color: $white;
               text-align: center;
               cursor: default;
+              pointer-events: none;
+              caret-color: transparent;
             }
           }
           .kpi-card-content {
@@ -825,6 +835,8 @@ body {
             width: 100%;
             padding: 0.5rem;
             background-color: $white;
+            pointer-events: none;
+            caret-color: transparent;
             .emoji {
               font-size: 15px;
             }
@@ -881,10 +893,20 @@ body {
             }
           }
         }
-        @media (width >= 768px) {
+        @media (width >= 750px) {
           grid-template-columns: repeat(3, 1fr);
           .kpi-card:last-child {
             grid-column: 2 / 3;
+          }
+          .kpi-card {
+            min-width: 220px;
+            max-width: 250px;
+          }
+        }
+        @media (width >= 900px) {
+          .kpi-card {
+            min-width: 250px;
+            max-width: 280px;
           }
         }
       }

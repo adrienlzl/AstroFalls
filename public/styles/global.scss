@@ -96,7 +96,9 @@ $font-size-chart-legend: 16px;
 $font-size-chart-legend-emoji: 16px;
 $font-size-footer: 14px;
 $font-size-h3-charts: 14px;
-$font-size-layer: 13px;
+$font-size-map-checkbox: 16px;
+$font-size-map-credits: 12px;
+$font-size-map-layer: 13px;
 $font-size-nav: 18px;
 $font-size-page: 13px;
 $font-size-pagination: 13px;
@@ -111,6 +113,12 @@ $font-size-card-responsive-S: 14px;
 $font-size-card-responsive-M: 15px;
 $font-size-footer-responsive-S: 12px;
 $font-size-footer-responsive-M: 13px;
+$font-size-map-checkbox-responsive-S: 14px;
+$font-size-map-checkbox-responsive-M: 15px;
+$font-size-map-credits-responsive-S: 10px;
+$font-size-map-credits-responsive-M: 11px;
+$font-size-map-layer-responsive-S: 11px;
+$font-size-map-layer-responsive-M: 12px;
 $font-size-nav-responsive-S: 16px;
 $font-size-nav-responsive-M: 17px;
 $font-size-page-responsive-S: 11px;
@@ -530,9 +538,16 @@ body {
           }
           ul {
             font-family: $text;
+            font-size: $font-size-map-credits-responsive-S;
             padding: 4px 4px 4px 6px;
             border-left: $border-width2 $border-solid $accent-color;
             border-top: $border-width2 $border-solid $accent-color;
+            @media (width >= 850px) {
+              font-size: $font-size-map-credits-responsive-M;
+            }
+            @media (width >= 1100px) {
+              font-size: $font-size-map-credits;
+            }
             li {
               color: $secondary-color;
               a {
@@ -561,7 +576,7 @@ body {
           #layer-control-buttons {
             position: absolute;
             font-family: $text;
-            font-size: $font-size-layer;
+            font-size: $font-size-map-layer-responsive-S;
             color: $secondary-color;
             bottom: 20px;
             left: 35px;
@@ -572,6 +587,12 @@ body {
             background-color: $white;
             z-index: 1;
             user-select: none;
+            @media (width >= 850px) {
+              font-size: $font-size-map-layer-responsive-M;
+            }
+            @media (width >= 1100px) {
+              font-size: $font-size-map-layer;
+            }
             :nth-of-type(1),
             :nth-of-type(2) {
               margin-right: 10px;
@@ -612,6 +633,7 @@ body {
             justify-content: center;
             align-items: center;
             font-family: $text;
+            font-size: $font-size-map-checkbox-responsive-S;
             height: $checkbox-wrapper-height;
             margin: 1rem;
             padding: 0.5rem 1rem;
@@ -620,6 +642,12 @@ body {
             -webkit-border-radius: 8px;
             border: $border-width2 $border-solid $accent-color;
             background-color: $white;
+            @media (width >= 850px) {
+              font-size: $font-size-map-checkbox-responsive-M;
+            }
+            @media (width >= 1100px) {
+              font-size: $font-size-map-checkbox;
+            }
             #checkbox-div {
               display: flex;
               align-items: center;

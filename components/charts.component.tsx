@@ -46,6 +46,7 @@ export default function ChartsComponent({ meteorites }: { meteorites: Meteorite[
 	}, []);
 
 	const scrollToTop = () => {
+		setCurrentIndex(0);
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 

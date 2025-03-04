@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { capitalizeWords } from "@/lib/utils/capitalize-words";
 import { getCountryNameInFrench } from '@/lib/utils/translate-country-in-french';
 import { getMonthNameInFrench } from '@/lib/utils/translate-month-in-french';
 import { Meteorite } from "@/lib/interfaces/meteorite-interface";
 import { useGenericColorsHook } from "@/lib/utils/use-generic-colors-hook";
+import styles from "@/public/styles/modules/animations.module.scss";
 
 
-export default function Kpi({
-  meteorites,
-}: {
-  meteorites: Meteorite[];
-}) {
+export default function Kpi({ meteorites }: { meteorites: Meteorite[] }) {
 	const parseWeight = (weight: string | null): number => {
 		if (!weight) return 0;
 		return parseFloat(weight);
@@ -206,222 +203,274 @@ export default function Kpi({
 		}
 	});
 
+	interface KPIProps {
+		yearMaxCount: string;
+		maxCount: number;
+		yearMaxMass: string;
+		maxMass: number;
+	}
+
+	const KPI_Cards: React.FC<KPIProps> = ({ yearMaxCount, maxCount, yearMaxMass, maxMass }) => {
+		const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(13).fill(false));
+
+		useEffect(() => {
+			const timers = visibleCards.map((_, index) =>
+				setTimeout(() => {
+					setVisibleCards((prev) => {
+						const updated = [...prev];
+						updated[index] = true;
+						return updated;
+					});
+				}, index * 350)
+			);
+
+			setVisibleCards((prev) => {
+				const updated = [...prev];
+				updated[0] = true;
+				return updated;
+			});
+
+			return () => {
+				timers.forEach(clearTimeout);
+			};
+		}, []);
+
+		return (
+			<>
+				<div id="kpi">
+					<Card className={`kpi-card ${ styles.flipX }`} style={{ display: visibleCards[0] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Année record</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p>{yearMaxCount}</p>
+							<p className="card-content-text">
+								Chutes :
+								<span> {maxCount.toLocaleString("fr-FR")}</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={`kpi-card ${ styles.flipX }` } style={{ display: visibleCards[1] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Année record (t)</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p>{yearMaxMass}</p>
+							<p className="card-content-text">Masse cumulée :
+								<span> {formatMass(maxMass)}</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={`kpi-card ${ styles.flipX }` } style={{ display: visibleCards[2] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Chutes enregistrées</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p className="card-content-text">Total cumulé : </p>
+							<p>{totalMeteorites.toLocaleString("fr-FR")}<span className="emoji"> ☄️</span></p>
+						</CardContent>
+					</Card>
+
+					<Card className={`kpi-card ${ styles.flipX }` } style={{ display: visibleCards[3] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Type dominant</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p>
+								<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>
+									{capitalizeWords(mostCommonType)}
+								</strong>
+							</p>
+							<p className="card-content-text">Chutes :
+								<span> {typeMostCount.toLocaleString("fr-FR")}</span>
+							</p>
+							<p className="card-content-text">Masse cumulée : <span>{formatMass(typeMostMass)}</span></p>
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[4] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>La plus massive</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							{ biggestMeteorite &&
+								<>
+									<p className="highlight">{ biggestMeteorite["Name"] }</p>
+									<p>{ formattedWeight }</p>
+									<p className="country-color">{ getCountryNameInFrench(biggestMeteorite["Country"]) }
+										<span> en { String(biggestMeteorite["Year"]).trim() }</span>
+									</p>
+								</>
+							}
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[5] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Pays le plus impacté</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p className="country-color">{ getCountryNameInFrench(countryMost) }</p>
+							<p className="card-content-text">Chutes :
+								<span> { countryMostCount.toLocaleString("fr-FR") }</span>
+							</p>
+							<p className="card-content-text">Masse cumulée :
+								<span> { formatMass(countryMostMass) }</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[6] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Stats France</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							{franceStats &&
+								<>
+									<p>{ franceStats.count }<span className="emoji"> ☄️</span></p>
+									<p className="card-content-text">Masse cumulée :
+										<span> { formatMass(franceStats.totalMass) }</span>
+									</p>
+								</> }
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[7] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Masse totale</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p className="card-content-text mass">⚖️</p>
+							<p className="card-content-text">Cumul :
+								<span> { formatMass(totalMassAll) }</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[8] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Découvertes</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p className="card-content-text find-fall">✔️
+								<span> { findCount.toLocaleString("fr-FR") }</span>
+							</p>
+							<p className="card-content-text find-fall">❌
+								<span> { notFindCount.toLocaleString("fr-FR") }</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[9] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Record de chutes</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							{topMonths.map(([month, count], index) => {
+								let emoji = '';
+								let color = '';
+								if (index === 0) {
+									emoji = '🏆';
+									color = goldColor;
+								} else if (index === 1) {
+									emoji = '🥈';
+									color = silverColor;
+								} else if (index === 2) {
+									emoji = '🥉';
+									color = bronzeColor;
+								}
+								return (
+									<p key={ month } className="card-content-text record">
+										<span>{ emoji } </span>
+										<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
+										<span> { count.toLocaleString("fr-FR") }</span>
+									</p>
+								);
+							})}
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[10] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Record de découvertes</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							{topFindMonths.map(([month, count], index) => {
+								let emoji = '';
+								let color = '';
+								if (index === 0) {
+									emoji = '🏆';
+									color = goldColor;
+								} else if (index === 1) {
+									emoji = '🥈';
+									color = silverColor;
+								} else if (index === 2) {
+									emoji = '🥉';
+									color = bronzeColor;
+								}
+								return (
+									<p key={ month } className="card-content-text record">
+										<span>{ emoji } </span>
+										<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
+										<span> { count.toLocaleString("fr-FR") }</span>
+									</p>
+								);
+							})}
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[11] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Hémisphère</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							<p className="cardinal-points">🧭</p>
+							<p className="card-content-text">Nord :
+								<span> { northernHemisphereCount.toLocaleString("fr-FR") }
+									<span className="emoji"> ☄️</span>
+								</span>
+							</p>
+							<p className="card-content-text">Sud :
+								<span> { southernHemisphereCount.toLocaleString("fr-FR") }
+									<span className="emoji"> ☄️</span>
+								</span>
+							</p>
+						</CardContent>
+					</Card>
+
+					<Card className={ `kpi-card ${ styles.flipX }` } style={{ display: visibleCards[12] ? "block" : "none" }}>
+						<CardHeader className="kpi-card-header">
+							<h3>Types de météorites</h3>
+						</CardHeader>
+						<CardContent className="kpi-card-content">
+							{Object.entries(typeStats).map(([type, stats]) => (
+								<div className="type-meteorite" key={ type }>
+									<p><strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong></p>
+									<p className="card-content-text">Chutes :
+										<span> { stats.count.toLocaleString("fr-FR") }</span>
+									</p>
+									<p className="card-content-text">Masse cumulée :
+										<span> { formatMass(stats.totalMass) }</span>
+									</p>
+								</div>
+							))}
+						</CardContent>
+					</Card>
+				</div>
+			</>
+		);
+	};
 
 	return (
-		<div id="kpi">
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Année record</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p>{ yearMaxCount }</p>
-					<p className="card-content-text">Chutes :
-						<span> { maxCount.toLocaleString("fr-FR") }</span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Année record (t)</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p>{ yearMaxMass }</p>
-					<p className="card-content-text">Masse cumulée :
-						<span> { formatMass(maxMass) }</span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Chutes enregistrées</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="card-content-text">Total cumulé : </p>
-					<p>{ totalMeteorites.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Type dominant</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p>
-						<strong style={{ color: colorMeteoriteType[capitalizeWords(mostCommonType)] }}>{ capitalizeWords(mostCommonType) }</strong>
-					</p>
-					<p className="card-content-text">Chutes :
-						<span> { typeMostCount.toLocaleString("fr-FR") }</span>
-					</p>
-					<p className="card-content-text">Masse cumulée : <span>{ formatMass(typeMostMass) }</span></p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>La plus massive</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					{ biggestMeteorite &&
-						<>
-							<p className="highlight">{ biggestMeteorite["Name"] }</p>
-							<p>{ formattedWeight }</p>
-							<p className="country-color">{ getCountryNameInFrench(biggestMeteorite["Country"]) }
-								<span> en { String(biggestMeteorite["Year"]).trim() }</span>
-							</p>
-						</>
-					}
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Pays le plus impacté</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="country-color">{ getCountryNameInFrench(countryMost) }</p>
-					<p className="card-content-text">Chutes :
-						<span> { countryMostCount.toLocaleString("fr-FR") }</span>
-					</p>
-					<p className="card-content-text">Masse cumulée :
-						<span> { formatMass(countryMostMass) }</span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Stats France</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					{franceStats &&
-						<>
-							<p>{ franceStats.count }<span className="emoji"> ☄️</span></p>
-							<p className="card-content-text">Masse cumulée :
-								<span> { formatMass(franceStats.totalMass) }</span>
-							</p>
-						</> }
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Masse totale</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="card-content-text mass">⚖️</p>
-					<p className="card-content-text">Cumul :
-						<span> { formatMass(totalMassAll) }</span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Découvertes</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="card-content-text find-fall">✔️
-						<span> { findCount.toLocaleString("fr-FR") }</span>
-					</p>
-					<p className="card-content-text find-fall">❌
-						<span> { notFindCount.toLocaleString("fr-FR") }</span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Record de chutes</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					{topMonths.map(([month, count], index) => {
-						let emoji = '';
-						let color = '';
-						if (index === 0) {
-							emoji = '🏆';
-							color = goldColor;
-						} else if (index === 1) {
-							emoji = '🥈';
-							color = silverColor;
-						} else if (index === 2) {
-							emoji = '🥉';
-							color = bronzeColor;
-						}
-						return (
-							<p key={ month } className="card-content-text record">
-								<span>{ emoji } </span>
-								<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
-								<span> { count.toLocaleString("fr-FR") }</span>
-							</p>
-						);
-					})}
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Record de découvertes</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					{topFindMonths.map(([month, count], index) => {
-						let emoji = '';
-						let color = '';
-						if (index === 0) {
-							emoji = '🏆';
-							color = goldColor;
-						} else if (index === 1) {
-							emoji = '🥈';
-							color = silverColor;
-						} else if (index === 2) {
-							emoji = '🥉';
-							color = bronzeColor;
-						}
-						return (
-							<p key={ month } className="card-content-text record">
-								<span>{ emoji } </span>
-								<span className="top-month" style={{ color: color }}> { getMonthNameInFrench(month) } : </span>
-								<span> { count.toLocaleString("fr-FR") }</span>
-							</p>
-						);
-					})}
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Hémisphère</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					<p className="cardinal-points">🧭</p>
-					<p className="card-content-text">Nord :
-						<span> { northernHemisphereCount.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></span>
-					</p>
-					<p className="card-content-text">Sud :
-						<span> { southernHemisphereCount.toLocaleString("fr-FR") }<span className="emoji"> ☄️</span></span>
-					</p>
-				</CardContent>
-			</Card>
-
-			<Card className="kpi-card">
-				<CardHeader className="kpi-card-header">
-					<h3>Types de météorites</h3>
-				</CardHeader>
-				<CardContent className="kpi-card-content">
-					{Object.entries(typeStats).map(([type, stats]) => (
-						<div className="type-meteorite" key={ type }>
-							<p><strong style={{ color: colorMeteoriteType[type] }}>{ capitalizeWords(type) }</strong></p>
-							<p className="card-content-text">Chutes :
-								<span> { stats.count.toLocaleString("fr-FR") }</span>
-							</p>
-							<p className="card-content-text">Masse cumulée :
-								<span> { formatMass(stats.totalMass) }</span>
-							</p>
-						</div>
-					))}
-				</CardContent>
-			</Card>
+		<div>
+			<KPI_Cards
+				yearMaxCount={ yearMaxCount }
+				maxCount={ maxCount }
+				yearMaxMass={ yearMaxMass }
+				maxMass={ maxMass }
+			/>
 		</div>
 	);
 }

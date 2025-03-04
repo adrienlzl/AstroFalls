@@ -9,7 +9,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<NavComponent data={meteoriteData}/>
+			<NavComponent data={ meteoriteData }/>
 			<FooterComponent />
 		</>
 	);

@@ -731,7 +731,7 @@ body {
         flex-direction: column;
         width: 100%;
         max-width: none;
-        padding: 20px;
+        padding: 20px 40px;
         gap: 80px;
         box-sizing: border-box;
         #chart-meteorite-by-type .charts-card-header h3,
@@ -809,6 +809,25 @@ body {
         }
         @media (width >= 850px) {
           max-width: 1200px;
+        }
+        #scroll-button {
+          position: fixed;
+          display: flex;
+          justify-content: center;
+          font-size: 25px;
+          color: $primary-color;
+          width: 50px;
+          height: 50px;
+          bottom: 80px;
+          right: 30px;
+          border-radius: 50%;
+          border: $border-width2 $border-solid $accent-color;
+          background-color: $white;
+          cursor: pointer;
+          &:hover {
+            color: $white;
+            background-color: $secondary-color;
+          }
         }
       }
       #kpi {

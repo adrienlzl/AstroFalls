@@ -13,6 +13,7 @@ import ChartTotalMassByYear from "@/components/all-charts/chart-total-mass-by-ye
 export default function ChartsComponent({ meteorites }: { meteorites: Meteorite[] }) {
 	const chartRefs = useRef<HTMLDivElement[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [showScrollToTop, setShowScrollToTop] = useState(false);
 
 	const handleWheel = useCallback((event: WheelEvent) => {
 		const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
@@ -27,6 +28,26 @@ export default function ChartsComponent({ meteorites }: { meteorites: Meteorite[
 			});
 		}
 	}, [currentIndex]);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 200) {
+				setShowScrollToTop(true);
+			} else {
+				setShowScrollToTop(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	};
 
 	useEffect(() => {
 		window.addEventListener("wheel", handleWheel, { passive: false });
@@ -48,15 +69,22 @@ export default function ChartsComponent({ meteorites }: { meteorites: Meteorite[
 				ChartTotalByType,
 				ChartFallsByHemisphere,
 			].map((ChartComponent, index) => (
-				<div
-					key={ index }
-					ref={(el) => {
-						if (el) chartRefs.current[index] = el;
-					}}
-					className="chart-container" >
+				<div key={ index }
+						ref={(el) => {
+							if (el) chartRefs.current[index] = el;
+						}}
+						className="chart-container" >
 					<ChartComponent meteorites={ meteorites } />
 				</div>
 			))}
+
+			{showScrollToTop && (
+				<button
+					id="scroll-button"
+					onClick={ scrollToTop } >
+					↑
+				</button>
+			)}
 		</div>
 	);
 }
